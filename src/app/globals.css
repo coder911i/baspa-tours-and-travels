@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #F0EDE8;
+  --dark-charcoal: #111318;
+  --surface: #1C1F26;
+  --gold-accent: #C9A84C;
+  --gold-light: #E8C96D;
+  --gold-muted: #8B6914;
+  --ice-blue: #A8C5DA;
+  --snow-white: #F0EDE8;
+  --text-primary: #F0EDE8;
+  --text-muted: #8A8F9A;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+  }
+  
+  ::selection {
+    background-color: rgba(201, 168, 76, 0.3);
+    color: #E8C96D;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-snow font-medium tracking-tight;
+  }
+
+  .accent-text {
+    @apply font-accent italic text-gold;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply border border-gold text-gold hover:bg-gold hover:text-background transition-all duration-500 px-8 py-3 rounded-none uppercase tracking-widest text-sm font-medium;
+  }
+
+  .btn-gold-filled {
+    @apply bg-gold text-background hover:bg-gold-light transition-all duration-500 px-8 py-3 rounded-none uppercase tracking-widest text-sm font-bold;
+  }
+
+  .btn-ghost {
+    @apply text-text-primary hover:text-gold transition-colors duration-300 px-6 py-2 rounded-none flex items-center gap-2;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .glass-card {
+    background-color: rgba(28, 31, 38, 0.4);
+    @apply backdrop-blur-md border border-white/10;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(201, 168, 76, 0.2);
+  transition: background-color 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(201, 168, 76, 0.4);
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: initial; /* Lenis handles smooth scrolling */
+}
