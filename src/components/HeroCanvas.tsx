@@ -101,7 +101,7 @@ function SnowParticles({ count = 2000 }) {
 }
 
 function SceneContent() {
-  const { camera, scene } = useThree();
+  const { camera } = useThree();
   
   useEffect(() => {
     if (typeof window !== 'undefined') {
