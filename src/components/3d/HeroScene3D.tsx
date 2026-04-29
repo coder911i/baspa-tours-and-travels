@@ -7,6 +7,9 @@ import * as THREE from 'three';
 import { createNoise2D } from 'simplex-noise';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 const noise2D = createNoise2D();
 
 function Terrain() {
@@ -115,44 +118,40 @@ function SceneContent() {
   const { camera } = useThree();
   
   useEffect(() => {
-    import('gsap').then(({ gsap }) => {
-      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger);
-        
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "body",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1.5
-          }
-        });
-
-        // scroll 0% → 30%: flying into mountains
-        tl.to(camera.position, {
-          x: 0,
-          y: 20,
-          z: 60,
-          duration: 1
-        }, 0);
-
-        // scroll 30% → 60%: pan left and descend
-        tl.to(camera.position, {
-          x: -30,
-          y: 12,
-          z: 40,
-          duration: 1
-        }, 1);
-
-        // scroll 60% → 100%: wide aerial view
-        tl.to(camera.position, {
-          x: 0,
-          y: 60,
-          z: 180,
-          duration: 1
-        }, 2);
-      });
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.5
+      }
     });
+
+    // scroll 0% → 30%: flying into mountains
+    tl.to(camera.position, {
+      x: 0,
+      y: 20,
+      z: 60,
+      duration: 1
+    }, 0);
+
+    // scroll 30% → 60%: pan left and descend
+    tl.to(camera.position, {
+      x: -30,
+      y: 12,
+      z: 40,
+      duration: 1
+    }, 1);
+
+    // scroll 60% → 100%: wide aerial view
+    tl.to(camera.position, {
+      x: 0,
+      y: 60,
+      z: 180,
+      duration: 1
+    }, 2);
   }, [camera]);
 
   useFrame(() => {
