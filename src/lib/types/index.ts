@@ -58,7 +58,6 @@ export interface Destination {
   howToReach?: string;
   attractions?: (string | Attraction)[];
   gallery?: string[];
-  [key: string]: any; // Catch-all for other optional fields
 }
 
 export interface SITE_CONFIG_TYPE {
