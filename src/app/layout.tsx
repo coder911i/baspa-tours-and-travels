@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import LoadingScreen from "@/components/LoadingScreen";
 
 const SmoothScroll = dynamic(() => import('@/components/SmoothScroll'), { ssr: false });
-const GlobalParticles = dynamic(() => import('@/components/3d/GlobalParticles'), { ssr: false });
+// const GlobalParticles = dynamic(() => import('@/components/3d/GlobalParticles'), { ssr: false });
 
 const inter = Inter({
   subsets: ["latin"],
