@@ -29,7 +29,7 @@ function Card({ url, angle, radius }: { url: string; angle: number; radius: numb
         opacity={0.8}
         side={THREE.DoubleSide}
       />
- group>
+    </group>
   );
 }
 
