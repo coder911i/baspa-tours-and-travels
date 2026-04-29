@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { formatPrice } from '@/lib/utils';
 import { Tour } from '@/lib/types';
 import { SITE_CONFIG, formatWhatsAppLink } from '@/lib/config';
 import toast from 'react-hot-toast';

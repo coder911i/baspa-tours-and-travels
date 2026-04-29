@@ -2,7 +2,7 @@
 
 import React, { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { PerspectiveCamera, Environment } from '@react-three/drei';
+import { PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 import { createNoise2D } from 'simplex-noise';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
@@ -79,7 +79,7 @@ function SnowParticles({ count = 2000 }) {
     return pos;
   }, [count]);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (points.current) {
       const pos = points.current.geometry.attributes.position.array as Float32Array;
       for (let i = 0; i < count; i++) {

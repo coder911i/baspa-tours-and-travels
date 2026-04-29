@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { tours } from '@/lib/data/tours';
 import { cn } from '@/lib/utils';
 
@@ -96,11 +97,13 @@ export default function ItineraryPreview() {
                       ))}
                     </ul>
                   </div>
-                  <div className="aspect-[4/3] bg-surface rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-                    <img 
+                  <div className="aspect-[4/3] bg-surface rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 relative">
+                    <Image 
                       src={`https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000&auto=format&fit=crop`}
                       alt="Journey stage"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      loading="lazy"
                     />
                   </div>
                 </div>

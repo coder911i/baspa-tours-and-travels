@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { tours } from '@/lib/data/tours';
 import { SITE_CONFIG, formatWhatsAppLink } from '@/lib/config';
-import { cn } from '@/lib/utils';
 
 export default function BookingPage() {
   const [formData, setFormData] = useState({
@@ -84,7 +83,7 @@ Special Requests: ${formData.message}`;
                   </div>
                   <h2 className="text-3xl font-display text-snow mb-4">Request Received</h2>
                   <p className="text-text-muted mb-8">
-                    We've opened WhatsApp to finalize your booking. If it didn't open, please check your browser pop-up settings.
+                    We&apos;ve opened WhatsApp to finalize your booking. If it didn&apos;t open, please check your browser pop-up settings.
                   </p>
                   <button 
                     onClick={() => setSubmitted(false)}

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { SITE_CONFIG, formatWhatsAppLink } from '@/lib/config';
@@ -36,7 +36,7 @@ Message: ${formData.message}`;
       
       setIsSuccess(true);
       toast.success("Message sent! Opening WhatsApp...");
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -108,7 +108,7 @@ Message: ${formData.message}`;
                   </div>
                   <h2 className="text-3xl font-display text-snow mb-4">Message Sent</h2>
                   <p className="text-text-muted mb-8">
-                    We'll respond to your inquiry within 24 hours. Safe travels!
+                    We&apos;ll respond to your inquiry within 24 hours. Safe travels!
                   </p>
                   <button 
                     onClick={() => setIsSuccess(false)}

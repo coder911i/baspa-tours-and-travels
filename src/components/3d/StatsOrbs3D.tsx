@@ -8,7 +8,7 @@ import * as THREE from 'three';
 function Orb({ position, color }: { position: [number, number, number]; color: string }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
-  useFrame((state) => {
+  useFrame(() => {
     if (meshRef.current) {
       meshRef.current.rotation.x += 0.01;
       meshRef.current.rotation.y += 0.01;

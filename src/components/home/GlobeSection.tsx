@@ -17,7 +17,7 @@ const locations = [
 function Globe() {
   const globeRef = useRef<THREE.Mesh>(null);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (globeRef.current) {
       globeRef.current.rotation.y += delta * 0.1;
     }

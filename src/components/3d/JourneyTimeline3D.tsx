@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Float, Line, Sphere, PerspectiveCamera } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Line, Sphere, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
 const points = [
@@ -51,7 +51,7 @@ function Path() {
 
 export default function JourneyTimeline3D() {
   return (
-    <div className="h-[500px] w-full bg-charcoal/50 rounded-3xl overflow-hidden border border-white/5 my-20">
+    <div className="h-[500px] w-full bg-charcoal/50 rounded-3xl overflow-hidden border border-white/5 my-20 relative">
       <Canvas>
         <PerspectiveCamera makeDefault position={[0, 4, 10]} fov={50} />
         <ambientLight intensity={0.5} />
@@ -59,7 +59,7 @@ export default function JourneyTimeline3D() {
         <Path />
         <gridHelper args={[20, 20, '#ffffff', '#ffffff']} opacity={0.05} transparent rotation={[0, 0, 0]} />
       </Canvas>
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center pointer-events-none">
         <p className="text-[10px] uppercase tracking-[0.4em] text-gold font-bold">Interactive 3D Timeline Path</p>
       </div>
     </div>

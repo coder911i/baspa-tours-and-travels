@@ -2,6 +2,7 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 const Gallery3DCarousel = dynamic(() => import('@/components/3d/Gallery3DCarousel'), { ssr: false });
 
@@ -26,11 +27,13 @@ export default function GalleryStrip() {
           'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600',
           'https://images.unsplash.com/photo-1544198365-f5d60b6d8190?q=80&w=600',
         ].map((img, i) => (
-          <div key={i} className="aspect-[4/5] bg-surface overflow-hidden group">
-            <img 
+          <div key={i} className="aspect-[4/5] bg-surface overflow-hidden group relative">
+            <Image 
               src={img} 
               alt="Himalayan landscape"
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-110"
+              fill
+              className="object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-110"
+              loading="lazy"
             />
           </div>
         ))}

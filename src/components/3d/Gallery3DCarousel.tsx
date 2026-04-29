@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { PerspectiveCamera, Image as DreiImage, Float } from '@react-three/drei';
+import React, { useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { PerspectiveCamera, Image as DreiImage } from '@react-three/drei';
 import * as THREE from 'three';
 
 const IMAGES = [
@@ -17,7 +17,6 @@ const IMAGES = [
 ];
 
 function Card({ url, angle, radius }: { url: string; angle: number; radius: number }) {
-  const meshRef = useRef<THREE.Mesh>(null);
   const x = Math.sin(angle) * radius;
   const z = Math.cos(angle) * radius;
 
@@ -30,7 +29,7 @@ function Card({ url, angle, radius }: { url: string; angle: number; radius: numb
         opacity={0.8}
         side={THREE.DoubleSide}
       />
-    </group>
+ group>
   );
 }
 
@@ -38,7 +37,7 @@ function Carousel() {
   const groupRef = useRef<THREE.Group>(null);
   const radius = 6;
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (groupRef.current) {
       groupRef.current.rotation.y += delta * 0.1;
     }
@@ -60,7 +59,7 @@ function Carousel() {
 
 export default function Gallery3DCarousel() {
   return (
-    <div className="h-[500px] w-full bg-dark/50 border-y border-white/5 my-32 cursor-grab active:cursor-grabbing">
+    <div className="h-[500px] w-full bg-dark/50 border-y border-white/5 my-32 cursor-grab active:cursor-grabbing relative">
       <Canvas>
         <PerspectiveCamera makeDefault position={[0, 0, 12]} fov={40} />
         <ambientLight intensity={0.5} />
