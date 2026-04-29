@@ -1,65 +1,54 @@
-export type Difficulty = 'easy' | 'moderate' | 'hard';
+export type Difficulty = 'Easy' | 'Moderate' | 'High' | 'Extreme';
 
 export interface ItineraryDay {
   day: number;
   title: string;
   description: string;
   meals?: string;
-  accommodation?: string;
+  stay?: string;
+  accommodation?: string; // Support both names
   distance?: string;
   altitude?: string;
   highlight?: string;
 }
 
-export interface Review {
-  id: string;
-  user: string;
-  location: string;
-  rating: number;
-  comment: string;
-  date: string;
-  tourSlug: string;
-}
-
 export interface Tour {
+  id: string;
   slug: string;
-  name: string;
-  tagline: string;
+  title: string;
+  name?: string; // Support legacy name prop
+  tagline?: string;
   description: string;
-  duration: number;
+  duration: string; // '7 Days' format
   difficulty: Difficulty;
-  maxAltitude: number;
-  groupSize: { min: number; max: number };
-  price: { perPerson: number; private?: number };
-  season: string[];
+  maxAltitude?: string | number;
+  altitude?: string;
+  groupSize: string | { min: number; max: number };
+  price: number | { perPerson: number; private?: number };
+  season?: string[];
   highlights: string[];
   included: string[];
-  notIncluded: string[];
+  notIncluded?: string[];
   itinerary: ItineraryDay[];
-  images: string[];
-  reviews: Review[];
-  featured?: boolean;
-}
-
-export interface Destination {
-  slug: string;
-  name: string;
-  elevation: string;
-  tagline: string;
-  description: string;
-  bestTimeToVisit: string;
-  howToReach: string;
-  attractions: { name: string; description: string; image?: string }[];
   image: string;
-  gallery: string[];
+  images?: string[];
+  featured?: boolean;
+  location?: string;
 }
 
-export interface Testimonial {
-  id: string;
-  name: string;
-  location: string;
-  avatar: string;
-  rating: number;
-  text: string;
-  tourName: string;
+export interface SITE_CONFIG_TYPE {
+  NAME: string;
+  TAGLINE: string;
+  WHATSAPP_NUMBER: string;
+  WHATSAPP_MESSAGE: string;
+  EMAIL: string;
+  PHONE: string;
+  ADDRESS: string;
+  VIDEO_ID: string;
+  SOCIAL_LINKS: {
+    instagram: string;
+    facebook: string;
+    twitter: string;
+    youtube: string;
+  };
 }

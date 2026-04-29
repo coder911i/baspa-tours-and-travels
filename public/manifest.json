@@ -1,0 +1,16 @@
+{
+  "name": "Baspa Travels",
+  "short_name": "Baspa",
+  "description": "Premium Himalayan Expeditions",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0D11",
+  "theme_color": "#C9A84C",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

@@ -4,6 +4,12 @@ import Footer from '@/components/Footer';
 import DestinationCard from '@/components/DestinationCard';
 import { destinations } from '@/lib/data/destinations';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Territories | Baspa Travels',
+  description: 'Explore the majestic valleys of the Himalayas. From the last village of Chitkul to the cold desert of Spiti.',
+};
 
 export default function DestinationsPage() {
   return (

@@ -3,56 +3,54 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import dynamic from 'next/dynamic';
+import { SITE_CONFIG } from '@/lib/config';
 
-const stats = [
-  { label: 'Years', value: 12, suffix: '+' },
-  { label: 'Travelers', value: 847, suffix: '+' },
-  { label: 'Tours', value: 15, suffix: '+' },
-  { label: 'Rating', value: 4.9, suffix: '★' },
-];
+const StatsOrbs3D = dynamic(() => import('@/components/3d/StatsOrbs3D'), { ssr: false });
 
 export default function StatsBar() {
   const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      stats.forEach((_, i) => {
-        const target = { val: 0 };
-        const element = document.getElementById(`stat-value-${i}`);
-        if (element) {
-          gsap.to(target, {
-            val: stats[i].value,
-            duration: 2,
-            scrollTrigger: {
-              trigger: barRef.current,
-              start: 'top 90%',
-            },
-            onUpdate: () => {
-              element.innerText = target.val.toFixed(i === 3 ? 1 : 0);
-            },
-          });
-        }
+    
+    const elements = barRef.current?.querySelectorAll('.stat-value');
+    if (elements) {
+      elements.forEach((el, i) => {
+        const targetValue = SITE_CONFIG.STATS[i].value;
+        const obj = { val: 0 };
+        
+        gsap.to(obj, {
+          val: targetValue,
+          duration: 2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: barRef.current,
+            start: "top 85%",
+          },
+          onUpdate: () => {
+            if (el) el.textContent = obj.val % 1 === 0 ? Math.floor(obj.val).toString() : obj.val.toFixed(1);
+          }
+        });
       });
-    }, barRef);
-
-    return () => ctx.revert();
+    }
   }, []);
 
   return (
-    <div ref={barRef} className="w-full bg-charcoal border-y border-white/5 py-12 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-        {stats.map((stat, i) => (
-          <div key={stat.label} className="text-center md:border-r last:border-r-0 border-white/10 px-4">
-            <div className="text-4xl md:text-5xl font-display text-gold mb-2">
-              <span id={`stat-value-${i}`}>0</span>
-              <span>{stat.suffix}</span>
+    <div ref={barRef} className="w-full bg-charcoal border-y border-white/5 py-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <StatsOrbs3D />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 relative z-10">
+          {SITE_CONFIG.STATS.map((stat) => (
+            <div key={stat.label} className="text-center md:border-r last:border-r-0 border-white/10 px-4">
+              <div className="text-4xl md:text-5xl font-display text-gold mb-2">
+                <span className="stat-value">0</span>
+                {stat.suffix}
+              </div>
+              <p className="text-text-muted text-[10px] uppercase tracking-[0.2em]">{stat.label}</p>
             </div>
-            <div className="text-xs uppercase tracking-[0.3em] text-text-muted font-medium">
-              {stat.label}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,9 +1,15 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import TourCard from '@/components/TourCard';
+import TourCard3D from '@/components/3d/TourCard3D';
 import { tours } from '@/lib/data/tours';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Expeditions | Baspa Travels',
+  description: 'Discover our handcrafted luxury expeditions across the Himalayas. From Chitkul to Zanskar, experience the raw beauty of the high altitudes.',
+};
 
 export default function ToursPage() {
   return (
@@ -31,9 +37,7 @@ export default function ToursPage() {
       <section className="py-20 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {tours.map((tour) => (
-            <div key={tour.slug} className="flex justify-center">
-               <TourCard tour={tour} />
-            </div>
+             <TourCard3D key={tour.slug} tour={tour} />
           ))}
         </div>
       </section>

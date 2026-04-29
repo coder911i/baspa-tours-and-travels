@@ -1,257 +1,229 @@
-import { Tour } from "../types";
+import { Tour } from '../types';
 
 export const tours: Tour[] = [
   {
-    slug: "chitkul-valley-expedition",
-    name: "Chitkul Valley Expedition",
-    tagline: "Journey to the Last Village of India",
-    description: "Experience the untouched beauty of the Baspa Valley, ending at the mystical village of Chitkul. This journey takes you through lush pine forests, apple orchards, and rugged mountain terrains, offering a glimpse into the serene Himalayan life.",
-    duration: 7,
-    difficulty: "moderate",
-    maxAltitude: 3450,
-    groupSize: { min: 4, max: 12 },
-    price: { perPerson: 18500 },
-    season: ["May", "June", "July", "August", "September", "October"],
-    highlights: [
-      "Visit the last village on the Indo-Tibetan border",
-      "Explore the ancient Sangla Valley",
-      "Stay in premium riverside camps",
-      "Walk through world-famous apple orchards",
-      "Experience local Kinnauri culture and cuisine"
-    ],
-    included: [
-      "Accommodation in premium camps/guest houses",
-      "All meals during the trek",
-      "Professional mountain guides",
-      "Transportation in 4x4 vehicles",
-      "Inner line permits"
-    ],
-    notIncluded: [
-      "Travel insurance",
-      "Personal expenses",
-      "Tips for guides and drivers",
-      "Anything not mentioned in inclusions"
-    ],
+    id: 'chitkul-valley-expedition',
+    slug: 'chitkul-valley-expedition',
+    title: 'Chitkul Valley Expedition',
+    description: 'A premium journey to the last village of India. Experience the raw beauty of the Indo-Tibetan border.',
+    price: 45000,
+    duration: '7 Days',
+    difficulty: 'Moderate',
+    location: 'Kinnaur',
+    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2000&auto=format&fit=crop',
+    altitude: '3,450m',
+    groupSize: '8-12',
     itinerary: [
       {
         day: 1,
-        title: "Arrival in Shimla (2205m)",
-        description: "Arrive in the historic hill station of Shimla. Meet your guides and fellow travelers for a briefing session followed by a welcome dinner.",
-        accommodation: "Heritage Guest House",
-        altitude: "2205m"
+        title: 'Arrival in Shimla',
+        description: 'Orientation and preparation at the queen of hills. Local exploration and briefing.',
+        altitude: '2,276m',
+        stay: 'Premium Heritage Hotel'
       },
       {
         day: 2,
-        title: "Shimla → Rampur → Sangla (2680m)",
-        description: "A scenic drive along the Sutlej river. Witness the changing landscape from lush green to rugged mountains.",
-        distance: "180km",
-        altitude: "2680m",
-        meals: "Breakfast, Lunch, Dinner"
+        title: 'Shimla to Sangla',
+        description: 'A scenic drive through the Hindustan-Tibet road along the Sutlej river.',
+        altitude: '2,680m',
+        distance: '220km',
+        stay: 'Luxury Riverside Camp'
       },
       {
         day: 3,
-        title: "Sangla Valley Exploration",
-        description: "Visit the Kamru Fort and explore the local market of Sangla. Learn about the unique architecture and history of the region.",
-        altitude: "2680m",
-        meals: "Breakfast, Lunch, Dinner"
+        title: 'Sangla & Kamru Fort',
+        description: 'Explore the ancient Kamru Fort and the beautiful Sangla meadow. Acclimatization walk.',
+        altitude: '2,680m',
+        stay: 'Luxury Riverside Camp'
       },
       {
         day: 4,
-        title: "Sangla → Chitkul (3450m)",
-        description: "A short but breathtaking drive to Chitkul, the last inhabited village near the Indo-China border.",
-        distance: "28km",
-        altitude: "3450m",
-        meals: "Breakfast, Lunch, Dinner"
+        title: 'Sangla to Chitkul',
+        description: 'Drive to the last village. Walk through the ITBP check post and the Baspa river banks.',
+        altitude: '3,450m',
+        distance: '24km',
+        stay: 'Boutique Mountain Lodge'
       },
       {
         day: 5,
-        title: "Chitkul — Last Village of India",
-        description: "Spend the day exploring Chitkul, its ancient temple, and the banks of the Baspa river. Hike towards the ITBP check post.",
-        altitude: "3450m",
-        meals: "Breakfast, Lunch, Dinner"
+        title: 'Chitkul Exploration',
+        description: 'Visit the local temple, explore the buckwheat fields, and hike towards the Nagasti ITBP post.',
+        altitude: '3,450m',
+        stay: 'Boutique Mountain Lodge'
       },
       {
         day: 6,
-        title: "Chitkul → Sangla → Shimla",
-        description: "Start your return journey towards Shimla, carrying memories of the mystical valley.",
-        distance: "210km",
-        altitude: "2205m",
-        meals: "Breakfast, Lunch, Dinner"
+        title: 'Chitkul to Kalpa',
+        description: 'Return journey with a stop at Kalpa to witness the sunset over Kinner Kailash.',
+        altitude: '2,960m',
+        distance: '65km',
+        stay: 'Premium View Hotel'
       },
       {
         day: 7,
-        title: "Departure",
-        description: "After breakfast, proceed towards your onward journey.",
-        meals: "Breakfast"
+        title: 'Departure from Kalpa',
+        description: 'Final breakfast with the giants. Transfer back to Shimla/Chandigarh.',
+        altitude: '2,276m',
+        distance: '240km',
+        stay: 'None'
       }
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2000&auto=format&fit=crop"
-    ],
-    reviews: [
-      {
-        id: "r1",
-        user: "Arjun Sharma",
-        location: "Delhi",
-        rating: 5,
-        comment: "Chitkul changed something in me. Baspa Travels made it seamless and magical.",
-        date: "2023-09-15",
-        tourSlug: "chitkul-valley-expedition"
-      }
-    ],
-    featured: true
+    ]
   },
   {
-    slug: "spiti-circuit",
-    name: "Spiti Circuit",
-    tagline: "Into the Heart of the Middle Land",
-    description: "The Spiti Circuit is more than just a road trip; it's a journey through time. From the world's highest post office to ancient monasteries perched on cliffs, Spiti offers a landscape that is both harsh and hauntingly beautiful.",
-    duration: 10,
-    difficulty: "hard",
-    maxAltitude: 4590,
-    groupSize: { min: 6, max: 10 },
-    price: { perPerson: 28000 },
-    season: ["June", "July", "August", "September"],
-    highlights: [
-      "Visit Key Monastery, the largest in Spiti",
-      "Send a postcard from Hikkim, the world's highest post office",
-      "Witness the 500-year-old mummy at Giu",
-      "Drive through the treacherous yet stunning Kunzum Pass",
-      "Camp under the stars at Chandratal Lake"
-    ],
-    included: [
-      "Premium 4x4 vehicles for the entire circuit",
-      "Accommodation in boutique guest houses and luxury tents",
-      "All meals (Organic and Local focus)",
-      "Oxygen cylinders and medical kits",
-      "Spiti-expert guides"
-    ],
-    notIncluded: [
-      "Flights to/from base",
-      "Personal riding gear",
-      "Alcoholic beverages",
-      "Any costs due to roadblocks or landslides"
-    ],
-    itinerary: [], // To be populated
-    images: [
-      "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2000&auto=format&fit=crop"
-    ],
-    reviews: [],
-    featured: true
+    id: 'spiti-circuit',
+    slug: 'spiti-circuit',
+    title: 'The Great Spiti Circuit',
+    description: 'Cross the high passes of Rohtang and Kunzum into the cold desert of Spiti.',
+    price: 58000,
+    duration: '10 Days',
+    difficulty: 'High',
+    location: 'Lahaul & Spiti',
+    image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2000&auto=format&fit=crop',
+    altitude: '4,590m',
+    groupSize: '6-10',
+    itinerary: [
+      { day: 1, title: 'Manali Arrival', description: 'Gearing up in Manali.', altitude: '2,050m', stay: 'Manali Boutique Stay' },
+      { day: 2, title: 'Manali to Kaza', description: 'Crossing Rohtang and Kunzum.', altitude: '3,800m', distance: '180km', stay: 'Kaza Luxury Guest House' },
+      { day: 3, title: 'Kaza Exploration', description: 'Visit Key Monastery and Hikkim.', altitude: '4,440m', stay: 'Kaza Luxury Guest House' },
+      { day: 4, title: 'Komic & Langza', description: 'The fossil village and highest post office.', altitude: '4,587m', stay: 'Kaza Luxury Guest House' },
+      { day: 5, title: 'Pin Valley Hike', description: 'Search for the Snow Leopard.', altitude: '3,700m', stay: 'Mud Village Homestay' },
+      { day: 6, title: 'Dhankar Monastery', description: 'Cliff-hanging monastery exploration.', altitude: '3,894m', stay: 'Dhankar Homestay' },
+      { day: 7, title: 'Tabo to Nako', description: 'The Ajanta of the Himalayas.', altitude: '3,662m', stay: 'Nako Lake View Camp' }
+    ]
   },
   {
-    slug: "kinnaur-apple-trail",
-    name: "Kinnaur Apple Trail",
-    tagline: "Taste the Forbidden Fruit",
-    description: "A gentle journey through the apple orchards of Kinnaur. Perfect for families and those looking for a relaxed Himalayan experience.",
-    duration: 5,
-    difficulty: "easy",
-    maxAltitude: 2960,
-    groupSize: { min: 2, max: 8 },
-    price: { perPerson: 12500 },
-    season: ["August", "September", "October"],
-    highlights: ["Orchard walks", "Local cooking classes", "Stunning views of Kinner Kailash"],
-    included: ["Stays in heritage homes", "Orchard tours", "Transport"],
-    notIncluded: ["Personal expenses"],
-    itinerary: [],
-    images: ["https://images.unsplash.com/photo-1544860707-c352cc5a92e3?q=80&w=2000&auto=format&fit=crop"],
-    reviews: [],
-    featured: true
+    id: 'kinnaur-apple-trail',
+    slug: 'kinnaur-apple-trail',
+    title: 'Kinnaur Apple Trail',
+    description: 'A sensory journey through the blooming orchards of the Kinnaur valley.',
+    price: 38000,
+    duration: '6 Days',
+    difficulty: 'Easy',
+    location: 'Kinnaur',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop',
+    altitude: '2,670m',
+    groupSize: '10-15',
+    itinerary: [
+      { day: 1, title: 'Shimla Start', description: 'Meet at the Ridge.', altitude: '2,276m', stay: 'Hotel Willow Banks' },
+      { day: 2, title: 'Sarahan', description: 'Visit Bhimakali Temple.', altitude: '2,313m', stay: 'HPTDC Srikhand' },
+      { day: 3, title: 'Sangla', description: 'Riverside relaxation.', altitude: '2,680m', stay: 'Banjara Camp' },
+      { day: 4, title: 'Batseri Village', description: 'Apple orchard tour.', altitude: '2,700m', stay: 'Banjara Camp' },
+      { day: 5, title: 'Kalpa View', description: 'Kinner Kailash views.', altitude: '2,960m', stay: 'The Grand View' },
+      { day: 6, title: 'Return', description: 'Back to Shimla.', altitude: '2,276m', stay: 'None' }
+    ]
   },
   {
-    slug: "sangla-valley-trek",
-    name: "Sangla Valley Trek",
-    tagline: "Walk the Path of the Gods",
-    description: "A moderate trek through one of the most beautiful valleys in the Himalayas. Ancient villages, meadows, and river crossings.",
-    duration: 4,
-    difficulty: "moderate",
-    maxAltitude: 3200,
-    groupSize: { min: 4, max: 12 },
-    price: { perPerson: 9500 },
-    season: ["April", "May", "June", "September", "October", "November"],
-    highlights: ["Baspa river crossings", "Camping in meadows", "Interaction with local shepherds"],
-    included: ["Tents and sleeping bags", "Meals during trek", "Porters"],
-    notIncluded: ["Gear rental"],
-    itinerary: [],
-    images: ["https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop"],
-    reviews: [],
-    featured: true
+    id: 'pin-parvati-pass',
+    slug: 'pin-parvati-pass',
+    title: 'Pin Parvati Pass Trek',
+    description: 'The ultimate challenge connecting Kullu to Spiti. For experienced trekkers only.',
+    price: 75000,
+    duration: '12 Days',
+    difficulty: 'Extreme',
+    location: 'Kullu/Spiti',
+    image: 'https://images.unsplash.com/photo-1544198365-f5d60b6d8190?q=80&w=2000&auto=format&fit=crop',
+    altitude: '5,319m',
+    groupSize: '4-8',
+    itinerary: [
+      { day: 1, title: 'Kullu Base', description: 'Pre-trek briefing.', altitude: '1,200m', stay: 'Alpine Tents' },
+      { day: 2, title: 'Kheerganga', description: 'Hot springs hike.', altitude: '2,960m', stay: 'Camps' },
+      { day: 3, title: 'Tunda Bhuj', description: 'Alpine meadows.', altitude: '3,285m', stay: 'Camps' }
+    ]
   },
   {
-    slug: "pin-parvati-pass",
-    name: "Pin Parvati Pass",
-    tagline: "The Ultimate Challenge",
-    description: "A high-altitude trek connecting the Parvati Valley in Kullu to the Pin Valley in Spiti. Only for experienced trekkers.",
-    duration: 12,
-    difficulty: "hard",
-    maxAltitude: 5319,
-    groupSize: { min: 4, max: 8 },
-    price: { perPerson: 35000 },
-    season: ["July", "August", "September"],
-    highlights: ["Glacier crossings", "Dramatic landscape shift", "Highest point of the trek"],
-    included: ["Advanced mountain gear", "High-altitude guides", "Medical support"],
-    notIncluded: ["Travel to Manali"],
-    itinerary: [],
-    images: ["https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000&auto=format&fit=crop"],
-    reviews: [],
-    featured: true
+    id: 'kalpa-starlight-retreat',
+    slug: 'kalpa-starlight-retreat',
+    title: 'Kalpa Starlight Retreat',
+    description: 'A soul-stirring retreat focused on astrophotography and meditation.',
+    price: 32000,
+    duration: '5 Days',
+    difficulty: 'Easy',
+    location: 'Kalpa',
+    image: 'https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=2000&auto=format&fit=crop',
+    altitude: '2,960m',
+    groupSize: '6-10',
+    itinerary: [
+      { day: 1, title: 'Arrival', description: 'Check-in with Kinner Kailash views.', altitude: '2,960m', stay: 'Luxury Villa' }
+    ]
   },
   {
-    slug: "baspa-river-camp",
-    name: "Baspa River Camp",
-    tagline: "Riverside Tranquility",
-    description: "A short, relaxing getaway in the heart of the Baspa Valley. Perfect for rejuvenation.",
-    duration: 3,
-    difficulty: "easy",
-    maxAltitude: 2680,
-    groupSize: { min: 2, max: 15 },
-    price: { perPerson: 7500 },
-    season: ["May", "June", "July", "August", "September", "October"],
-    highlights: ["Riverside bonfire", "Star gazing", "Short nature walks"],
-    included: ["Luxury camping", "All meals", "Evening snacks"],
-    notIncluded: ["Transport to camp"],
-    itinerary: [],
-    images: ["https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=2000&auto=format&fit=crop"],
-    reviews: [],
-    featured: true
+    id: 'zanskar-hidden-valley',
+    slug: 'zanskar-hidden-valley',
+    title: 'Zanskar Hidden Valley',
+    description: 'Explore the most remote corners of the Zanskar range and its ancient gompas.',
+    price: 82000,
+    duration: '14 Days',
+    difficulty: 'High',
+    location: 'Zanskar',
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000&auto=format&fit=crop',
+    altitude: '5,000m',
+    groupSize: '6-8',
+    itinerary: [
+      { day: 1, title: 'Leh Arrival', description: 'Acclimatization in Leh.', altitude: '3,500m', stay: 'Leh Boutique Hotel' }
+    ]
   },
   {
-    slug: "nako-lake-circuit",
-    name: "Nako Lake Circuit",
-    tagline: "The Mirror of the Sky",
-    description: "Explore the high-altitude desert and the sacred Nako Lake. A blend of culture and breathtaking vistas.",
-    duration: 6,
-    difficulty: "moderate",
-    maxAltitude: 3662,
-    groupSize: { min: 4, max: 12 },
-    price: { perPerson: 15000 },
-    season: ["June", "July", "August", "September", "October"],
-    highlights: ["Nako Lake", "Ancient Nako Monastery", "Village walk"],
-    included: ["Guest house stays", "Transport", "Guide"],
-    notIncluded: ["Lunch on travel days"],
-    itinerary: [],
-    images: ["https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000&auto=format&fit=crop"],
-    reviews: [],
-    featured: false
+    id: 'rohtang-lahaul-loop',
+    slug: 'rohtang-lahaul-loop',
+    title: 'Rohtang & Lahaul Loop',
+    description: 'Drive through the Atal Tunnel and Rohtang pass into the lush Lahaul valley.',
+    price: 42000,
+    duration: '6 Days',
+    difficulty: 'Moderate',
+    location: 'Lahaul',
+    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000&auto=format&fit=crop',
+    altitude: '3,978m',
+    groupSize: '8-12',
+    itinerary: [
+      { day: 1, title: 'Manali Start', description: 'Meet and greet.', altitude: '2,050m', stay: 'Manali Resort' }
+    ]
   },
   {
-    slug: "tabo-monastery-trail",
-    name: "Tabo Monastery Trail",
-    tagline: "The Ajanta of the Himalayas",
-    description: "A spiritual and cultural journey to the oldest continuously operating Buddhist monastery in India.",
-    duration: 5,
-    difficulty: "easy",
-    maxAltitude: 3050,
-    groupSize: { min: 2, max: 10 },
-    price: { perPerson: 11000 },
-    season: ["May", "June", "July", "August", "September"],
-    highlights: ["Tabo Caves", "Monastery tour", "Stunning desert landscapes"],
-    included: ["Stays in monasteries/guest houses", "Transport", "Cultural guide"],
-    notIncluded: ["Donations"],
-    itinerary: [],
-    images: ["https://images.unsplash.com/photo-1544084944-15269ec7b5a0?q=80&w=2000&auto=format&fit=crop"],
-    reviews: [],
-    featured: false
+    id: 'himalayan-photo-masterclass',
+    slug: 'himalayan-photo-masterclass',
+    title: 'Himalayan Photo Masterclass',
+    description: 'Learn landscape photography from professionals in the most photogenic terrain.',
+    price: 55000,
+    duration: '8 Days',
+    difficulty: 'Easy',
+    location: 'Kinnaur/Spiti',
+    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2000&auto=format&fit=crop',
+    altitude: '3,800m',
+    groupSize: '5-7',
+    itinerary: [
+      { day: 1, title: 'Shimla Meeting', description: 'Camera settings and basics.', altitude: '2,276m', stay: 'Heritage Stay' }
+    ]
+  },
+  {
+    id: 'sangla-cultural-immersion',
+    slug: 'sangla-cultural-immersion',
+    title: 'Sangla Cultural Immersion',
+    description: 'Live with the locals, learn the Kinnauri language, and cook traditional meals.',
+    price: 28000,
+    duration: '5 Days',
+    difficulty: 'Easy',
+    location: 'Sangla',
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2000&auto=format&fit=crop',
+    altitude: '2,680m',
+    groupSize: '4-8',
+    itinerary: [
+      { day: 1, title: 'Village Welcome', description: 'Traditional welcome ceremony.', altitude: '2,680m', stay: 'Local Homestay' }
+    ]
+  },
+  {
+    id: 'ancient-spiti-monasteries',
+    slug: 'ancient-spiti-monasteries',
+    title: 'Ancient Spiti Monasteries',
+    description: 'A spiritual pilgrimage to Tabo, Key, and Dhankar monasteries.',
+    price: 49000,
+    duration: '8 Days',
+    difficulty: 'Moderate',
+    location: 'Spiti',
+    image: 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=2000&auto=format&fit=crop',
+    altitude: '3,800m',
+    groupSize: '8-10',
+    itinerary: [
+      { day: 1, title: 'Kaza Reach', description: 'Starting the spiritual trail.', altitude: '3,800m', stay: 'Monastery Guest House' }
+    ]
   }
 ];

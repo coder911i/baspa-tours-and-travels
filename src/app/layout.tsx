@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import SmoothScroll from "@/components/SmoothScroll";
+import dynamic from 'next/dynamic';
 import LoadingScreen from "@/components/LoadingScreen";
+
+const SmoothScroll = dynamic(() => import('@/components/SmoothScroll'), { ssr: false });
+const GlobalParticles = dynamic(() => import('@/components/3d/GlobalParticles'), { ssr: false });
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,8 +29,13 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Baspa Travels | Where The Roads End, We Begin",
-  description: "Premium mountain travel company operating in Chitkul, Spiti Valley, Kinnaur, and Himachal Pradesh. Handcrafted journeys to the roof of India.",
+  title: 'Baspa Travels | Premium Himalayan Expeditions',
+  description: 'Handcrafted luxury journeys to the heart of the Himalayas. Experience Chitkul, Spiti, and Kinnaur with expert guidance.',
+  openGraph: {
+    title: 'Baspa Travels',
+    description: 'Bespoke mountain adventures in Himachal Pradesh.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 export default function RootLayout({
@@ -41,6 +49,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} ${cormorant.variable} antialiased`}
       >
         <LoadingScreen />
+        <GlobalParticles />
         <SmoothScroll>
           <Toaster position="bottom-right" toastOptions={{
             style: {

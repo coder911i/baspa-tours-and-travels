@@ -2,11 +2,14 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { SITE_CONFIG, formatWhatsAppLink } from '@/lib/config';
 
 export default function WhatsAppButton() {
+  const whatsappUrl = formatWhatsAppLink(SITE_CONFIG.WHATSAPP_NUMBER, SITE_CONFIG.WHATSAPP_MESSAGE);
+
   return (
     <motion.a
-      href="https://wa.me/919876543210?text=Hi! I'm interested in booking a tour with Baspa Travels."
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}

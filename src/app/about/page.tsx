@@ -1,7 +1,13 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import { SITE_CONFIG } from '@/lib/config';
+
+export const metadata: Metadata = {
+  title: 'Our Story | Baspa Travels',
+  description: 'Learn about our 15-year journey leading premium Himalayan expeditions in Kinnaur and Spiti Valley.',
+};
 
 export default function AboutPage() {
   return (
@@ -38,12 +44,12 @@ export default function AboutPage() {
             </p>
             <div className="grid grid-cols-2 gap-8 pt-8">
               <div>
-                <p className="text-4xl font-display text-gold mb-2">12+</p>
-                <p className="text-[10px] uppercase tracking-widest text-text-muted">Years Experience</p>
+                <p className="text-4xl font-display text-gold mb-2">{SITE_CONFIG.STATS[0].value}{SITE_CONFIG.STATS[0].suffix}</p>
+                <p className="text-[10px] uppercase tracking-widest text-text-muted">{SITE_CONFIG.STATS[0].label} Experience</p>
               </div>
               <div>
-                <p className="text-4xl font-display text-gold mb-2">850+</p>
-                <p className="text-[10px] uppercase tracking-widest text-text-muted">Successful Trips</p>
+                <p className="text-4xl font-display text-gold mb-2">{SITE_CONFIG.STATS[1].value}{SITE_CONFIG.STATS[1].suffix}</p>
+                <p className="text-[10px] uppercase tracking-widest text-text-muted">{SITE_CONFIG.STATS[1].label} Handled</p>
               </div>
             </div>
           </div>
