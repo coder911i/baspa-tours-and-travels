@@ -10,9 +10,13 @@ import { cn } from '@/lib/utils';
 const JourneyTimeline3D = dynamic(() => import('@/components/3d/JourneyTimeline3D'), { ssr: false });
 
 export default function ItineraryPreview() {
-  const [activeDay, setActiveDay] = useState(1);
-  const sampleItinerary = tours[0].itinerary || [];
+  const tour = (tours && tours.length > 0) ? tours[0] : null;
+  const sampleItinerary = tour?.itinerary || [];
+  
+  const [activeDay, setActiveDay] = useState(sampleItinerary[0]?.day || 1);
   const currentDay = sampleItinerary.find(d => d.day === activeDay) || sampleItinerary[0];
+
+  if (!tour || sampleItinerary.length === 0) return null;
 
   return (
     <section className="py-32 bg-background px-6 md:px-12 relative">

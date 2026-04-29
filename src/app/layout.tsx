@@ -49,7 +49,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} ${cormorant.variable} antialiased`}
       >
         <LoadingScreen />
-        <GlobalParticles />
+        {/* <GlobalParticles /> */}
         <SmoothScroll>
           <Toaster position="bottom-right" toastOptions={{
             style: {

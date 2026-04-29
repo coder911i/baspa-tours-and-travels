@@ -15,8 +15,9 @@ export default function StatsBar() {
     gsap.registerPlugin(ScrollTrigger);
     
     const elements = barRef.current?.querySelectorAll('.stat-value');
-    if (elements) {
-      elements.forEach((el, i) => {
+    if (elements && elements.length > 0) {
+      Array.from(elements).forEach((el, i) => {
+        if (!SITE_CONFIG.STATS[i]) return;
         const targetValue = SITE_CONFIG.STATS[i].value;
         const obj = { val: 0 };
         
