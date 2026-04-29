@@ -20,9 +20,9 @@ export default function LoadingScreen() {
         >
           <div className="relative w-32 h-32 mb-8">
              <motion.div
-               initial={{ pathLength: 0 }}
-               animate={{ pathLength: 1 }}
-               transition={{ duration: 2, ease: "easeInOut" }}
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               transition={{ duration: 1 }}
                className="w-full h-full border-b-2 border-gold flex items-end justify-center"
              >
                 <div className="w-0 h-0 border-l-[30px] border-l-transparent border-r-[30px] border-r-transparent border-b-[50px] border-b-gold mb-[-1px]" />
