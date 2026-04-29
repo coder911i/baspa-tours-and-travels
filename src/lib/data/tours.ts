@@ -13,6 +13,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2000&auto=format&fit=crop',
     altitude: '3,450m',
     groupSize: '8-12',
+    highlights: [
+      'Visit the last village of India',
+      'Riverside luxury camping by the Baspa',
+      'Kamru Fort exploration',
+      'Indo-Tibetan border trail'
+    ],
+    included: [
+      'Premium accommodation',
+      'All meals (Organic local cuisine)',
+      'Expert mountain guides',
+      '4x4 Logistics'
+    ],
     itinerary: [
       {
         day: 1,
@@ -81,6 +93,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2000&auto=format&fit=crop',
     altitude: '4,590m',
     groupSize: '6-10',
+    highlights: [
+      'Key Monastery visit',
+      'Highest post office in Hikkim',
+      'Kunzum Pass crossing',
+      'Chandratal Lake'
+    ],
+    included: [
+      'Expedition grade camps',
+      'Professional photography guidance',
+      'Oxygen support',
+      'All permits'
+    ],
     itinerary: [
       { day: 1, title: 'Manali Arrival', description: 'Gearing up in Manali.', altitude: '2,050m', stay: 'Manali Boutique Stay' },
       { day: 2, title: 'Manali to Kaza', description: 'Crossing Rohtang and Kunzum.', altitude: '3,800m', distance: '180km', stay: 'Kaza Luxury Guest House' },
@@ -103,6 +127,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop',
     altitude: '2,670m',
     groupSize: '10-15',
+    highlights: [
+      'Apple orchard tours',
+      'Traditional Kinnauri lunch',
+      'Sangla Valley meadows',
+      'Village walks'
+    ],
+    included: [
+      'Boutique stays',
+      'Farm-to-table meals',
+      'Local transport',
+      'Guide services'
+    ],
     itinerary: [
       { day: 1, title: 'Shimla Start', description: 'Meet at the Ridge.', altitude: '2,276m', stay: 'Hotel Willow Banks' },
       { day: 2, title: 'Sarahan', description: 'Visit Bhimakali Temple.', altitude: '2,313m', stay: 'HPTDC Srikhand' },
@@ -124,6 +160,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1544198365-f5d60b6d8190?q=80&w=2000&auto=format&fit=crop',
     altitude: '5,319m',
     groupSize: '4-8',
+    highlights: [
+      'Highest pass crossing',
+      'Glacial terrain',
+      'Kullu to Spiti transition',
+      'Remote wilderness'
+    ],
+    included: [
+      'Professional trek leads',
+      'High-altitude gear',
+      'All meals on trek',
+      'Porter support'
+    ],
     itinerary: [
       { day: 1, title: 'Kullu Base', description: 'Pre-trek briefing.', altitude: '1,200m', stay: 'Alpine Tents' },
       { day: 2, title: 'Kheerganga', description: 'Hot springs hike.', altitude: '2,960m', stay: 'Camps' },
@@ -142,6 +190,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=2000&auto=format&fit=crop',
     altitude: '2,960m',
     groupSize: '6-10',
+    highlights: [
+      'Astrophotography workshop',
+      'Meditation sessions',
+      'Kinner Kailash views',
+      'Starry nights'
+    ],
+    included: [
+      'Luxury villa stay',
+      'Gourmet meals',
+      'Photography coach',
+      'Telescope access'
+    ],
     itinerary: [
       { day: 1, title: 'Arrival', description: 'Check-in with Kinner Kailash views.', altitude: '2,960m', stay: 'Luxury Villa' }
     ]
@@ -158,6 +218,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000&auto=format&fit=crop',
     altitude: '5,000m',
     groupSize: '6-8',
+    highlights: [
+      'Phugtal Monastery',
+      'Remote Zanskar villages',
+      'Ancient Gompas',
+      'Pensi La Pass'
+    ],
+    included: [
+      'Boutique hotels & camps',
+      'Cultural experts',
+      'Internal transfers',
+      'Expedition support'
+    ],
     itinerary: [
       { day: 1, title: 'Leh Arrival', description: 'Acclimatization in Leh.', altitude: '3,500m', stay: 'Leh Boutique Hotel' }
     ]
@@ -174,6 +246,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000&auto=format&fit=crop',
     altitude: '3,978m',
     groupSize: '8-12',
+    highlights: [
+      'Atal Tunnel drive',
+      'Rohtang Pass',
+      'Keylong exploration',
+      'Sissu Waterfall'
+    ],
+    included: [
+      'Comfortable stays',
+      'All meals',
+      'Safe mountain drivers',
+      'Inner-line permits'
+    ],
     itinerary: [
       { day: 1, title: 'Manali Start', description: 'Meet and greet.', altitude: '2,050m', stay: 'Manali Resort' }
     ]
@@ -190,6 +274,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2000&auto=format&fit=crop',
     altitude: '3,800m',
     groupSize: '5-7',
+    highlights: [
+      'Field workshops',
+      'Post-processing sessions',
+      'Golden hour shoots',
+      'Portfolio review'
+    ],
+    included: [
+      'Heritage stays',
+      'Photography mentors',
+      'Logistics support',
+      'Editing suite access'
+    ],
     itinerary: [
       { day: 1, title: 'Shimla Meeting', description: 'Camera settings and basics.', altitude: '2,276m', stay: 'Heritage Stay' }
     ]
@@ -206,6 +302,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2000&auto=format&fit=crop',
     altitude: '2,680m',
     groupSize: '4-8',
+    highlights: [
+      'Cooking workshops',
+      'Local festival participation',
+      'Language basics',
+      'Farm visits'
+    ],
+    included: [
+      'Homestays',
+      'Traditional meals',
+      'Cultural guides',
+      'Community activities'
+    ],
     itinerary: [
       { day: 1, title: 'Village Welcome', description: 'Traditional welcome ceremony.', altitude: '2,680m', stay: 'Local Homestay' }
     ]
@@ -222,6 +330,18 @@ export const tours: Tour[] = [
     image: 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=2000&auto=format&fit=crop',
     altitude: '3,800m',
     groupSize: '8-10',
+    highlights: [
+      'Tabo Monastery (Ajanta of the East)',
+      'Key Gompa exploration',
+      'Dhankar cliff monastery',
+      'Meditation at high altitude'
+    ],
+    included: [
+      'Spiritual guides',
+      'Monastery stays',
+      'Sattvic meals',
+      'Quiet logistics'
+    ],
     itinerary: [
       { day: 1, title: 'Kaza Reach', description: 'Starting the spiritual trail.', altitude: '3,800m', stay: 'Monastery Guest House' }
     ]

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Tour } from '@/lib/types';
-import { formatPrice, cn } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 
 export default function TourCard({ tour }: { tour: Tour }) {
   const x = useMotionValue(0);
@@ -34,6 +34,11 @@ export default function TourCard({ tour }: { tour: Tour }) {
     y.set(0);
   };
 
+  // Safe data access
+  const displayImage = tour.images?.[0] || tour.image;
+  const displayName = tour.title || tour.name || 'Expedition';
+  const displayPrice = typeof tour.price === 'number' ? tour.price : tour.price.perPerson;
+
   return (
     <motion.div
       style={{
@@ -49,8 +54,8 @@ export default function TourCard({ tour }: { tour: Tour }) {
         {/* Background Image */}
         <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
           <Image
-            src={tour.images[0]}
-            alt={tour.name}
+            src={displayImage}
+            alt={displayName}
             fill
             className="object-cover opacity-60"
           />
@@ -61,28 +66,28 @@ export default function TourCard({ tour }: { tour: Tour }) {
         <div className="absolute inset-0 p-8 flex flex-col justify-end translate-z-20">
           <div className="flex gap-2 mb-4">
             <span className="px-3 py-1 bg-gold text-background text-[10px] font-bold uppercase tracking-widest">
-              {tour.duration} Days
+              {tour.duration}
             </span>
             <span className={cn(
               "px-3 py-1 text-white text-[10px] font-bold uppercase tracking-widest",
-              tour.difficulty === 'easy' ? 'bg-green-600' : tour.difficulty === 'moderate' ? 'bg-blue-600' : 'bg-red-600'
+              tour.difficulty === 'Easy' ? 'bg-green-600' : tour.difficulty === 'Moderate' ? 'bg-blue-600' : 'bg-red-600'
             )}>
               {tour.difficulty}
             </span>
           </div>
 
           <h3 className="text-3xl font-display text-snow mb-2 group-hover:text-gold transition-colors duration-300">
-            {tour.name}
+            {displayName}
           </h3>
           
           <p className="text-text-muted text-sm mb-6 line-clamp-2">
-            {tour.tagline}
+            {tour.tagline || tour.description.substring(0, 80) + '...'}
           </p>
 
           <div className="flex items-center justify-between border-t border-white/10 pt-6">
             <div>
               <span className="text-[10px] uppercase tracking-widest text-text-muted block mb-1">Starting from</span>
-              <span className="text-xl font-display text-snow">{formatPrice(tour.price.perPerson)}</span>
+              <span className="text-xl font-display text-snow">₹{displayPrice.toLocaleString()}</span>
             </div>
             <span className="text-gold text-sm font-medium uppercase tracking-widest group-hover:translate-x-2 transition-transform duration-300">
               View Expedition →

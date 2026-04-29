@@ -12,7 +12,7 @@ export default function DestinationDetailContent({ dest }: { dest: Destination }
         <div className="absolute inset-0">
           <Image
             src={dest.image}
-            alt={dest.name}
+            alt={dest.name || dest.title}
             fill
             className="object-cover opacity-50"
           />
@@ -20,7 +20,7 @@ export default function DestinationDetailContent({ dest }: { dest: Destination }
         </div>
         <div className="relative z-10 px-6">
           <span className="text-gold font-bold text-xl uppercase tracking-[0.4em] block mb-4">{dest.elevation}</span>
-          <h1 className="text-6xl md:text-9xl font-display text-snow mb-4">{dest.name}</h1>
+          <h1 className="text-6xl md:text-9xl font-display text-snow mb-4">{dest.name || dest.title}</h1>
           <p className="accent-text text-snow text-2xl md:text-3xl">&quot;{dest.tagline}&quot;</p>
         </div>
       </section>
@@ -36,7 +36,7 @@ export default function DestinationDetailContent({ dest }: { dest: Destination }
             <div className="space-y-6">
               <div className="glass-card p-6">
                 <p className="text-gold text-[10px] uppercase tracking-widest font-bold mb-2">Best Time to Visit</p>
-                <p className="text-snow">{dest.bestTimeToVisit}</p>
+                <p className="text-snow">{dest.bestTimeToVisit || dest.bestTime}</p>
               </div>
               <div className="glass-card p-6">
                 <p className="text-gold text-[10px] uppercase tracking-widest font-bold mb-2">How to Reach</p>
@@ -47,7 +47,7 @@ export default function DestinationDetailContent({ dest }: { dest: Destination }
           <div className="relative aspect-square">
              <Image 
                 src={dest.image} 
-                alt={dest.name} 
+                alt={dest.name || dest.title} 
                 fill 
                 className="object-cover border border-white/10 p-4"
              />
@@ -56,17 +56,23 @@ export default function DestinationDetailContent({ dest }: { dest: Destination }
         </div>
 
         {/* Attractions */}
-        <div className="mb-32">
-          <h2 className="text-center text-4xl font-display text-snow mb-20">Key Attractions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {dest.attractions.map((attr, i) => (
-              <div key={i} className="glass-card p-10 group hover:border-gold/50 transition-all">
-                <h3 className="text-2xl font-display text-snow mb-4 group-hover:text-gold transition-colors">{attr.name}</h3>
-                <p className="text-text-muted leading-relaxed">{attr.description}</p>
-              </div>
-            ))}
+        {dest.attractions && dest.attractions.length > 0 && (
+          <div className="mb-32">
+            <h2 className="text-center text-4xl font-display text-snow mb-20">Key Attractions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {dest.attractions.map((attr, i) => {
+                const name = typeof attr === 'string' ? attr : attr.name;
+                const description = typeof attr === 'string' ? '' : attr.description;
+                return (
+                  <div key={i} className="glass-card p-10 group hover:border-gold/50 transition-all">
+                    <h3 className="text-2xl font-display text-snow mb-4 group-hover:text-gold transition-colors">{name}</h3>
+                    {description && <p className="text-text-muted leading-relaxed">{description}</p>}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </section>
     </>
   );

@@ -2,6 +2,8 @@ import { Destination } from "../types";
 
 export const destinations: Destination[] = [
   {
+    id: "chitkul",
+    title: "Chitkul",
     slug: "chitkul",
     name: "Chitkul",
     elevation: "3450m",
@@ -18,6 +20,8 @@ export const destinations: Destination[] = [
     gallery: []
   },
   {
+    id: "kaza",
+    title: "Kaza",
     slug: "kaza",
     name: "Kaza",
     elevation: "3800m",
@@ -33,6 +37,8 @@ export const destinations: Destination[] = [
     gallery: []
   },
   {
+    id: "kalpa",
+    title: "Kalpa",
     slug: "kalpa",
     name: "Kalpa",
     elevation: "2960m",
@@ -48,6 +54,8 @@ export const destinations: Destination[] = [
     gallery: []
   },
   {
+    id: "sangla",
+    title: "Sangla",
     slug: "sangla",
     name: "Sangla",
     elevation: "2680m",
@@ -63,6 +71,8 @@ export const destinations: Destination[] = [
     gallery: []
   },
   {
+    id: "nako",
+    title: "Nako",
     slug: "nako",
     name: "Nako",
     elevation: "3662m",
@@ -78,6 +88,8 @@ export const destinations: Destination[] = [
     gallery: []
   },
   {
+    id: "tabo",
+    title: "Tabo",
     slug: "tabo",
     name: "Tabo",
     elevation: "3050m",
@@ -93,6 +105,8 @@ export const destinations: Destination[] = [
     gallery: []
   },
   {
+    id: "kibber",
+    title: "Kibber",
     slug: "kibber",
     name: "Kibber",
     elevation: "4200m",
@@ -108,6 +122,8 @@ export const destinations: Destination[] = [
     gallery: []
   },
   {
+    id: "langza",
+    title: "Langza",
     slug: "langza",
     name: "Langza",
     elevation: "4400m",

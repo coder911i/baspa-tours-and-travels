@@ -4,17 +4,10 @@ import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Tour } from '@/lib/types';
 
 interface TourCard3DProps {
-  tour: {
-    slug: string;
-    title: string;
-    price: number;
-    duration: string;
-    image: string;
-    location: string;
-    difficulty?: string;
-  };
+  tour: Tour;
 }
 
 export default function TourCard3D({ tour }: TourCard3DProps) {
@@ -43,6 +36,8 @@ export default function TourCard3D({ tour }: TourCard3DProps) {
     x.set(0);
     y.set(0);
   };
+
+  const displayPrice = typeof tour.price === 'number' ? tour.price : tour.price.perPerson;
 
   return (
     <motion.div
@@ -103,7 +98,7 @@ export default function TourCard3D({ tour }: TourCard3DProps) {
           >
             <div>
               <p className="text-text-muted text-[10px] uppercase tracking-widest mb-1">Starts From</p>
-              <p className="text-gold font-bold text-xl">₹{tour.price.toLocaleString()}</p>
+              <p className="text-gold font-bold text-xl">₹{displayPrice.toLocaleString()}</p>
             </div>
             <div className="text-right">
               <p className="text-text-muted text-[10px] uppercase tracking-widest mb-1">Duration</p>

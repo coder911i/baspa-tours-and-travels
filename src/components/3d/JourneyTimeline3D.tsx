@@ -57,7 +57,7 @@ export default function JourneyTimeline3D() {
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <Path />
-        <gridHelper args={[20, 20, '#ffffff', '#ffffff']} opacity={0.05} transparent rotation={[0, 0, 0]} />
+        <gridHelper args={[20, 20, 0x444444, 0x222222]} position={[0, -1, 0]} />
       </Canvas>
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center pointer-events-none">
         <p className="text-[10px] uppercase tracking-[0.4em] text-gold font-bold">Interactive 3D Timeline Path</p>

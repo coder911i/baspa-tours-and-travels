@@ -36,6 +36,31 @@ export interface Tour {
   location?: string;
 }
 
+export interface Attraction {
+  name: string;
+  description: string;
+  image?: string;
+}
+
+export interface Destination {
+  id: string;
+  slug: string;
+  title: string;
+  name?: string;
+  tagline?: string;
+  description: string;
+  image: string;
+  location?: string;
+  featured?: boolean;
+  elevation?: string;
+  bestTime?: string;
+  bestTimeToVisit?: string;
+  howToReach?: string;
+  attractions?: (string | Attraction)[];
+  gallery?: string[];
+  [key: string]: any; // Catch-all for other optional fields
+}
+
 export interface SITE_CONFIG_TYPE {
   NAME: string;
   TAGLINE: string;

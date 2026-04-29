@@ -22,7 +22,10 @@ export default function BookingPage() {
 
   const [submitted, setSubmitted] = useState(false);
   const selectedTour = tours.find(t => t.id === formData.tourId) || tours[0];
-  const totalPrice = (selectedTour.price * formData.adults) + (selectedTour.price * 0.5 * formData.children);
+  
+  // Robust price calculation
+  const basePrice = typeof selectedTour.price === 'number' ? selectedTour.price : selectedTour.price.perPerson;
+  const totalPrice = (basePrice * formData.adults) + (basePrice * 0.5 * formData.children);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
