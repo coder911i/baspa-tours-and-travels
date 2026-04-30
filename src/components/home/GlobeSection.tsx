@@ -1,92 +1,77 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, Float, Html } from '@react-three/drei';
-import * as THREE from 'three';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const locations = [
-  { name: 'Chitkul', pos: [1.2, 0.8, 1], alt: '3450m' },
-  { name: 'Kaza', pos: [0.5, 1.5, 0.8], alt: '3800m' },
-  { name: 'Kalpa', pos: [1.5, 0.5, 0.5], alt: '2960m' },
-  { name: 'Sangla', pos: [1.3, 0.3, 1.2], alt: '2680m' },
-  { name: 'Nako', pos: [0.2, 1.2, 1.5], alt: '3662m' },
-  { name: 'Tabo', pos: [-0.5, 1, 1.8], alt: '3050m' },
+  { name: 'Chitkul', alt: '3,450m', angle: 30 },
+  { name: 'Kaza', alt: '3,800m', angle: 90 },
+  { name: 'Kalpa', alt: '2,960m', angle: 150 },
+  { name: 'Sangla', alt: '2,680m', angle: 210 },
+  { name: 'Nako', alt: '3,662m', angle: 270 },
+  { name: 'Tabo', alt: '3,050m', angle: 330 },
 ];
 
-function Globe() {
-  const globeRef = useRef<THREE.Mesh>(null);
-
-  useFrame((_state, delta) => {
-    if (globeRef.current) {
-      globeRef.current.rotation.y += delta * 0.1;
-    }
-  });
+function LocationDot({ name, alt, angle }: { name: string; alt: string; angle: number }) {
+  const [hovered, setHovered] = useState(false);
+  const radius = 42; // percentage from center
+  const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
+  const y = 50 + radius * Math.sin((angle * Math.PI) / 180);
 
   return (
-    <group>
-      <Sphere ref={globeRef} args={[2, 64, 64]}>
-        <meshStandardMaterial
-          color="#111318"
-          emissive="#C9A84C"
-          emissiveIntensity={0.05}
-          wireframe
-          transparent
-          opacity={0.3}
-        />
-      </Sphere>
-      
-      {locations.map((loc, i) => (
-        <LocationMarker key={i} {...loc} />
-      ))}
-    </group>
-  );
-}
-
-function LocationMarker({ name, pos, alt }: { name: string; pos: number[]; alt: string }) {
-  const [hovered, setHovered] = React.useState(false);
-
-  return (
-    <group position={new THREE.Vector3(...pos).normalize().multiplyScalar(2.1)}>
-      <mesh 
-        onPointerOver={() => setHovered(true)} 
-        onPointerOut={() => setHovered(false)}
-      >
-        <sphereGeometry args={[0.04, 16, 16]} />
-        <meshBasicMaterial color={hovered ? "#E8C96D" : "#C9A84C"} />
-      </mesh>
-      
+    <div
+      className="absolute z-10"
+      style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+        hovered ? 'bg-gold-light scale-150 shadow-[0_0_20px_rgba(201,168,76,0.8)]' : 'bg-gold shadow-[0_0_10px_rgba(201,168,76,0.4)]'
+      }`} />
       {hovered && (
-        <Html distanceFactor={10}>
-          <div className="bg-surface/90 backdrop-blur-md border border-gold/50 p-3 whitespace-nowrap pointer-events-none">
-            <p className="text-gold font-bold text-xs uppercase tracking-widest mb-1">{name}</p>
-            <p className="text-snow text-[10px]">{alt}</p>
-          </div>
-        </Html>
+        <motion.div
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-surface/90 backdrop-blur-md border border-gold/50 p-3 whitespace-nowrap pointer-events-none"
+        >
+          <p className="text-gold font-bold text-xs uppercase tracking-widest mb-1">{name}</p>
+          <p className="text-snow text-[10px]">{alt}</p>
+        </motion.div>
       )}
-    </group>
+    </div>
   );
 }
 
 export default function GlobeSection() {
   return (
-    <section className="py-32 bg-background h-[800px] flex flex-col items-center justify-center relative overflow-hidden">
-      <div className="absolute top-32 text-center z-10">
+    <section className="py-32 bg-background flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="text-center z-10 mb-16">
         <span className="accent-text text-gold text-xl block mb-4">Regional Presence</span>
         <h2 className="text-4xl md:text-6xl font-display text-snow">Our Territories</h2>
       </div>
 
-      <div className="w-full h-full max-w-4xl cursor-grab active:cursor-grabbing">
-        <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} intensity={1} color="#C9A84C" />
-          <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-            <Globe />
-          </Float>
-        </Canvas>
+      <div className="relative w-full max-w-lg aspect-square mx-auto">
+        {/* Wireframe globe effect with CSS */}
+        <div className="absolute inset-0 rounded-full border border-gold/10 animate-[spin_40s_linear_infinite]" />
+        <div className="absolute inset-[10%] rounded-full border border-gold/8" style={{ transform: 'rotateX(60deg)' }} />
+        <div className="absolute inset-[10%] rounded-full border border-gold/8" style={{ transform: 'rotateX(60deg) rotateZ(60deg)' }} />
+        <div className="absolute inset-[10%] rounded-full border border-gold/8" style={{ transform: 'rotateX(60deg) rotateZ(120deg)' }} />
+        <div className="absolute inset-[5%] rounded-full border border-gold/5" />
+        <div className="absolute inset-[20%] rounded-full border border-gold/5" />
+        <div className="absolute inset-[35%] rounded-full border border-gold/5" />
+        
+        {/* Glow center */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-4 h-4 rounded-full bg-gold/30 shadow-[0_0_60px_20px_rgba(201,168,76,0.15)]" />
+        </div>
+
+        {/* Location markers */}
+        {locations.map((loc) => (
+          <LocationDot key={loc.name} {...loc} />
+        ))}
       </div>
       
-      <div className="absolute bottom-32 text-center text-text-muted text-sm uppercase tracking-widest font-medium max-w-xs">
+      <div className="text-center text-text-muted text-sm uppercase tracking-widest font-medium max-w-xs mt-16">
         Navigating the high altitudes of the Western Himalayas
       </div>
     </section>

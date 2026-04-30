@@ -1,13 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { tours } from '@/lib/data/tours';
 import { cn } from '@/lib/utils';
-
-const JourneyTimeline3D = dynamic(() => import('@/components/3d/JourneyTimeline3D'), { ssr: false });
 
 export default function ItineraryPreview() {
   const tour = (tours && tours.length > 0) ? tours[0] : null;
@@ -26,7 +23,47 @@ export default function ItineraryPreview() {
           <h2 className="text-4xl md:text-6xl font-display text-snow">The Blueprint of Your Journey</h2>
         </div>
         
-        <JourneyTimeline3D />
+        {/* CSS-based journey path instead of 3D */}
+        <div className="h-[200px] w-full bg-charcoal/50 rounded-3xl overflow-hidden border border-white/5 my-20 relative flex items-center justify-center">
+          <div className="flex items-center gap-0 w-full max-w-4xl px-8">
+            {sampleItinerary.map((day, i) => (
+              <React.Fragment key={day.day}>
+                <button
+                  onClick={() => setActiveDay(day.day)}
+                  className={cn(
+                    "relative flex flex-col items-center group z-10 transition-all duration-300",
+                    activeDay === day.day ? "scale-110" : "opacity-60 hover:opacity-100"
+                  )}
+                >
+                  <div className={cn(
+                    "w-5 h-5 rounded-full border-2 transition-all duration-500",
+                    activeDay === day.day 
+                      ? "bg-gold border-gold shadow-[0_0_20px_rgba(201,168,76,0.6)]" 
+                      : "bg-transparent border-white/30 group-hover:border-gold/50"
+                  )} />
+                  <span className={cn(
+                    "text-[10px] uppercase tracking-widest mt-3 font-bold whitespace-nowrap transition-colors",
+                    activeDay === day.day ? "text-gold" : "text-text-muted"
+                  )}>
+                    D{day.day}
+                  </span>
+                  <span className={cn(
+                    "text-[8px] uppercase tracking-wider mt-1 whitespace-nowrap max-w-[80px] truncate transition-colors hidden md:block",
+                    activeDay === day.day ? "text-snow" : "text-text-muted/50"
+                  )}>
+                    {day.title.split(' ').slice(-1)[0]}
+                  </span>
+                </button>
+                {i < sampleItinerary.length - 1 && (
+                  <div className="flex-1 h-[2px] bg-gradient-to-r from-white/10 via-gold/20 to-white/10 mx-1" />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center pointer-events-none">
+            <p className="text-[10px] uppercase tracking-[0.4em] text-gold font-bold">Interactive Journey Timeline</p>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mt-20">
           {/* Day Navigation */}

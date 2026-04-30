@@ -82,3 +82,13 @@
 html {
   scroll-behavior: initial; /* Lenis handles smooth scrolling */
 }
+
+/* Gallery infinite scroll */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
