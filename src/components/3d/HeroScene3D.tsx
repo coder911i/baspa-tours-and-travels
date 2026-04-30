@@ -17,7 +17,7 @@ function Terrain() {
   
   const { geometry, colors } = useMemo(() => {
     const size = 200;
-    const segments = 128;
+    const segments = 64;
     const geo = new THREE.PlaneGeometry(size, size, segments, segments);
     
     const pos = geo.attributes.position;
@@ -89,7 +89,7 @@ function Terrain() {
   );
 }
 
-function SnowParticles({ count = 2000 }) {
+function SnowParticles({ count = 800 }) {
   const pointsRef = useRef<THREE.Points>(null);
   const materialRef = useRef<THREE.PointsMaterial>(null);
   
@@ -172,7 +172,7 @@ function SceneContent({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement
         trigger: scrollRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5,
+        scrub: 2.5,
         once: false,
         refreshPriority: 1
       }
@@ -191,9 +191,9 @@ function SceneContent({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement
     };
   }, [camera, gl, scrollRef]);
 
-  useFrame(() => {
+  useFrame((state) => {
     if (!camera) return;
-    camera.position.y += Math.sin(Date.now() * 0.001) * 0.02;
+    camera.position.y += Math.sin(state.clock.elapsedTime) * 0.02;
   });
 
   return (
@@ -209,7 +209,15 @@ export default function HeroScene3D() {
 
   return (
     <div ref={containerRef} className="fixed inset-0 -z-10 bg-[#050508]">
-      <Canvas dpr={[1, 1.5]}>
+      <Canvas 
+        dpr={[1, 1.5]}
+        frameloop="demand"
+        performance={{ min: 0.5 }}
+        gl={{ 
+          antialias: false,
+          powerPreference: "high-performance" 
+        }}
+      >
         <PerspectiveCamera makeDefault position={[0, 45, 120]} fov={60} />
         <fog attach="fog" args={['#0A0A1A', 80, 300]} />
         <ambientLight intensity={0.5} color="#334466" />
