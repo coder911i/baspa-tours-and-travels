@@ -3,23 +3,38 @@
 import React, { useRef, useMemo, useEffect, useState, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { PerspectiveCamera, useProgress, Html } from '@react-three/drei';
-import * as THREE from 'three';
+
+// Tree-shaken Three.js imports
+import { 
+  Mesh, 
+  MeshStandardMaterial, 
+  PlaneGeometry, 
+  BufferAttribute, 
+  Color, 
+  Points, 
+  PointsMaterial, 
+  Fog, 
+  AmbientLight, 
+  DirectionalLight,
+  MathUtils
+} from 'three';
+
 import { createNoise2D } from 'simplex-noise';
 
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// GSAP Tree Shaking
+import gsap from 'gsap/dist/gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 const noise2D = createNoise2D();
 
 function Terrain({ isLowEnd = false }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const materialRef = useRef<THREE.MeshStandardMaterial>(null);
+  const meshRef = useRef<Mesh>(null);
+  const materialRef = useRef<MeshStandardMaterial>(null);
   
-  const { geometry, colors } = useMemo(() => {
+  const { geometryData, colors } = useMemo(() => {
     const size = 200;
-    // LOD: Lower segments for low-end devices
     const segments = isLowEnd ? 32 : 64; 
-    const geo = new THREE.PlaneGeometry(size, size, segments, segments);
+    const geo = new PlaneGeometry(size, size, segments, segments);
     
     const pos = geo.attributes.position;
     const colorArr = new Float32Array(pos.count * 3);
@@ -34,10 +49,10 @@ function Terrain({ isLowEnd = false }) {
       
       pos.setZ(i, z);
 
-      let color = new THREE.Color('#0A0A1A');
-      if (z > 5) color = new THREE.Color('#1B2E1D');
-      if (z > 15) color = new THREE.Color('#4A4A4A');
-      if (z > 22) color = new THREE.Color('#FFFFFF');
+      let color = new Color('#0A0A1A');
+      if (z > 5) color = new Color('#1B2E1D');
+      if (z > 15) color = new Color('#4A4A4A');
+      if (z > 22) color = new Color('#FFFFFF');
 
       colorArr[i * 3] = color.r;
       colorArr[i * 3 + 1] = color.g;
@@ -45,29 +60,29 @@ function Terrain({ isLowEnd = false }) {
     }
     
     geo.computeVertexNormals();
-    return { geometry: geo, colors: colorArr };
-  }, [isLowEnd]);
-
-  useEffect(() => {
-    return () => {
-      geometry.dispose();
-      if (materialRef.current) materialRef.current.dispose();
+    return { 
+      geometryData: {
+        position: pos.array,
+        normal: geo.attributes.normal.array,
+        count: pos.count
+      }, 
+      colors: colorArr 
     };
-  }, [geometry]);
+  }, [isLowEnd]);
 
   return (
     <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -10, 0]}>
       <bufferGeometry attach="geometry">
         <bufferAttribute
           attach="attributes-position"
-          count={geometry.attributes.position.count}
-          array={geometry.attributes.position.array}
+          count={geometryData.count}
+          array={geometryData.position}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-normal"
-          count={geometry.attributes.normal.count}
-          array={geometry.attributes.normal.array}
+          count={geometryData.count}
+          array={geometryData.normal}
           itemSize={3}
         />
         <bufferAttribute
@@ -82,15 +97,15 @@ function Terrain({ isLowEnd = false }) {
         vertexColors 
         roughness={0.8} 
         metalness={0.2} 
-        flatShading={!isLowEnd} // Smoother on high end
+        flatShading={!isLowEnd}
       />
     </mesh>
   );
 }
 
 function SnowParticles({ count = 500 }) {
-  const pointsRef = useRef<THREE.Points>(null);
-  const materialRef = useRef<THREE.PointsMaterial>(null);
+  const pointsRef = useRef<Points>(null);
+  const materialRef = useRef<PointsMaterial>(null);
   
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
@@ -114,13 +129,6 @@ function SnowParticles({ count = 500 }) {
     }
     attr.needsUpdate = true;
   });
-
-  useEffect(() => {
-    return () => {
-      if (pointsRef.current?.geometry) pointsRef.current.geometry.dispose();
-      if (materialRef.current) materialRef.current.dispose();
-    };
-  }, []);
 
   return (
     <points ref={pointsRef}>
@@ -148,6 +156,7 @@ function SceneContent({ scrollRef, isLowEnd }: { scrollRef: React.RefObject<HTML
   const { camera, gl } = useThree();
   
   useEffect(() => {
+    // Task 1: GSAP Context for memory safety
     const ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger);
       
@@ -156,7 +165,7 @@ function SceneContent({ scrollRef, isLowEnd }: { scrollRef: React.RefObject<HTML
           trigger: scrollRef.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 2.5, // Smoother scroll
+          scrub: 2.5,
           invalidateOnRefresh: true,
         }
       });
@@ -195,7 +204,6 @@ export default function HeroScene() {
   const [webglSupported, setWebglSupported] = useState(true);
 
   useEffect(() => {
-    // Check for mobile and WebGL
     const checkSupport = () => {
       setIsMobile(window.innerWidth < 768);
       try {
@@ -211,13 +219,14 @@ export default function HeroScene() {
     return () => window.removeEventListener('resize', checkSupport);
   }, []);
 
-  // Fallback for Mobile or No WebGL
   if (isMobile || !webglSupported) {
     return (
       <div className="fixed inset-0 -z-10 bg-[#050508] overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-40 scale-110"
           style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2000")' }}
+          role="img"
+          aria-label="Himalayan mountain peak background"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-dark/30 via-dark/10 to-dark" />
       </div>
@@ -247,4 +256,5 @@ export default function HeroScene() {
     </div>
   );
 }
+
 

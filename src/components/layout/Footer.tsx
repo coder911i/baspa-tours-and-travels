@@ -52,7 +52,13 @@ export default function Footer() {
                 {Object.entries(SITE_CONFIG.SOCIAL_LINKS).map(([name, url]) => (
                   url !== '#' && (
                     <li key={name}>
-                      <a href={url} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-snow transition-colors capitalize">
+                      <a 
+                        href={url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        aria-label={`Follow us on ${name}`}
+                        className="text-text-muted hover:text-snow transition-colors capitalize"
+                      >
                         {name}
                       </a>
                     </li>

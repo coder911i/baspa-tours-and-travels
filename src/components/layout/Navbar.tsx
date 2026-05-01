@@ -69,9 +69,9 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-snow p-3 -mr-3" // Added padding for better touch target
+          className="md:hidden text-snow p-3 -mr-3" 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle Menu"
+          aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
         >
           <div className="w-6 h-5 relative flex flex-col justify-between">
             <span className={cn("w-full h-[0.5px] bg-current transition-all duration-300", isMobileMenuOpen && "rotate-45 translate-y-[9px]")} />

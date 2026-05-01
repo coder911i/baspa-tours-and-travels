@@ -42,7 +42,7 @@ export default function StatsBar() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Decorative orbs - CSS only */}
         <div className="h-40 w-full mb-8 flex items-center justify-center gap-16 relative">
-          {['#C9A84C', '#C9A84C', '#C9A84C', '#C9A84C'].map((color, i) => (
+          {['#D4AF37', '#D4AF37', '#D4AF37', '#D4AF37'].map((color, i) => (
             <div 
               key={i}
               className="w-12 h-12 rounded-full opacity-60 animate-pulse"

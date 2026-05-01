@@ -4,22 +4,26 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import HeroContent from '@/components/sections/HeroContent';
 import StatsBar from '@/components/sections/StatsBar';
-import FeaturedTours from '@/components/sections/FeaturedTours';
-import WhyChooseUs from '@/components/sections/WhyChooseUs';
-import ItineraryPreview from '@/components/sections/ItineraryPreview';
-import GalleryStrip from '@/components/sections/GalleryStrip';
-import Testimonials from '@/components/sections/Testimonials';
-import BookingCTA from '@/components/sections/BookingCTA';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import ScrollProgress from '@/components/ui/ScrollProgress';
-import GlobeSection from '@/components/sections/GlobeSection';
 
 export const metadata: Metadata = {
   title: 'Baspa Travels | Where Mountains Meet Luxury',
   description: 'Experience the Himalayas like never before with Baspa Travels. Bespoke luxury expeditions to Kinnaur, Spiti, and beyond.',
 };
 
-const HeroScene = dynamic(() => import('@/components/3d/HeroScene'), { ssr: false });
+const HeroScene = dynamic(() => import('@/components/3d/HeroScene'), { 
+  ssr: false,
+  loading: () => <div className="fixed inset-0 bg-[#050508]" />
+});
+
+const FeaturedTours = dynamic(() => import('@/components/sections/FeaturedTours'), { ssr: false });
+const GlobeSection = dynamic(() => import('@/components/sections/GlobeSection'), { ssr: false });
+const WhyChooseUs = dynamic(() => import('@/components/sections/WhyChooseUs'), { ssr: false });
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), { ssr: false });
+const ItineraryPreview = dynamic(() => import('@/components/sections/ItineraryPreview'), { ssr: false });
+const GalleryStrip = dynamic(() => import('@/components/sections/GalleryStrip'), { ssr: false });
+const BookingCTA = dynamic(() => import('@/components/sections/BookingCTA'), { ssr: false });
 
 export default function Home() {
   return (

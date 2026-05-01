@@ -33,7 +33,7 @@ function Path() {
     <group>
       <Line 
         points={linePoints} 
-        color="#C9A84C" 
+        color="#D4AF37" 
         lineWidth={2} 
       />
       {points.map((p, i) => (
@@ -42,8 +42,8 @@ function Path() {
         </Sphere>
       ))}
       <Sphere ref={travelerRef} args={[0.2, 16, 16]}>
-        <meshStandardMaterial color="#C9A84C" emissive="#C9A84C" emissiveIntensity={2} />
-        <pointLight intensity={1} color="#C9A84C" distance={5} />
+        <meshStandardMaterial color="#D4AF37" emissive="#D4AF37" emissiveIntensity={2} />
+        <pointLight intensity={1} color="#D4AF37" distance={5} />
       </Sphere>
     </group>
   );

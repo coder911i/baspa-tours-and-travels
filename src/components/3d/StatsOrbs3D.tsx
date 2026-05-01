@@ -37,10 +37,10 @@ export default function StatsOrbs3D() {
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
-        <Orb position={[-3, 0, 0]} color="#C9A84C" />
-        <Orb position={[-1, 0, 0]} color="#C9A84C" />
-        <Orb position={[1, 0, 0]} color="#C9A84C" />
-        <Orb position={[3, 0, 0]} color="#C9A84C" />
+        <Orb position={[-3, 0, 0]} color="#D4AF37" />
+        <Orb position={[-1, 0, 0]} color="#D4AF37" />
+        <Orb position={[1, 0, 0]} color="#D4AF37" />
+        <Orb position={[3, 0, 0]} color="#D4AF37" />
       </Canvas>
     </div>
   );
