@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { SITE_CONFIG } from '@/lib/config';
 
 export default function Footer() {
@@ -7,10 +8,17 @@ export default function Footer() {
     <footer className="bg-background border-t border-white/5 pt-32 pb-12 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-32">
-          <div>
-            <h2 className="text-4xl md:text-6xl font-display text-snow mb-8">Ready to Ascend?</h2>
-            <p className="text-text-muted text-lg max-w-md mb-10">
-              Join our next window of opportunity. Let us handcraft your ultimate Himalayan escape.
+          <div className="flex flex-col items-start">
+            <div className="relative h-20 w-32 mb-6">
+              <Image 
+                src="/images/baspa_fial_logo.png" 
+                alt="Baspa Travels Logo" 
+                fill
+                className="object-contain"
+              />
+            </div>
+            <p className="text-gold font-accent italic text-sm tracking-widest mb-10">
+              © 2025 Baspa Travels. All Rights Reserved.
             </p>
             <div className="flex flex-wrap gap-6">
               <Link href="/tours" className="px-8 py-4 bg-gold text-charcoal font-bold uppercase tracking-widest text-xs hover:bg-gold-light transition-all">
@@ -56,7 +64,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-[10px] uppercase tracking-[0.2em] text-text-muted">
-          <p>© {new Date().getFullYear()} Baspa Travels. Crafted for the High Altitudes.</p>
+          <p>Handcrafted for the High Altitudes.</p>
           <div className="flex gap-8">
             <Link href="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>
