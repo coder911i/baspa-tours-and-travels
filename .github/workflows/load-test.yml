@@ -1,0 +1,24 @@
+name: K6 Load Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  k6_load_test:
+    name: Run k6 Load Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run k6 load test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: tests/load/load-test.js
+          flags: --vus 50 --duration 1m # Reduced for CI/CD to prevent hitting Vercel limits

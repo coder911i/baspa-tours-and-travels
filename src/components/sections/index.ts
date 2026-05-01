@@ -1,0 +1,12 @@
+export { default as BookingCTA } from './BookingCTA';
+export { default as DestinationDetailContent } from './DestinationDetailContent';
+export { default as FeaturedTours } from './FeaturedTours';
+export { default as GalleryContent } from './GalleryContent';
+export { default as GalleryStrip } from './GalleryStrip';
+export { default as GlobeSection } from './GlobeSection';
+export { default as HeroContent } from './HeroContent';
+export { default as ItineraryPreview } from './ItineraryPreview';
+export { default as StatsBar } from './StatsBar';
+export { default as Testimonials } from './Testimonials';
+export { default as TourDetailContent } from './TourDetailContent';
+export { default as WhyChooseUs } from './WhyChooseUs';

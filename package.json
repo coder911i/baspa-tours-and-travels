@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:load": "k6 run tests/load/load-test.js"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.0",
