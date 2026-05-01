@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import TourCard3D from '@/components/3d/TourCard';
+import TourGrid from '@/components/sections/TourGrid';
 import { tours } from '@/lib/data/tours';
 import Image from 'next/image';
 import { Metadata } from 'next';
@@ -35,14 +35,11 @@ export default function ToursPage() {
 
       {/* Grid */}
       <section className="py-20 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {tours.map((tour) => (
-             <TourCard3D key={tour.slug} tour={tour} />
-          ))}
-        </div>
+        <TourGrid tours={tours} />
       </section>
 
       <Footer />
     </main>
   );
 }
+

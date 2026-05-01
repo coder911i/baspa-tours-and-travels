@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import { Metadata } from 'next';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import HeroContent from '@/components/sections/HeroContent';
@@ -12,6 +13,11 @@ import BookingCTA from '@/components/sections/BookingCTA';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import ScrollProgress from '@/components/ui/ScrollProgress';
 import GlobeSection from '@/components/sections/GlobeSection';
+
+export const metadata: Metadata = {
+  title: 'Baspa Travels | Where Mountains Meet Luxury',
+  description: 'Experience the Himalayas like never before with Baspa Travels. Bespoke luxury expeditions to Kinnaur, Spiti, and beyond.',
+};
 
 const HeroScene = dynamic(() => import('@/components/3d/HeroScene'), { ssr: false });
 

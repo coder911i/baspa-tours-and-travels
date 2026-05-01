@@ -1,24 +1,54 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { SITE_CONFIG, formatWhatsAppLink } from '@/lib/constants';
 import { toast } from 'react-hot-toast';
 
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(10, "Invalid phone number").optional().or(z.literal('')),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submissionCount, setSubmissionCount] = useState(0);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    // Basic rate limit check
+    const count = parseInt(localStorage.getItem('baspa_form_count') || '0');
+    const lastSub = parseInt(localStorage.getItem('baspa_last_sub') || '0');
+    const now = Date.now();
+    
+    // Reset count if an hour has passed
+    if (now - lastSub > 3600000) {
+      localStorage.setItem('baspa_form_count', '0');
+      setSubmissionCount(0);
+    } else {
+      setSubmissionCount(count);
+    }
+  }, []);
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    if (submissionCount >= 3) {
+      toast.error("Maximum submissions reached for this hour. Please try again later.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -26,16 +56,22 @@ export default function ContactPage() {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       const whatsappMessage = `New Contact Form Submission:
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Message: ${formData.message}`;
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone}
+Message: ${data.message}`;
 
       const whatsappUrl = formatWhatsAppLink(SITE_CONFIG.WHATSAPP_NUMBER, whatsappMessage);
       window.open(whatsappUrl, '_blank');
       
+      const newCount = submissionCount + 1;
+      setSubmissionCount(newCount);
+      localStorage.setItem('baspa_form_count', newCount.toString());
+      localStorage.setItem('baspa_last_sub', Date.now().toString());
+
       setIsSuccess(true);
       toast.success("Message sent! Opening WhatsApp...");
+      reset();
     } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
@@ -44,7 +80,7 @@ Message: ${formData.message}`;
   };
 
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-background min-h-screen font-inter">
       <Navbar />
       
       <section className="pt-40 pb-20 px-6 md:px-12">
@@ -80,7 +116,6 @@ Message: ${formData.message}`;
                   </div>
                 </div>
 
-                {/* Google Maps Integration (BUG-012) */}
                 <div className="rounded-2xl overflow-hidden border border-white/5 grayscale hover:grayscale-0 transition-all duration-700">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3388.1234!2d78.2449!3d31.4194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390578e2fcf6a2df%3A0x6b70ca3a5c8d8a23!2sSangla%2C%20Himachal%20Pradesh!5e0!3m2!1sen!2sin!4v1234567890"
@@ -95,7 +130,7 @@ Message: ${formData.message}`;
               </div>
             </div>
 
-            {/* Right: Form (BUG-011) */}
+            {/* Right: Form */}
             <div className="glass-card p-8 md:p-12 relative h-fit">
               {isSuccess ? (
                 <motion.div 
@@ -118,61 +153,63 @@ Message: ${formData.message}`;
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-8">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                   <div className="space-y-6">
                     <div className="space-y-2">
                       <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Full Name</label>
                       <input 
+                        {...register('name')}
                         type="text" 
-                        required
-                        minLength={2}
-                        value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
-                        className="w-full bg-transparent border-b border-white/10 py-3 text-snow placeholder:text-text-muted focus:border-gold outline-none transition-colors"
+                        className={`w-full bg-transparent border-b ${errors.name ? 'border-red-500' : 'border-white/10'} py-3 text-snow placeholder:text-text-muted focus:border-gold outline-none transition-colors`}
                       />
+                      {errors.name && <p className="text-red-500 text-[10px] mt-1">{errors.name.message}</p>}
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-2">
                         <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Email Address</label>
                         <input 
+                          {...register('email')}
                           type="email" 
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full bg-transparent border-b border-white/10 py-3 text-snow placeholder:text-text-muted focus:border-gold outline-none transition-colors"
+                          className={`w-full bg-transparent border-b ${errors.email ? 'border-red-500' : 'border-white/10'} py-3 text-snow placeholder:text-text-muted focus:border-gold outline-none transition-colors`}
                         />
+                        {errors.email && <p className="text-red-500 text-[10px] mt-1">{errors.email.message}</p>}
                       </div>
                       <div className="space-y-2">
                         <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Phone (Optional)</label>
                         <input 
+                          {...register('phone')}
                           type="tel" 
-                          pattern="[0-9]{10}"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                          className="w-full bg-transparent border-b border-white/10 py-3 text-snow placeholder:text-text-muted focus:border-gold outline-none transition-colors"
+                          className={`w-full bg-transparent border-b ${errors.phone ? 'border-red-500' : 'border-white/10'} py-3 text-snow placeholder:text-text-muted focus:border-gold outline-none transition-colors`}
                         />
+                        {errors.phone && <p className="text-red-500 text-[10px] mt-1">{errors.phone.message}</p>}
                       </div>
                     </div>
                     <div className="space-y-2">
                       <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Your Message</label>
                       <textarea 
-                        required
-                        minLength={10}
+                        {...register('message')}
                         rows={4}
-                        value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        className="w-full bg-transparent border-b border-white/10 py-3 text-snow placeholder:text-text-muted focus:border-gold outline-none transition-colors resize-none"
+                        className={`w-full bg-transparent border-b ${errors.message ? 'border-red-500' : 'border-white/10'} py-3 text-snow placeholder:text-text-muted focus:border-gold outline-none transition-colors resize-none`}
                       />
+                      {errors.message && <p className="text-red-500 text-[10px] mt-1">{errors.message.message}</p>}
                     </div>
                   </div>
 
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="btn-gold-filled w-full group"
+                    className="btn-gold-filled w-full group relative overflow-hidden"
                   >
-                    {isSubmitting ? 'Ascending...' : 'Send Message ──→'}
+                    <span className={isSubmitting ? 'opacity-0' : 'opacity-100'}>Send Message ──→</span>
+                    {isSubmitting && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-5 h-5 border-2 border-charcoal/20 border-t-charcoal rounded-full animate-spin" />
+                      </div>
+                    )}
                   </button>
+                  <p className="text-[9px] text-text-muted uppercase tracking-widest text-center">
+                    {submissionCount}/3 submissions used this hour
+                  </p>
                 </form>
               )}
             </div>
@@ -184,3 +221,4 @@ Message: ${formData.message}`;
     </main>
   );
 }
+
