@@ -25,7 +25,7 @@ export default function LoadingScreen() {
       gsap.set(progressRef.current, { scaleX: 0, transformOrigin: 'left' });
 
       // Simulate progress for the first 2s
-      const progressTl = gsap.to({}, {
+      gsap.to({}, {
         duration: 2,
         onUpdate: function() {
           setProgress(Math.round(this.progress() * 100));

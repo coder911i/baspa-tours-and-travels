@@ -4,11 +4,11 @@ import * as THREE from 'three';
  * Common Three.js helper functions for the Baspa Travels project
  */
 
-export const disposeObject = (obj: any) => {
+export const disposeObject = (obj: THREE.Object3D & { geometry?: THREE.BufferGeometry; material?: THREE.Material | THREE.Material[] }) => {
   if (obj.geometry) obj.geometry.dispose();
   if (obj.material) {
     if (Array.isArray(obj.material)) {
-      obj.material.forEach((mat: any) => mat.dispose());
+      obj.material.forEach((mat) => mat.dispose());
     } else {
       obj.material.dispose();
     }

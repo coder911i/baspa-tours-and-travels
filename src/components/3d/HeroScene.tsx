@@ -9,14 +9,9 @@ import {
   Mesh, 
   MeshStandardMaterial, 
   PlaneGeometry, 
-  BufferAttribute, 
   Color, 
   Points, 
-  PointsMaterial, 
-  Fog, 
-  AmbientLight, 
-  DirectionalLight,
-  MathUtils
+  PointsMaterial
 } from 'three';
 
 import { createNoise2D } from 'simplex-noise';
