@@ -5,13 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { tours } from '@/lib/data/tours';
 import { cn } from '@/lib/utils';
+import { ItineraryDay } from '@/types';
 
 export default function ItineraryPreview() {
   const tour = (tours && tours.length > 0) ? tours[0] : null;
   const sampleItinerary = tour?.itinerary || [];
   
   const [activeDay, setActiveDay] = useState(sampleItinerary[0]?.day || 1);
-  const currentDay = sampleItinerary.find(d => d.day === activeDay) || sampleItinerary[0];
+  const currentDay = sampleItinerary.find((d: ItineraryDay) => d.day === activeDay) || sampleItinerary[0];
 
   if (!tour || sampleItinerary.length === 0) return null;
 
