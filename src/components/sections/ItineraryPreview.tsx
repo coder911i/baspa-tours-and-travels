@@ -27,7 +27,7 @@ export default function ItineraryPreview() {
         {/* CSS-based journey path instead of 3D */}
         <div className="h-[200px] w-full bg-charcoal/50 rounded-3xl overflow-hidden border border-white/5 my-20 relative flex items-center justify-center">
           <div className="flex items-center gap-0 w-full max-w-4xl px-8">
-            {sampleItinerary.map((day, i) => (
+            {sampleItinerary.map((day: ItineraryDay, i: number) => (
               <React.Fragment key={day.day}>
                 <button
                   onClick={() => setActiveDay(day.day)}
@@ -69,7 +69,7 @@ export default function ItineraryPreview() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mt-20">
           {/* Day Navigation */}
           <div className="lg:col-span-3 space-y-2">
-            {sampleItinerary.map((day) => (
+            {sampleItinerary.map((day: ItineraryDay) => (
               <button
                 key={day.day}
                 onClick={() => setActiveDay(day.day)}
@@ -131,7 +131,7 @@ export default function ItineraryPreview() {
                       {currentDay.description}
                     </p>
                     <ul className="space-y-3">
-                      {['Premium Logistics', 'Expert Mountain Guide', 'Curated Meals'].map(item => (
+                      {['Premium Logistics', 'Expert Mountain Guide', 'Curated Meals'].map((item: string) => (
                         <li key={item} className="flex items-center gap-3 text-snow/80 text-sm">
                           <span className="w-1 h-1 bg-gold rounded-full" />
                           {item}
