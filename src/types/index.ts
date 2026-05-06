@@ -6,34 +6,41 @@ export interface ItineraryDay {
   description: string;
   meals?: string;
   stay?: string;
-  accommodation?: string; // Support both names
+  accommodation?: string;
   distance?: string;
-  altitude?: string;
+  altitude?: string | null;
+  highlights?: string[];
   highlight?: string;
+  location?: string;
 }
 
 export interface Tour {
   id: string;
   slug: string;
   title: string;
+  subtitle?: string;
   name?: string; // Support legacy name prop
   tagline?: string;
   description: string;
   duration: string; // '7 Days' format
-  difficulty: Difficulty;
+  difficulty: Difficulty | string;
   maxAltitude?: string | number;
   altitude?: string;
-  groupSize: string | { min: number; max: number };
+  groupSize?: string | { min: number; max: number };
   price: number | { perPerson: number; private?: number };
+  startingPrice?: string;
   season?: string[];
   highlights: string[];
   included: string[];
+  inclusions?: string[];
   notIncluded?: string[];
+  exclusions?: string[];
   itinerary: ItineraryDay[];
   image: string;
   images?: string[];
   featured?: boolean;
   location?: string;
+  weatherCoord?: { lat: number; lon: number; label: string };
 }
 
 export interface Attraction {

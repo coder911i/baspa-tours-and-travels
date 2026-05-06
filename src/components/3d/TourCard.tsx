@@ -50,7 +50,7 @@ export default function TourCard3D({ tour }: TourCard3DProps) {
       }}
       className="relative h-[500px] w-full rounded-2xl bg-charcoal border border-white/5 overflow-hidden group cursor-pointer"
     >
-      <Link href={`/tours/${tour.slug}`}>
+      <div className="absolute inset-0">
         <div 
           style={{ transform: "translateZ(0px)" }}
           className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700"
@@ -105,11 +105,33 @@ export default function TourCard3D({ tour }: TourCard3DProps) {
               <p className="text-snow font-bold">{tour.duration}</p>
             </div>
           </div>
+
+          <div 
+            style={{ transform: "translateZ(50px)" }}
+            className="mt-6 flex gap-4"
+          >
+            <Link 
+              href={`/tours/${tour.slug}`}
+              className="flex-1 px-4 py-3 bg-white/5 border border-white/10 text-snow text-[10px] font-bold uppercase tracking-widest text-center hover:bg-white/10 transition-colors"
+            >
+              Tour Details
+            </Link>
+            <button 
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.dispatchEvent(new CustomEvent('tourSelected', { detail: tour.id }));
+              }}
+              className="flex-1 px-4 py-3 bg-gold text-charcoal text-[10px] font-bold uppercase tracking-widest text-center hover:bg-gold-light transition-colors shadow-[0_0_15px_rgba(201,168,76,0.3)]"
+            >
+              View Itinerary
+            </button>
+          </div>
         </div>
 
         {/* Shimmer Effect */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white to-transparent -translate-x-full group-hover:translate-x-full transform transition-transform duration-1000" />
-      </Link>
+      </div>
     </motion.div>
   );
 }
