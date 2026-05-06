@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import TripSelector from '@/components/TripSelector';
 
 const locations = [
   { name: 'Chitkul', alt: '3,450m', angle: 30 },
@@ -50,7 +51,8 @@ export default function GlobeSection() {
         <h2 className="text-4xl md:text-6xl font-display text-snow">Our Territories</h2>
       </div>
 
-      <div className="relative w-full max-w-lg aspect-square mx-auto">
+      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-16 px-6">
+        <div className="relative w-full max-w-lg aspect-square mx-auto lg:mx-0">
         {/* Wireframe globe effect with CSS */}
         <div className="absolute inset-0 rounded-full border border-gold/10 animate-[spin_40s_linear_infinite]" />
         <div className="absolute inset-[10%] rounded-full border border-gold/8" style={{ transform: 'rotateX(60deg)' }} />
@@ -69,6 +71,9 @@ export default function GlobeSection() {
         {locations.map((loc) => (
           <LocationDot key={loc.name} {...loc} />
         ))}
+        </div>
+        
+        <TripSelector />
       </div>
       
       <div className="text-center text-text-muted text-sm uppercase tracking-widest font-medium max-w-xs mt-16">

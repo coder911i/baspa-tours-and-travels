@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { tours } from '@/lib/data/tours';
@@ -8,7 +8,21 @@ import { cn } from '@/lib/utils';
 import { ItineraryDay } from '@/types';
 
 export default function ItineraryPreview() {
-  const tour = (tours && tours.length > 0) ? tours[0] : null;
+  const [selectedTourId, setSelectedTourId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleSelect = (e: CustomEvent) => {
+      setSelectedTourId(e.detail);
+      const newTour = tours.find(t => t.id === e.detail);
+      if (newTour && newTour.itinerary.length > 0) {
+        setActiveDay(newTour.itinerary[0].day);
+      }
+    };
+    window.addEventListener('tourSelected', handleSelect as EventListener);
+    return () => window.removeEventListener('tourSelected', handleSelect as EventListener);
+  }, []);
+
+  const tour = selectedTourId ? tours.find(t => t.id === selectedTourId) : ((tours && tours.length > 0) ? tours[0] : null);
   const sampleItinerary = tour?.itinerary || [];
   
   const [activeDay, setActiveDay] = useState(sampleItinerary[0]?.day || 1);
@@ -17,7 +31,7 @@ export default function ItineraryPreview() {
   if (!tour || sampleItinerary.length === 0) return null;
 
   return (
-    <section className="py-32 bg-background px-6 md:px-12 relative">
+    <section id="itinerary-preview" className="py-32 bg-background px-6 md:px-12 relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <span className="accent-text text-gold text-xl block mb-4">Journey Blueprint</span>
