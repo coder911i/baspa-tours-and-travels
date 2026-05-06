@@ -49,7 +49,7 @@ export function useWeather(lat: number, lon: number) {
             error: false,
           });
         }
-      } catch (err) {
+      } catch {
         if (isMounted) {
           setData((prev) => ({ ...prev, loading: false, error: true }));
         }
