@@ -82,7 +82,7 @@ export default function TripSelector() {
 
   return (
     <div className="w-full max-w-md mx-auto md:mx-0 z-20 relative">
-      <div className="glass-card p-6 rounded-3xl border border-gold/10 bg-charcoal/40 backdrop-blur-xl">
+      <div className="glass-card p-6 rounded-3xl border border-gold/10 bg-black/40 backdrop-blur-xl">
         <div className="flex items-center justify-between mb-6">
            <h3 className="font-display text-xl text-snow tracking-wide">Expedition Selector</h3>
            <div className="px-2 py-1 bg-gold/10 border border-gold/20 rounded text-[8px] text-gold font-bold uppercase tracking-widest">Interactive</div>

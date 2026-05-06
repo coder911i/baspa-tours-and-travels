@@ -40,14 +40,14 @@ function LiveWeatherCard({ tour }: { tour: Tour }) {
   const { temp, condition, wind, loading, error } = useWeather(coords.lat, coords.lon);
 
   return (
-    <div className="bg-surface/10 backdrop-blur-md border border-gold/15 p-6 rounded-2xl relative overflow-hidden group">
+    <div className="bg-surface/50 backdrop-blur-md border border-white/5 p-6 rounded-2xl relative overflow-hidden group">
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-2">
           <Icons.MapPin className="w-3 h-3 text-gold" />
           <span className="text-[10px] text-snow font-medium uppercase tracking-[0.2em]">{coords.label}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+          <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
           <span className="text-[9px] text-snow/60 font-bold uppercase tracking-widest">Live</span>
         </div>
       </div>
@@ -84,6 +84,7 @@ export default function ItineraryPreview() {
   const [activeDay, setActiveDay] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const dayRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sidebarRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const tour = tours.find(t => t.id === selectedTourId);
 
@@ -111,28 +112,32 @@ export default function ItineraryPreview() {
   useEffect(() => {
     if (!scrollContainerRef.current || !tour) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number(entry.target.getAttribute('data-day-index'));
-            setActiveDay(index);
+    const observerOptions = {
+      root: scrollContainerRef.current,
+      threshold: 0.3,
+      rootMargin: '-10% 0px -60% 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Number(entry.target.getAttribute('data-day-index'));
+          setActiveDay(index);
+          
+          // Auto-scroll mobile pills
+          if (sidebarRefs.current[index]) {
+            sidebarRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
           }
-        });
-      },
-      { 
-        root: scrollContainerRef.current,
-        threshold: 0.5,
-        rootMargin: '-10% 0px -80% 0px'
-      }
-    );
+        }
+      });
+    }, observerOptions);
 
     dayRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => observer.disconnect();
-  }, [tour]);
+  }, [tour, selectedTourId]);
 
   const closeOverlay = () => {
     setSelectedTourId(null);
@@ -142,7 +147,12 @@ export default function ItineraryPreview() {
   const scrollToDay = (index: number) => {
     const element = dayRefs.current[index];
     if (element && scrollContainerRef.current) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const offset = 80; // Account for sticky pill bar / navbar
+      const elementPosition = element.offsetTop;
+      scrollContainerRef.current.scrollTo({
+        top: elementPosition - offset,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -153,35 +163,30 @@ export default function ItineraryPreview() {
           initial={{ y: '100%' }}
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
-          transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="fixed inset-0 z-[100] bg-[#0A0C10] text-snow overflow-hidden flex flex-col h-screen"
+          transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+          className="fixed inset-0 z-[100] bg-[#0a0a0a] text-[#e5e5e5] overflow-hidden flex flex-col"
         >
           {tour ? (
             <>
-              {/* Background Watermark */}
-              <div className="absolute inset-0 pointer-events-none opacity-[0.03] flex items-end justify-center overflow-hidden">
-                 <Icons.Mountain className="w-[120vw] h-[120vw] -mb-[40vw] text-blue-400" />
-              </div>
-
               {/* Header */}
-              <div className="relative z-10 flex items-center justify-between p-6 md:px-12 border-b border-white/5 bg-[#0A0C10]/80 backdrop-blur-md shrink-0">
+              <div className="relative z-50 flex items-center justify-between p-6 md:px-12 border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-md shrink-0">
                 <div className="flex flex-col">
                   <span className="text-[10px] text-gold font-bold uppercase tracking-[0.4em] mb-1">Itinerary Blueprint</span>
                   <h2 className="text-xl md:text-2xl font-display text-snow">{tour.title}</h2>
                 </div>
                 <button 
                   onClick={closeOverlay}
-                  className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-gold hover:text-charcoal transition-all duration-300 group"
+                  className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center hover:bg-gold hover:text-charcoal transition-all duration-300 group"
                 >
                   <Icons.X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
                 </button>
               </div>
 
-              <div className="flex-1 overflow-hidden flex flex-col lg:flex-row h-full">
-                {/* LEFT PANEL - Desktop Navigation */}
-                <div className="hidden lg:flex w-[350px] shrink-0 border-r border-white/5 flex-col p-12 overflow-y-auto scrollbar-hide space-y-12 h-full">
-                  <div>
-                    <h3 className="text-4xl font-display text-snow mb-4">{tour.title}</h3>
+              <div className="flex-1 overflow-hidden flex flex-col md:flex-row h-full">
+                {/* SIDEBAR - Sticky for Desktop */}
+                <div className="hidden md:flex w-[350px] shrink-0 border-r border-white/5 flex-col p-8 overflow-y-auto scrollbar-hide space-y-10 bg-[#0a0a0a]">
+                  <div className="space-y-4">
+                    <h3 className="text-3xl font-display text-snow">{tour.title}</h3>
                     <div className="inline-flex px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-[10px] font-bold uppercase tracking-widest">
                       {tour.duration}
                     </div>
@@ -189,20 +194,21 @@ export default function ItineraryPreview() {
 
                   <LiveWeatherCard tour={tour} />
 
-                  <div className="space-y-2">
+                  <div className="space-y-2 sticky top-0">
                     <span className="text-[10px] text-text-muted font-bold uppercase tracking-widest block mb-4">Journey Path</span>
                     {tour.itinerary.map((day, idx) => (
                       <button
                         key={idx}
+                        ref={el => { sidebarRefs.current[idx] = el; }}
                         onClick={() => scrollToDay(idx)}
                         className={cn(
-                          "w-full text-left px-6 py-4 rounded-xl transition-all duration-300 flex items-center justify-between group border",
+                          "w-full text-left px-6 py-4 transition-all duration-500 flex items-center justify-between group",
                           activeDay === idx 
-                            ? "bg-gold text-charcoal border-gold shadow-[0_0_20px_rgba(201,168,76,0.2)]" 
-                            : "bg-white/5 text-text-muted hover:bg-white/10 border-transparent"
+                            ? "bg-gold text-[#0a0a0a] font-bold shadow-[0_0_20px_rgba(201,168,76,0.3)]" 
+                            : "text-text-muted hover:bg-white/5"
                         )}
                       >
-                        <span className="text-sm font-bold uppercase tracking-widest">Day {day.day}</span>
+                        <span className="text-xs uppercase tracking-widest">Day {day.day}</span>
                         <div className={cn(
                           "w-1.5 h-1.5 rounded-full",
                           activeDay === idx ? "bg-charcoal" : "bg-gold/30 group-hover:bg-gold"
@@ -217,7 +223,7 @@ export default function ItineraryPreview() {
                         onClick={() => setActiveTab('inclusions')}
                         className={cn(
                           "flex-1 py-3 text-[10px] font-bold uppercase tracking-widest border transition-all",
-                          activeTab === 'inclusions' ? "bg-gold/10 border-gold text-gold" : "border-white/10 text-text-muted hover:border-gold/30"
+                          activeTab === 'inclusions' ? "bg-gold text-charcoal border-gold" : "border-white/10 text-text-muted hover:border-gold/30"
                         )}
                       >
                         Inclusions
@@ -226,7 +232,7 @@ export default function ItineraryPreview() {
                         onClick={() => setActiveTab('exclusions')}
                         className={cn(
                           "flex-1 py-3 text-[10px] font-bold uppercase tracking-widest border transition-all",
-                          activeTab === 'exclusions' ? "bg-gold/10 border-gold text-gold" : "border-white/10 text-text-muted hover:border-gold/30"
+                          activeTab === 'exclusions' ? "bg-gold text-charcoal border-gold" : "border-white/10 text-text-muted hover:border-gold/30"
                         )}
                       >
                         Exclusions
@@ -234,8 +240,8 @@ export default function ItineraryPreview() {
                     </div>
                     <ul className="space-y-4">
                       {(activeTab === 'inclusions' ? tour.inclusions : tour.exclusions)?.map((item, i) => (
-                        <li key={i} className="flex gap-3 text-xs text-snow/70 leading-relaxed">
-                          {activeTab === 'inclusions' ? <Icons.Check className="w-4 h-4 text-gold shrink-0" /> : <Icons.AlertCircle className="w-4 h-4 text-red-400 shrink-0" />}
+                        <li key={i} className="flex gap-3 text-[11px] text-snow/70 leading-relaxed">
+                          {activeTab === 'inclusions' ? <Icons.Check className="w-3.5 h-3.5 text-gold shrink-0" /> : <Icons.AlertCircle className="w-3.5 h-3.5 text-red-400 shrink-0" />}
                           {item}
                         </li>
                       ))}
@@ -243,25 +249,16 @@ export default function ItineraryPreview() {
                   </div>
                 </div>
 
-                {/* MOBILE TOP STRIP */}
-                <div className="lg:hidden p-6 border-b border-white/5 space-y-6 shrink-0">
-                   <div className="flex flex-col gap-4">
-                      <div className="flex justify-between items-center">
-                        <span className="px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-[8px] font-bold uppercase tracking-widest">
-                          {tour.duration}
-                        </span>
-                        <span className="text-gold font-display text-lg">{tour.startingPrice}</span>
-                      </div>
-                      <LiveWeatherCard tour={tour} />
-                   </div>
-                   
-                   <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-6 px-6">
+                {/* MOBILE PILL STRIP - Sticky */}
+                <div className="md:hidden sticky top-0 z-40 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5 p-4 flex flex-col gap-4">
+                   <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide px-2">
                       {tour.itinerary.map((day, idx) => (
                         <button
                           key={idx}
+                          ref={el => { sidebarRefs.current[idx] = el; }}
                           onClick={() => scrollToDay(idx)}
                           className={cn(
-                            "whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all",
+                            "whitespace-nowrap px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all",
                             activeDay === idx ? "bg-gold text-charcoal shadow-lg" : "bg-white/5 text-text-muted"
                           )}
                         >
@@ -271,117 +268,89 @@ export default function ItineraryPreview() {
                    </div>
                 </div>
 
-                {/* RIGHT PANEL - Content Area */}
+                {/* CONTENT AREA */}
                 <div 
                   ref={scrollContainerRef}
-                  className="flex-1 overflow-y-auto p-6 md:p-16 space-y-32 scroll-smooth bg-black/20"
+                  className="flex-1 overflow-y-auto p-6 md:p-20 space-y-32 scroll-smooth bg-[#0a0a0a]"
                 >
                   {tour.itinerary.map((day, idx) => (
                     <motion.div
                       key={idx}
                       ref={(el) => { dayRefs.current[idx] = el; }}
                       data-day-index={idx}
-                      initial={{ opacity: 0, y: 30 }}
+                      initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className="space-y-8 max-w-4xl"
+                      viewport={{ once: false, margin: "-100px" }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="space-y-10 max-w-4xl mx-auto"
                     >
-                      <div className="flex flex-col gap-4">
-                        <div className="w-fit px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest rounded-full">
-                           Timeline Step {idx + 1}
-                        </div>
-                        <h4 className="text-3xl md:text-5xl font-display text-snow leading-tight">
-                          Day {day.day} — <span className="text-gold italic">{day.title}</span>
+                      <div className="space-y-4">
+                        <span className="text-[10px] text-gold font-bold uppercase tracking-[0.4em]">Chronicle {idx + 1}</span>
+                        <h4 className="text-4xl md:text-6xl font-display text-snow leading-tight">
+                          Day {day.day} &mdash; <span className="text-gold italic">{day.title}</span>
                         </h4>
                       </div>
                       
-                      <p className="text-lg text-text-muted leading-relaxed font-light">
+                      <p className="text-lg md:text-xl text-text-muted leading-relaxed font-light">
                         {day.description}
                       </p>
 
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col gap-4 hover:bg-white/10 transition-colors">
-                          <Icons.Mountain className="w-6 h-6 text-gold" />
-                          <div>
-                            <span className="text-[10px] text-text-muted uppercase tracking-widest block mb-1">Peak Altitude</span>
-                            <span className="text-snow font-bold text-lg">{day.altitude || 'N/A'}</span>
+                      {/* Info Cards Row */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-white/5">
+                        <div className="p-6 border-l-2 border-gold flex flex-col gap-2 bg-white/[0.02]">
+                          <div className="flex items-center gap-2 text-gold">
+                            <Icons.Mountain className="w-4 h-4" />
+                            <span className="text-[9px] uppercase tracking-widest font-bold">Altitude</span>
                           </div>
+                          <span className="text-2xl font-bold text-snow">{day.altitude || 'N/A'}</span>
                         </div>
-                        <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col gap-4 hover:bg-white/10 transition-colors">
-                          <Icons.Navigation className="w-6 h-6 text-gold" />
-                          <div>
-                            <span className="text-[10px] text-text-muted uppercase tracking-widest block mb-1">Travel Distance</span>
-                            <span className="text-snow font-bold text-lg">{day.distance || 'Local'}</span>
+                        <div className="p-6 border-l-2 border-gold flex flex-col gap-2 bg-white/[0.03] border-t md:border-t-0 border-white/5">
+                          <div className="flex items-center gap-2 text-gold">
+                            <Icons.Navigation className="w-4 h-4" />
+                            <span className="text-[9px] uppercase tracking-widest font-bold">Distance</span>
                           </div>
+                          <span className="text-2xl font-bold text-snow">{day.distance || 'Local'}</span>
                         </div>
-                        <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col gap-4 hover:bg-white/10 transition-colors">
-                          <Icons.Home className="w-6 h-6 text-gold" />
-                          <div>
-                            <span className="text-[10px] text-text-muted uppercase tracking-widest block mb-1">Overnight Stay</span>
-                            <span className="text-snow font-bold text-lg">{day.stay}</span>
+                        <div className="p-6 border-l-2 border-gold flex flex-col gap-2 bg-white/[0.04] border-t md:border-t-0 border-white/5">
+                          <div className="flex items-center gap-2 text-gold">
+                            <Icons.Home className="w-4 h-4" />
+                            <span className="text-[9px] uppercase tracking-widest font-bold">Stay</span>
                           </div>
+                          <span className="text-2xl font-bold text-snow">{day.stay}</span>
                         </div>
                       </div>
 
-                      <div className="space-y-6 pt-8">
-                        <div className="flex items-center gap-4">
-                           <div className="h-[1px] flex-1 bg-gold/10" />
+                      <div className="space-y-8 pt-6">
+                        <div className="flex items-center gap-6">
                            <span className="text-[10px] text-gold font-bold uppercase tracking-[0.3em] whitespace-nowrap">Daily Highlights</span>
-                           <div className="h-[1px] flex-1 bg-gold/10" />
+                           <div className="h-[1px] flex-1 bg-white/5" />
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
                           {day.highlights?.map((highlight, i) => (
-                            <div key={i} className="flex items-center gap-3 text-snow/90 text-sm bg-white/5 p-3 rounded-xl border border-transparent hover:border-gold/20 transition-all">
-                              <Icons.Star className="w-4 h-4 text-gold shrink-0" fill="currentColor" />
-                              {highlight}
+                            <div key={i} className="flex items-start gap-3 text-[#e5e5e5] text-sm group">
+                              <Icons.Star className="w-4 h-4 text-gold shrink-0 mt-0.5" fill="currentColor" />
+                              <span className="group-hover:text-gold transition-colors">{highlight}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       {idx < tour.itinerary.length - 1 && (
-                        <div className="pt-24 opacity-20">
-                           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent" />
+                        <div className="pt-16">
+                           <div className="w-24 h-[1px] bg-gold/20" />
                         </div>
                       )}
                     </motion.div>
                   ))}
 
-                  {/* Mobile Inclusions/Exclusions at bottom */}
-                  <div className="lg:hidden pt-12 space-y-12 pb-24 border-t border-white/5">
-                     <div className="space-y-6">
-                        <h5 className="text-xl font-display text-gold">Inclusions</h5>
-                        <ul className="space-y-4">
-                          {tour.inclusions?.map((item, i) => (
-                            <li key={i} className="flex gap-3 text-sm text-snow/70">
-                              <Icons.Check className="w-4 h-4 text-gold shrink-0" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                     </div>
-                     <div className="space-y-6">
-                        <h5 className="text-xl font-display text-gold">Exclusions</h5>
-                        <ul className="space-y-4">
-                          {tour.exclusions?.map((item, i) => (
-                            <li key={i} className="flex gap-3 text-sm text-snow/70">
-                              <Icons.AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                     </div>
-                  </div>
-
-                  <div className="h-48" /> {/* Bottom spacing */}
+                  <div className="h-64" /> {/* Bottom buffer */}
                 </div>
               </div>
             </>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center gap-6">
-              <div className="w-16 h-16 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
-              <div className="text-gold text-xl font-display tracking-widest animate-pulse">Initializing Journey...</div>
+              <div className="w-12 h-12 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
+              <div className="text-gold text-lg font-display tracking-widest animate-pulse">Summoning Mountains...</div>
             </div>
           )}
         </motion.div>
