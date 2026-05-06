@@ -26,7 +26,7 @@ export interface Tour {
   difficulty: Difficulty | string;
   maxAltitude?: string | number;
   altitude?: string;
-  groupSize?: string | { min: number; max: number };
+  groupSize: string | { min: number; max: number };
   price: number | { perPerson: number; private?: number };
   startingPrice?: string;
   season?: string[];
