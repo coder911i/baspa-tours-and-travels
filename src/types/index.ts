@@ -31,10 +31,10 @@ export interface Tour {
   startingPrice?: string;
   season?: string[];
   highlights: string[];
-  included: string[];
-  inclusions?: string[];
+  included?: string[];
+  inclusions: string[];
   notIncluded?: string[];
-  exclusions?: string[];
+  exclusions: string[];
   itinerary: ItineraryDay[];
   image: string;
   images?: string[];

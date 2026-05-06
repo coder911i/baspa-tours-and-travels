@@ -103,7 +103,7 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
                     <span className="w-4 h-[1px] bg-gold" /> What&apos;s Included
                   </h3>
                   <ul className="space-y-4">
-                    {tour.included.map((item) => (
+                    {tour.inclusions.map((item) => (
                       <li key={item} className="flex gap-4 text-text-muted text-sm">
                         <span className="text-gold">✓</span>
                         {item}

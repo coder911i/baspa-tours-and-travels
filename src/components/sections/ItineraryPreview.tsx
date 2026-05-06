@@ -47,7 +47,7 @@ function LiveWeatherCard({ tour }: { tour: Tour }) {
           <span className="text-[10px] text-snow font-medium uppercase tracking-[0.2em]">{coords.label}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
           <span className="text-[9px] text-snow/60 font-bold uppercase tracking-widest">Live</span>
         </div>
       </div>
@@ -154,32 +154,32 @@ export default function ItineraryPreview() {
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="fixed inset-0 z-[100] bg-[#0A0C10] text-snow overflow-hidden flex flex-col"
+          className="fixed inset-0 z-[100] bg-[#0A0C10] text-snow overflow-hidden flex flex-col h-screen"
         >
           {tour ? (
             <>
               {/* Background Watermark */}
               <div className="absolute inset-0 pointer-events-none opacity-[0.03] flex items-end justify-center overflow-hidden">
-                 <Icons.Mountain className="w-[120vw] h-[120vw] -mb-[40vw] text-gold" />
+                 <Icons.Mountain className="w-[120vw] h-[120vw] -mb-[40vw] text-blue-400" />
               </div>
 
               {/* Header */}
-              <div className="relative z-10 flex items-center justify-between p-6 md:px-12 border-b border-gold/10 bg-[#0A0C10]/80 backdrop-blur-md">
+              <div className="relative z-10 flex items-center justify-between p-6 md:px-12 border-b border-white/5 bg-[#0A0C10]/80 backdrop-blur-md shrink-0">
                 <div className="flex flex-col">
                   <span className="text-[10px] text-gold font-bold uppercase tracking-[0.4em] mb-1">Itinerary Blueprint</span>
                   <h2 className="text-xl md:text-2xl font-display text-snow">{tour.title}</h2>
                 </div>
                 <button 
                   onClick={closeOverlay}
-                  className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center hover:bg-gold hover:text-charcoal transition-all duration-300 group"
+                  className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-gold hover:text-charcoal transition-all duration-300 group"
                 >
                   <Icons.X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
                 </button>
               </div>
 
-              <div className="flex-1 overflow-hidden flex flex-col lg:flex-row">
-                {/* LEFT PANEL - Desktop */}
-                <div className="hidden lg:flex w-[35%] border-r border-gold/10 flex-col p-12 overflow-y-auto scrollbar-hide space-y-12">
+              <div className="flex-1 overflow-hidden flex flex-col lg:flex-row h-full">
+                {/* LEFT PANEL - Desktop Navigation */}
+                <div className="hidden lg:flex w-[350px] shrink-0 border-r border-white/5 flex-col p-12 overflow-y-auto scrollbar-hide space-y-12 h-full">
                   <div>
                     <h3 className="text-4xl font-display text-snow mb-4">{tour.title}</h3>
                     <div className="inline-flex px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-[10px] font-bold uppercase tracking-widest">
@@ -196,10 +196,10 @@ export default function ItineraryPreview() {
                         key={idx}
                         onClick={() => scrollToDay(idx)}
                         className={cn(
-                          "w-full text-left px-6 py-4 rounded-xl transition-all duration-300 flex items-center justify-between group",
+                          "w-full text-left px-6 py-4 rounded-xl transition-all duration-300 flex items-center justify-between group border",
                           activeDay === idx 
-                            ? "bg-gold text-charcoal shadow-[0_0_20px_rgba(201,168,76,0.3)] border-l-4 border-gold" 
-                            : "text-text-muted hover:bg-white/5 border border-transparent"
+                            ? "bg-gold text-charcoal border-gold shadow-[0_0_20px_rgba(201,168,76,0.2)]" 
+                            : "bg-white/5 text-text-muted hover:bg-white/10 border-transparent"
                         )}
                       >
                         <span className="text-sm font-bold uppercase tracking-widest">Day {day.day}</span>
@@ -211,7 +211,7 @@ export default function ItineraryPreview() {
                     ))}
                   </div>
 
-                  <div className="pt-8 border-t border-gold/10">
+                  <div className="pt-8 border-t border-white/5">
                     <div className="flex gap-4 mb-6">
                       <button 
                         onClick={() => setActiveTab('inclusions')}
@@ -244,7 +244,7 @@ export default function ItineraryPreview() {
                 </div>
 
                 {/* MOBILE TOP STRIP */}
-                <div className="lg:hidden p-6 border-b border-gold/10 space-y-6">
+                <div className="lg:hidden p-6 border-b border-white/5 space-y-6 shrink-0">
                    <div className="flex flex-col gap-4">
                       <div className="flex justify-between items-center">
                         <span className="px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-[8px] font-bold uppercase tracking-widest">
@@ -255,7 +255,6 @@ export default function ItineraryPreview() {
                       <LiveWeatherCard tour={tour} />
                    </div>
                    
-                   {/* Horizontal Day Tabs */}
                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-6 px-6">
                       {tour.itinerary.map((day, idx) => (
                         <button
@@ -263,7 +262,7 @@ export default function ItineraryPreview() {
                           onClick={() => scrollToDay(idx)}
                           className={cn(
                             "whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all",
-                            activeDay === idx ? "bg-gold text-charcoal" : "bg-white/5 text-text-muted"
+                            activeDay === idx ? "bg-gold text-charcoal shadow-lg" : "bg-white/5 text-text-muted"
                           )}
                         >
                           Day {day.day}
@@ -272,10 +271,10 @@ export default function ItineraryPreview() {
                    </div>
                 </div>
 
-                {/* RIGHT PANEL - Content */}
+                {/* RIGHT PANEL - Content Area */}
                 <div 
                   ref={scrollContainerRef}
-                  className="flex-1 overflow-y-auto p-6 md:p-16 space-y-24 scroll-smooth"
+                  className="flex-1 overflow-y-auto p-6 md:p-16 space-y-32 scroll-smooth bg-black/20"
                 >
                   {tour.itinerary.map((day, idx) => (
                     <motion.div
@@ -285,54 +284,55 @@ export default function ItineraryPreview() {
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.6, delay: 0.1 }}
-                      className="space-y-8"
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className="space-y-8 max-w-4xl"
                     >
-                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <h4 className="text-3xl md:text-5xl font-display text-gold leading-tight">
-                          Day {day.day} — {day.title}
+                      <div className="flex flex-col gap-4">
+                        <div className="w-fit px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest rounded-full">
+                           Timeline Step {idx + 1}
+                        </div>
+                        <h4 className="text-3xl md:text-5xl font-display text-snow leading-tight">
+                          Day {day.day} — <span className="text-gold italic">{day.title}</span>
                         </h4>
                       </div>
                       
-                      <p className="text-lg text-text-muted leading-relaxed max-w-3xl">
+                      <p className="text-lg text-text-muted leading-relaxed font-light">
                         {day.description}
                       </p>
 
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-                            <Icons.Mountain className="w-5 h-5 text-gold" />
-                          </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col gap-4 hover:bg-white/10 transition-colors">
+                          <Icons.Mountain className="w-6 h-6 text-gold" />
                           <div>
-                            <span className="text-[10px] text-text-muted uppercase tracking-widest block">Altitude</span>
-                            <span className="text-snow font-bold">{day.altitude || 'N/A'}</span>
+                            <span className="text-[10px] text-text-muted uppercase tracking-widest block mb-1">Peak Altitude</span>
+                            <span className="text-snow font-bold text-lg">{day.altitude || 'N/A'}</span>
                           </div>
                         </div>
-                        <div className="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-                            <Icons.Navigation className="w-5 h-5 text-gold" />
-                          </div>
+                        <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col gap-4 hover:bg-white/10 transition-colors">
+                          <Icons.Navigation className="w-6 h-6 text-gold" />
                           <div>
-                            <span className="text-[10px] text-text-muted uppercase tracking-widest block">Distance</span>
-                            <span className="text-snow font-bold">{day.distance || 'Local'}</span>
+                            <span className="text-[10px] text-text-muted uppercase tracking-widest block mb-1">Travel Distance</span>
+                            <span className="text-snow font-bold text-lg">{day.distance || 'Local'}</span>
                           </div>
                         </div>
-                        <div className="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-                            <Icons.Home className="w-5 h-5 text-gold" />
-                          </div>
+                        <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col gap-4 hover:bg-white/10 transition-colors">
+                          <Icons.Home className="w-6 h-6 text-gold" />
                           <div>
-                            <span className="text-[10px] text-text-muted uppercase tracking-widest block">Stay</span>
-                            <span className="text-snow font-bold">{day.stay}</span>
+                            <span className="text-[10px] text-text-muted uppercase tracking-widest block mb-1">Overnight Stay</span>
+                            <span className="text-snow font-bold text-lg">{day.stay}</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="space-y-4">
-                        <span className="text-[10px] text-gold font-bold uppercase tracking-[0.3em] block">Daily Highlights</span>
+                      <div className="space-y-6 pt-8">
+                        <div className="flex items-center gap-4">
+                           <div className="h-[1px] flex-1 bg-gold/10" />
+                           <span className="text-[10px] text-gold font-bold uppercase tracking-[0.3em] whitespace-nowrap">Daily Highlights</span>
+                           <div className="h-[1px] flex-1 bg-gold/10" />
+                        </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {day.highlights?.map((highlight, i) => (
-                            <div key={i} className="flex items-center gap-3 text-snow/90 text-sm">
+                            <div key={i} className="flex items-center gap-3 text-snow/90 text-sm bg-white/5 p-3 rounded-xl border border-transparent hover:border-gold/20 transition-all">
                               <Icons.Star className="w-4 h-4 text-gold shrink-0" fill="currentColor" />
                               {highlight}
                             </div>
@@ -341,13 +341,15 @@ export default function ItineraryPreview() {
                       </div>
 
                       {idx < tour.itinerary.length - 1 && (
-                        <div className="pt-12 border-b border-gold/10" />
+                        <div className="pt-24 opacity-20">
+                           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent" />
+                        </div>
                       )}
                     </motion.div>
                   ))}
 
                   {/* Mobile Inclusions/Exclusions at bottom */}
-                  <div className="lg:hidden pt-12 space-y-12">
+                  <div className="lg:hidden pt-12 space-y-12 pb-24 border-t border-white/5">
                      <div className="space-y-6">
                         <h5 className="text-xl font-display text-gold">Inclusions</h5>
                         <ul className="space-y-4">
@@ -372,13 +374,14 @@ export default function ItineraryPreview() {
                      </div>
                   </div>
 
-                  <div className="h-32" /> {/* Bottom spacing */}
+                  <div className="h-48" /> {/* Bottom spacing */}
                 </div>
               </div>
             </>
           ) : (
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-gold text-xl font-display animate-pulse">Loading Journey...</div>
+            <div className="flex-1 flex flex-col items-center justify-center gap-6">
+              <div className="w-16 h-16 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
+              <div className="text-gold text-xl font-display tracking-widest animate-pulse">Initializing Journey...</div>
             </div>
           )}
         </motion.div>
