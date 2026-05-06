@@ -5,17 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useWeather } from '@/lib/useWeather';
 import { cn } from '@/lib/utils';
 
+// These IDs MUST match the IDs in src/lib/data/tours.ts
 const destinations = [
-  { id: "chitkul-valley-expedition", name: "Chitkul Valley Expedition", days: 7, lat: 31.3497, lon: 78.4428, location: "Chitkul" },
-  { id: "spiti-circuit", name: "The Great Spiti Circuit", days: 10, lat: 32.2461, lon: 78.0153, location: "Kaza, Spiti" },
-  { id: "kinnaur-apple-trail", name: "Kinnaur Apple Trail", days: 6, lat: 31.5885, lon: 78.2674, location: "Kalpa, Kinnaur" },
-  { id: "pin-parvati-pass", name: "Pin Parvati Pass Trek", days: 12, lat: 31.7833, lon: 77.5167, location: "Kullu" },
-  { id: "kalpa-starlight-retreat", name: "Kalpa Starlight Retreat", days: 5, lat: 31.5185, lon: 78.2595, location: "Kalpa" },
-  { id: "zanskar-hidden-valley", name: "Zanskar Hidden Valley", days: 14, lat: 33.4333, lon: 76.2167, location: "Padum, Zanskar" },
-  { id: "rohtang-lahaul-loop", name: "Rohtang & Lahaul Loop", days: 6, lat: 32.2985, lon: 77.0685, location: "Keylong, Lahaul" },
-  { id: "himalayan-photo-masterclass", name: "Himalayan Photo Masterclass", days: 8, lat: 32.2461, lon: 78.0153, location: "Spiti Valley" },
-  { id: "sangla-cultural-immersion", name: "Sangla Cultural Immersion", days: 5, lat: 31.4167, lon: 78.3333, location: "Sangla" },
-  { id: "ancient-spiti-monasteries", name: "Ancient Spiti Monasteries", days: 8, lat: 32.0998, lon: 78.3215, location: "Tabo, Spiti" },
+  { id: "spiti-valley-7d", name: "Spiti Winter (7D)", days: 7, lat: 31.3497, lon: 78.4428, location: "Chitkul" },
+  { id: "spiti-summer-4n5d", name: "Spiti Summer (5D)", days: 5, lat: 32.2461, lon: 78.0153, location: "Kaza, Spiti" },
+  { id: "winter-spiti-9d", name: "Winter Spiti (9D)", days: 9, lat: 32.2461, lon: 78.0153, location: "Kaza, Spiti" },
 ];
 
 function WeatherCard({ lat, lon, locationName }: { lat: number; lon: number; locationName: string }) {
@@ -23,20 +17,24 @@ function WeatherCard({ lat, lon, locationName }: { lat: number; lon: number; loc
 
   if (error) {
     return (
-      <div className="mt-4 p-4 rounded-2xl bg-surface/50 backdrop-blur-md border border-white/5 flex items-center justify-center">
-        <p className="text-text-muted text-sm">Weather data unavailable</p>
+      <div className="mt-4 p-4 rounded-2xl bg-surface/50 backdrop-blur-md border border-gold/10 flex items-center justify-center">
+        <p className="text-text-muted text-xs uppercase tracking-widest font-bold">Weather Unavailable</p>
       </div>
     );
   }
 
   return (
-    <div className="mt-4 p-5 rounded-2xl bg-surface/80 backdrop-blur-md border border-white/10 relative overflow-hidden">
+    <div className="mt-4 p-5 rounded-2xl bg-surface/80 backdrop-blur-md border border-gold/20 relative overflow-hidden group">
       <div className="flex justify-between items-start mb-4">
         <div>
-          <span className="text-gold text-[10px] uppercase tracking-widest block mb-1">Live Weather &middot; Updated Now</span>
+          <span className="text-gold text-[10px] uppercase tracking-[0.2em] font-bold block mb-1">Live Conditions</span>
           <h4 className="text-snow text-sm font-medium flex items-center gap-2">
             📍 {locationName}
           </h4>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+          <span className="text-[9px] text-snow/60 font-bold uppercase tracking-widest">Live</span>
         </div>
       </div>
 
@@ -50,16 +48,16 @@ function WeatherCard({ lat, lon, locationName }: { lat: number; lon: number; loc
         </div>
       ) : (
         <div className="flex items-center gap-6">
-          <div className="text-4xl font-display text-snow flex items-start">
-            {temp.toFixed(1)}
-            <span className="text-lg text-gold ml-1 mt-1 animate-pulse">°C</span>
+          <div className="text-4xl font-display text-gold flex items-start">
+            {Math.round(temp)}
+            <span className="text-lg mt-1 ml-1">°C</span>
           </div>
           <div className="space-y-1">
-            <p className="text-sm text-snow flex items-center gap-2">
-              ☁️ {condition}
+            <p className="text-xs text-snow font-bold uppercase tracking-widest flex items-center gap-2">
+               {condition}
             </p>
-            <p className="text-xs text-text-muted flex items-center gap-2">
-              💨 {wind} km/h
+            <p className="text-[10px] text-text-muted uppercase tracking-widest flex items-center gap-2">
+               Wind {wind} km/h
             </p>
           </div>
         </div>
@@ -77,12 +75,6 @@ export default function TripSelector() {
     // Dispatch custom event for ItineraryPreview to listen to
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('tourSelected', { detail: id }));
-      
-      // Scroll to itinerary
-      const element = document.getElementById('itinerary-preview');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
     }
   };
 
@@ -90,19 +82,22 @@ export default function TripSelector() {
 
   return (
     <div className="w-full max-w-md mx-auto md:mx-0 z-20 relative">
-      <div className="glass-card p-6 rounded-3xl border border-white/10 bg-surface/30 backdrop-blur-xl">
-        <h3 className="font-display text-2xl text-snow mb-4">Choose Your Destination</h3>
+      <div className="glass-card p-6 rounded-3xl border border-gold/10 bg-charcoal/40 backdrop-blur-xl">
+        <div className="flex items-center justify-between mb-6">
+           <h3 className="font-display text-xl text-snow tracking-wide">Expedition Selector</h3>
+           <div className="px-2 py-1 bg-gold/10 border border-gold/20 rounded text-[8px] text-gold font-bold uppercase tracking-widest">Interactive</div>
+        </div>
         
-        <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide snap-x">
+        <div className="flex flex-wrap gap-2 mb-6">
           {destinations.map(dest => (
             <button
               key={dest.id}
               onClick={() => handleSelect(dest.id)}
               className={cn(
-                "snap-start whitespace-nowrap px-4 py-2 rounded-full text-xs font-medium uppercase tracking-wider transition-all",
+                "px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border",
                 selectedDestId === dest.id 
-                  ? "bg-gold text-charcoal shadow-[0_0_15px_rgba(201,168,76,0.4)]" 
-                  : "bg-white/5 text-text-muted hover:bg-white/10 hover:text-snow border border-white/5"
+                  ? "bg-gold text-charcoal border-gold shadow-[0_0_20px_rgba(201,168,76,0.3)] scale-105" 
+                  : "bg-white/5 text-text-muted hover:bg-gold/10 hover:text-gold border-white/5 hover:border-gold/20"
               )}
             >
               {dest.name}
@@ -111,7 +106,7 @@ export default function TripSelector() {
         </div>
 
         <AnimatePresence mode="wait">
-          {selectedDest && (
+          {selectedDest ? (
             <motion.div
               key={selectedDest.id}
               initial={{ opacity: 0, y: 10 }}
@@ -124,7 +119,20 @@ export default function TripSelector() {
                 lon={selectedDest.lon} 
                 locationName={selectedDest.location} 
               />
+              <button
+                onClick={() => handleSelect(selectedDest.id)}
+                className="w-full mt-4 py-4 bg-gold/5 border border-gold/20 rounded-2xl text-[10px] text-gold font-bold uppercase tracking-[0.3em] hover:bg-gold hover:text-charcoal transition-all duration-500 shadow-[inset_0_0_20px_rgba(201,168,76,0.05)]"
+              >
+                View Digital Itinerary
+              </button>
             </motion.div>
+          ) : (
+             <div className="py-12 border-2 border-dashed border-white/5 rounded-2xl flex flex-col items-center justify-center gap-4 group">
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                   <div className="w-2 h-2 rounded-full bg-gold animate-ping" />
+                </div>
+                <p className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-bold">Select a journey to begin</p>
+             </div>
           )}
         </AnimatePresence>
       </div>
