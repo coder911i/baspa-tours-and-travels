@@ -2,7 +2,6 @@
   "github": {
     "silent": true
   },
-  "regions": ["bom1"],
   "headers": [
     {
       "source": "/images/(.*)",

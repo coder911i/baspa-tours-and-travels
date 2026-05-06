@@ -11,7 +11,7 @@ const nextConfig = {
     minimumCacheTTL: 60,
   },
   experimental: {
-    optimizePackageImports: ['gsap', 'three', 'framer-motion', 'lucide-react'],
+    optimizePackageImports: ['gsap', 'three', 'framer-motion'],
   },
   // Security Headers
   async headers() {
