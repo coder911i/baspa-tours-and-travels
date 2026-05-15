@@ -114,8 +114,8 @@ export default function ItineraryPreview() {
 
     const observerOptions = {
       root: scrollContainerRef.current,
-      threshold: 0.3,
-      rootMargin: '-10% 0px -60% 0px'
+      threshold: 0,
+      rootMargin: '-30% 0px -50% 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -294,6 +294,17 @@ export default function ItineraryPreview() {
                       <p className="text-lg md:text-xl text-text-muted leading-relaxed font-light">
                         {day.description}
                       </p>
+
+                      {day.image && (
+                        <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mt-8 mb-6 shadow-2xl border border-white/5">
+                          <img 
+                            src={day.image} 
+                            alt={day.title} 
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
 
                       {/* Info Cards Row */}
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-white/5">

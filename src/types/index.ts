@@ -4,6 +4,7 @@ export interface ItineraryDay {
   day: number;
   title: string;
   description: string;
+  image?: string;
   meals?: string;
   stay?: string;
   accommodation?: string;
