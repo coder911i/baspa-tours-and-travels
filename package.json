@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:cf": "opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion",
+    "build:cf": "opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion && rm -f ./index.js && cp .open-next/worker.js ./index.js",
     "start": "next start",
     "lint": "next lint",
     "preview": "opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion && opennextjs-cloudflare preview",
-    "deploy": "npm run build:cf && npx wrangler deploy .open-next/worker.js --assets .open-next/assets --compatibility-date 2026-05-15 --compatibility-flag nodejs_compat",
+    "deploy": "npm run build:cf",
     "deploy:pages": "npm run build:cf && npx wrangler pages deploy .open-next",
     "test:load": "k6 run tests/load/load-test.js"
   },
