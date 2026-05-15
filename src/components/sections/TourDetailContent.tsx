@@ -122,15 +122,37 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
                     <div className="absolute left-0 top-0 w-16 h-16 bg-background border border-white/10 flex items-center justify-center text-gold font-display text-2xl z-10 group-hover:border-gold transition-colors">
                       {day.day}
                     </div>
-                    <div className="glass-card p-8 group-hover:border-gold/30 transition-all bg-surface/30">
-                      <h3 className="text-xl font-display text-snow mb-4 group-hover:text-gold transition-colors">{day.title}</h3>
-                      <p className="text-text-muted text-sm leading-relaxed mb-6">
-                        {day.description}
-                      </p>
-                      <div className="flex flex-wrap gap-4 text-[9px] uppercase tracking-widest font-bold">
-                        {day.altitude && <span className="px-3 py-1 bg-white/5 text-text-muted border border-white/5">Alt: {day.altitude}</span>}
-                        {day.distance && <span className="px-3 py-1 bg-white/5 text-text-muted border border-white/5">Dist: {day.distance}</span>}
-                        {day.stay && <span className="px-3 py-1 bg-white/5 text-gold border border-gold/10">Stay: {day.stay}</span>}
+                    <div className="glass-card group-hover:border-gold/30 transition-all bg-surface/30 overflow-hidden">
+                      {day.image && (
+                        <div className="relative w-full h-48 md:h-64 overflow-hidden">
+                          <img 
+                            src={day.image} 
+                            alt={day.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-transparent to-transparent" />
+                        </div>
+                      )}
+                      <div className="p-8">
+                        <h3 className="text-xl font-display text-snow mb-4 group-hover:text-gold transition-colors">{day.title}</h3>
+                        <p className="text-text-muted text-sm leading-relaxed mb-6">
+                          {day.description}
+                        </p>
+                        <div className="flex flex-wrap gap-4 text-[9px] uppercase tracking-widest font-bold">
+                          {day.altitude && <span className="px-3 py-1 bg-white/5 text-text-muted border border-white/5">Alt: {day.altitude}</span>}
+                          {day.distance && <span className="px-3 py-1 bg-white/5 text-text-muted border border-white/5">Dist: {day.distance}</span>}
+                          {day.stay && <span className="px-3 py-1 bg-white/5 text-gold border border-gold/10">Stay: {day.stay}</span>}
+                        </div>
+                        {day.highlights && day.highlights.length > 0 && (
+                          <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                            {day.highlights.map((h, i) => (
+                              <span key={i} className="px-3 py-1.5 bg-gold/5 border border-gold/10 text-gold text-[10px] font-medium rounded-full">
+                                {h}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
