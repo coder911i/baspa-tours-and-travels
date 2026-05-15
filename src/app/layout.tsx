@@ -78,7 +78,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     "name": "Baspa Travels",
-    "image": "https://baspa-travels.com/images/baspa_fial_logo.png",
+    "image": "https://baspa-travels.com/images/logo.jpg",
     "@id": "https://baspa-travels.com",
     "url": "https://baspa-travels.com",
     "telephone": "+91-1234567890",

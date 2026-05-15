@@ -74,7 +74,7 @@ export default function LoadingScreen() {
       <div className="flex flex-col items-center max-w-sm w-full px-12">
         <div ref={logoRef} className="relative w-[240px] h-[240px] mb-8">
           <Image
-            src="/images/baspa_fial_logo.png"
+            src="/images/logo.jpg"
             alt="Baspa Travels Logo"
             fill
             className="object-contain"

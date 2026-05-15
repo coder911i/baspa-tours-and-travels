@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="flex flex-col items-start">
             <div className="relative h-20 w-32 mb-6">
               <Image 
-                src="/images/baspa_fial_logo.png" 
+                src="/images/logo.jpg" 
                 alt="Baspa Travels Logo" 
                 fill
                 className="object-contain"

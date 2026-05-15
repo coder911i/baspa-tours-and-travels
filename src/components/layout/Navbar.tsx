@@ -40,7 +40,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 md:w-12 md:h-12">
             <Image
-              src="/images/baspa_fial_logo.png"
+              src="/images/logo.jpg"
               alt="Baspa Travels Logo"
               fill
               className="object-contain"
