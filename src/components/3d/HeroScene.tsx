@@ -219,7 +219,7 @@ export default function HeroScene() {
       <div className="fixed inset-0 -z-10 bg-[#050508] overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-40 scale-110"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2000")' }}
+          style={{ backgroundImage: 'url("https://plus.unsplash.com/premium_photo-1661962740957-ccd5130e194e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MXx8S2V5JTIwTW9uYXN0ZXJ5JTIwU3BpdGl8ZW58MHx8fHwxNzc5MDAyODI0fDA&ixlib=rb-4.1.0&q=80&w=2000&auto=format&fit=crop")' }}
           role="img"
           aria-label="Himalayan mountain peak background"
         />

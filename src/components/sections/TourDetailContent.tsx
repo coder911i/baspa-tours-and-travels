@@ -123,10 +123,10 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
                       {day.day}
                     </div>
                     <div className="glass-card group-hover:border-gold/30 transition-all bg-surface/30 overflow-hidden">
-                      {day.image && (
+                      {(day.images?.[0] || day.image) && (
                         <div className="relative w-full h-48 md:h-64 overflow-hidden">
                           <img 
-                            src={day.image} 
+                            src={day.images?.[0] || day.image} 
                             alt={day.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             loading="lazy"

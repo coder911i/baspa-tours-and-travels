@@ -114,22 +114,24 @@ export default function ItineraryPreview() {
 
     const observerOptions = {
       root: scrollContainerRef.current,
-      threshold: 0,
-      rootMargin: '-30% 0px -50% 0px'
+      threshold: 0.3,
+      rootMargin: '-20% 0px -60% 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = Number(entry.target.getAttribute('data-day-index'));
+      const mostVisible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      
+      if (mostVisible) {
+        const index = Number(mostVisible.target.getAttribute('data-day-index'));
+        if (!isNaN(index)) {
           setActiveDay(index);
-          
-          // Auto-scroll mobile pills
           if (sidebarRefs.current[index]) {
             sidebarRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
           }
         }
-      });
+      }
     }, observerOptions);
 
     dayRefs.current.forEach((ref) => {
@@ -145,6 +147,7 @@ export default function ItineraryPreview() {
   };
 
   const scrollToDay = (index: number) => {
+    setActiveDay(index);
     const element = dayRefs.current[index];
     if (element && scrollContainerRef.current) {
       const offset = 80; // Account for sticky pill bar / navbar
@@ -295,7 +298,20 @@ export default function ItineraryPreview() {
                         {day.description}
                       </p>
 
-                      {day.image && (
+                      {day.images && day.images.length > 0 ? (
+                        <div className="relative w-full overflow-x-auto snap-x snap-mandatory flex gap-4 mt-8 mb-6 pb-4 scrollbar-hide">
+                          {day.images.map((img, i) => (
+                            <div key={i} className="relative w-[85%] md:w-[60%] shrink-0 h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl border border-white/5 snap-center">
+                              <img 
+                                src={img} 
+                                alt={`${day.title} ${i + 1}`} 
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                loading="lazy"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      ) : day.image && (
                         <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mt-8 mb-6 shadow-2xl border border-white/5">
                           <img 
                             src={day.image} 
