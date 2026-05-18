@@ -123,13 +123,46 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
                       {day.day}
                     </div>
                     <div className="glass-card group-hover:border-gold/30 transition-all bg-surface/30 overflow-hidden">
-                      {(day.images?.[0] || day.image) && (
+                      {day.images && day.images.length > 0 ? (
+                        <div className="grid grid-cols-2 gap-1 h-64 md:h-80 relative">
+                          <div className="col-span-1 h-full relative">
+                            <Image 
+                              src={day.images[0]} 
+                              alt={day.title}
+                              fill
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="col-span-1 grid grid-rows-2 gap-1 h-full relative">
+                            {day.images[1] && (
+                              <div className="relative h-full w-full">
+                                <Image 
+                                  src={day.images[1]} 
+                                  alt={day.title}
+                                  fill
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            )}
+                            {day.images[2] && (
+                              <div className="relative h-full w-full">
+                                <Image 
+                                  src={day.images[2]} 
+                                  alt={day.title}
+                                  fill
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ) : (day.image) && (
                         <div className="relative w-full h-48 md:h-64 overflow-hidden">
-                          <img 
-                            src={day.images?.[0] || day.image} 
+                          <Image 
+                            src={day.image} 
                             alt={day.title}
+                            fill
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            loading="lazy"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-transparent to-transparent" />
                         </div>

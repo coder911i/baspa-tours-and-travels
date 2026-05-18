@@ -20,10 +20,11 @@ export default function DestinationsPage() {
       <section className="relative h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1626622173428-8b87c19b2092?q=80&w=2000&auto=format&fit=crop"
             alt="Our Territories"
             fill
             className="object-cover opacity-40"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
         </div>

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { tours } from '@/lib/data/tours';
 import { useWeather } from '@/lib/useWeather';
 import { cn } from '@/lib/utils';
@@ -82,11 +83,16 @@ export default function ItineraryPreview() {
   const [selectedTourId, setSelectedTourId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'inclusions' | 'exclusions'>('inclusions');
   const [activeDay, setActiveDay] = useState(0);
+  const activeDayRef = useRef(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const dayRefs = useRef<(HTMLDivElement | null)[]>([]);
   const sidebarRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const tour = tours.find(t => t.id === selectedTourId);
+
+  useEffect(() => {
+    activeDayRef.current = activeDay;
+  }, [activeDay]);
 
   useEffect(() => {
     const handleOpen = (e: CustomEvent) => {
@@ -114,21 +120,25 @@ export default function ItineraryPreview() {
 
     const observerOptions = {
       root: scrollContainerRef.current,
-      threshold: 0.3,
-      rootMargin: '-20% 0px -60% 0px'
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      rootMargin: '-10% 0px -40% 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
-      const mostVisible = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      // Find the entry with the highest intersection ratio that is actually intersecting
+      const visibleEntries = entries.filter(entry => entry.isIntersecting);
       
-      if (mostVisible) {
+      if (visibleEntries.length > 0) {
+        // Sort by intersection ratio descending
+        const mostVisible = visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        
         const index = Number(mostVisible.target.getAttribute('data-day-index'));
-        if (!isNaN(index)) {
+        if (!isNaN(index) && index !== activeDayRef.current) {
           setActiveDay(index);
-          if (sidebarRefs.current[index]) {
-            sidebarRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          // Only scroll sidebar if it's not already in view to avoid jarring jumps
+          const sidebarItem = sidebarRefs.current[index];
+          if (sidebarItem) {
+            sidebarItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
           }
         }
       }
@@ -159,35 +169,48 @@ export default function ItineraryPreview() {
     }
   };
 
-  return (
-    <AnimatePresence>
-      {selectedTourId && (
-        <motion.div
-          initial={{ y: '100%' }}
-          animate={{ y: 0 }}
-          exit={{ y: '100%' }}
-          transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-          className="fixed inset-0 z-[100] bg-[#0a0a0a] text-[#e5e5e5] overflow-hidden flex flex-col"
-        >
-          {tour ? (
-            <>
-              {/* Header */}
-              <div className="relative z-50 flex items-center justify-between p-6 md:px-12 border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-md shrink-0">
-                <div className="flex flex-col">
-                  <span className="text-[10px] text-gold font-bold uppercase tracking-[0.4em] mb-1">Itinerary Blueprint</span>
-                  <h2 className="text-xl md:text-2xl font-display text-snow">{tour.title}</h2>
-                </div>
-                <button 
-                  onClick={closeOverlay}
-                  className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center hover:bg-gold hover:text-charcoal transition-all duration-300 group"
-                >
-                  <Icons.X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
-                </button>
-              </div>
+  const handlePrint = () => {
+      window.print();
+    };
 
-              <div className="flex-1 overflow-hidden flex flex-col md:flex-row h-full">
-                {/* SIDEBAR - Sticky for Desktop */}
-                <div className="hidden md:flex w-[350px] shrink-0 border-r border-white/5 flex-col p-8 overflow-y-auto scrollbar-hide space-y-10 bg-[#0a0a0a]">
+    return (
+      <AnimatePresence>
+        {selectedTourId && (
+          <motion.div
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            className="fixed inset-0 z-[100] bg-[#0a0a0a] text-[#e5e5e5] overflow-hidden flex flex-col print:bg-white print:text-black print:overflow-visible print:relative"
+          >
+            {tour ? (
+              <>
+                {/* Header */}
+                <div className="relative z-50 flex items-center justify-between p-6 md:px-12 border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-md shrink-0 print:border-black print:bg-white print:px-0">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-gold font-bold uppercase tracking-[0.4em] mb-1 print:text-black">Itinerary Blueprint</span>
+                    <h2 className="text-xl md:text-2xl font-display text-snow print:text-black">{tour.title}</h2>
+                  </div>
+                  <div className="flex items-center gap-4 print:hidden">
+                    <button 
+                      onClick={handlePrint}
+                      className="flex items-center gap-2 px-4 py-2 rounded-full border border-gold/20 text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-charcoal transition-all"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                      Export PDF
+                    </button>
+                    <button 
+                      onClick={closeOverlay}
+                      className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center hover:bg-gold hover:text-charcoal transition-all duration-300 group"
+                    >
+                      <Icons.X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex-1 overflow-hidden flex flex-col md:flex-row h-full print:overflow-visible print:block">
+                  {/* SIDEBAR - Sticky for Desktop */}
+                  <div className="hidden md:flex w-[350px] shrink-0 border-r border-white/5 flex-col p-8 overflow-y-auto scrollbar-hide space-y-10 bg-[#0a0a0a] print:hidden">
                   <div className="space-y-4">
                     <h3 className="text-3xl font-display text-snow">{tour.title}</h3>
                     <div className="inline-flex px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-[10px] font-bold uppercase tracking-widest">
@@ -253,7 +276,7 @@ export default function ItineraryPreview() {
                 </div>
 
                 {/* MOBILE PILL STRIP - Sticky */}
-                <div className="md:hidden sticky top-0 z-40 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5 p-4 flex flex-col gap-4">
+                <div className="md:hidden sticky top-0 z-40 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 p-4 flex flex-col gap-4 print:hidden">
                    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide px-2">
                       {tour.itinerary.map((day, idx) => (
                         <button
@@ -261,8 +284,10 @@ export default function ItineraryPreview() {
                           ref={el => { sidebarRefs.current[idx] = el; }}
                           onClick={() => scrollToDay(idx)}
                           className={cn(
-                            "whitespace-nowrap px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all",
-                            activeDay === idx ? "bg-gold text-charcoal shadow-lg" : "bg-white/5 text-text-muted"
+                            "whitespace-nowrap px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-500",
+                            activeDay === idx 
+                              ? "bg-gold text-charcoal shadow-[0_0_15px_rgba(212,175,55,0.4)]" 
+                              : "bg-white/5 text-text-muted border border-white/5"
                           )}
                         >
                           Day {day.day}
@@ -274,7 +299,7 @@ export default function ItineraryPreview() {
                 {/* CONTENT AREA */}
                 <div 
                   ref={scrollContainerRef}
-                  className="flex-1 overflow-y-auto p-6 md:p-20 space-y-32 scroll-smooth bg-[#0a0a0a]"
+                  className="flex-1 overflow-y-auto p-6 md:p-20 space-y-32 scroll-smooth bg-[#0a0a0a] print:overflow-visible print:p-0 print:space-y-20"
                 >
                   {tour.itinerary.map((day, idx) => (
                     <motion.div
@@ -284,41 +309,83 @@ export default function ItineraryPreview() {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: false, margin: "-100px" }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
-                      className="space-y-10 max-w-4xl mx-auto"
+                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                      className="space-y-12 max-w-5xl mx-auto print:break-after-page print:pt-10"
                     >
-                      <div className="space-y-4">
-                        <span className="text-[10px] text-gold font-bold uppercase tracking-[0.4em]">Chronicle {idx + 1}</span>
-                        <h4 className="text-4xl md:text-6xl font-display text-snow leading-tight">
-                          Day {day.day} &mdash; <span className="text-gold italic">{day.title}</span>
+                      <div className="space-y-6">
+                        <div className="flex items-center gap-4">
+                          <span className="h-[1px] w-12 bg-gold/50 print:bg-black" />
+                          <span className="text-[10px] text-gold font-bold uppercase tracking-[0.5em] print:text-black">Chronicle {idx + 1}</span>
+                        </div>
+                        <h4 className="text-5xl md:text-7xl font-display text-snow leading-none print:text-black">
+                          Day {day.day} &mdash; <span className="text-gold italic print:text-black">{day.title}</span>
                         </h4>
                       </div>
                       
-                      <p className="text-lg md:text-xl text-text-muted leading-relaxed font-light">
+                      <p className="text-xl md:text-2xl text-text-muted leading-relaxed font-light max-w-4xl print:text-black">
                         {day.description}
                       </p>
 
-                      {day.images && day.images.length > 0 ? (
-                        <div className="relative w-full overflow-x-auto snap-x snap-mandatory flex gap-4 mt-8 mb-6 pb-4 scrollbar-hide">
-                          {day.images.map((img, i) => (
-                            <div key={i} className="relative w-[85%] md:w-[60%] shrink-0 h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl border border-white/5 snap-center">
-                              <img 
-                                src={img} 
-                                alt={`${day.title} ${i + 1}`} 
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                                loading="lazy"
-                              />
+                      {/* Cinematic Editorial Image Grid */}
+                      {day.images && day.images.length > 0 && (
+                        <div className="space-y-4">
+                          <div className="grid grid-cols-12 gap-4 h-[500px] md:h-[700px]">
+                            {day.images.length >= 3 ? (
+                              <>
+                                <div className="col-span-12 md:col-span-8 h-full relative group/img overflow-hidden rounded-2xl border border-white/5 shadow-2xl">
+                                  <Image 
+                                    src={day.images[0]} 
+                                    alt={`${day.title} Hero`}
+                                    fill
+                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-110"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500" />
+                                </div>
+                                <div className="col-span-12 md:col-span-4 flex flex-col gap-4 h-full">
+                                  <div className="flex-1 relative group/img overflow-hidden rounded-2xl border border-white/5 shadow-xl">
+                                    <Image 
+                                      src={day.images[1]} 
+                                      alt={`${day.title} Detail 1`}
+                                      fill
+                                      className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-110"
+                                    />
+                                  </div>
+                                  <div className="flex-1 relative group/img overflow-hidden rounded-2xl border border-white/5 shadow-xl">
+                                    <Image 
+                                      src={day.images[2]} 
+                                      alt={`${day.title} Detail 2`}
+                                      fill
+                                      className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-110"
+                                    />
+                                  </div>
+                                </div>
+                              </>
+                            ) : (
+                              <div className="col-span-12 h-full relative group/img overflow-hidden rounded-2xl border border-white/5 shadow-2xl">
+                                <Image 
+                                  src={day.images[0]} 
+                                  alt={day.title}
+                                  fill
+                                  className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-110"
+                                />
+                              </div>
+                            )}
+                          </div>
+                          
+                          {day.images.length > 3 && (
+                            <div className="grid grid-cols-3 gap-4 h-48 md:h-64">
+                              {day.images.slice(3, 6).map((img, i) => (
+                                <div key={i} className="relative group/img overflow-hidden rounded-2xl border border-white/5 shadow-lg">
+                                  <Image 
+                                    src={img} 
+                                    alt={`${day.title} Detail ${i + 3}`}
+                                    fill
+                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-110"
+                                  />
+                                </div>
+                              ))}
                             </div>
-                          ))}
-                        </div>
-                      ) : day.image && (
-                        <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mt-8 mb-6 shadow-2xl border border-white/5">
-                          <img 
-                            src={day.image} 
-                            alt={day.title} 
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                            loading="lazy"
-                          />
+                          )}
                         </div>
                       )}
 

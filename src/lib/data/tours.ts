@@ -2,81 +2,454 @@ import { Tour } from '@/types';
 
 export const tours: Tour[] = [
   {
-    id: "spiti-valley-7d",
-    slug: "spiti-valley-7d",
-    title: "Spiti Winter Expedition",
-    duration: "6 Nights / 7 Days",
-    location: "Kaza, Spiti Valley",
-    startingPrice: "₹24,999",
-    price: 24999,
-    image: "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=1200&q=80",
-    difficulty: "Challenging",
-    groupSize: "12-14 Persons",
-    weatherCoord: { lat: 32.2461, lon: 78.0153, label: "Kaza, Spiti" },
-    description: "Experience the raw, unfiltered beauty of Spiti Valley in its winter glory. A journey through sub-zero temperatures, frozen waterfalls, and the legendary snow leopard territory.",
-    highlights: ["Key Monastery in Snow", "Frozen Hikkim Village", "World's Highest Post Office", "Pin Valley Views"],
-    itinerary: [
-      { day: 1, title: "Delhi to Shimla", description: "Start the journey from Delhi to Shimla. Watch the plains give way to pine forests as you climb through the Shivalik foothills on this 340km, 8-9 hour drive.", images: ["https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80"], altitude: "2,276m", distance: "340 km", stay: "Shimla Hotel", highlights: ["Night Drive Through Shivaliks", "Pine Forest Entry"] },
-      { day: 2, title: "Shimla to Sangla & Chitkul", description: "Drive 240km (approx. 8-9 hours) along the mighty Satluj river through dramatic gorges. Arrive at the lush Sangla Valley, and continue to Chitkul (3,450m), the highest inhabited village near the old border.", images: ["https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1626621195611-8b87c19ac7a8?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80"], altitude: "3,450m", distance: "240 km", stay: "Chitkul Homestay", highlights: ["Satluj River Gorge", "Sangla Valley Views", "Baspa River Walk", "Mathi Temple"] },
-      { day: 3, title: "Chitkul to Nako", description: "Witness Khab Sangam (Spiti-Sutlej confluence) and navigate the thrilling Ka Loops on this 150km, 6-7 hour drive. Visit Nako Lake (3,625m), a sacred high-altitude lake reflecting the sky.", images: ["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"], altitude: "3,625m", distance: "150 km", stay: "Nako Homestay", highlights: ["Khab Sangam", "Ka Loops", "Nako Lake"] },
-      { day: 4, title: "Nako to Tabo & Dhankar", description: "Drive 80km (approx. 4 hours) to step back in time at Tabo Monastery (996 AD), the 'Ajanta of the Himalayas'. Explore the cliffside Dhankar Monastery precariously perched on a cliff at 3,894m.", images: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1605000797499-3a8f1d84000e?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1617211997091-6d9d45c72a17?auto=format&fit=crop&w=1200&q=80"], altitude: "3,894m", distance: "80 km", stay: "Dhankar Homestay", highlights: ["Tabo Monastery", "Dhankar Monastery", "Dhankar Lake Trek"] },
-      { day: 5, title: "Kaza, Key & Highest Villages", description: "Drive 60km (3-4 hours) to reach Kaza (3,800m). Cross the spectacular Chicham Bridge. Visit Key Monastery (4,166m), Hikkim (4,400m) with the World's Highest Post Office, and Komic (4,520m) — the World's Highest Motorable Village.", images: ["https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1571425046095-96a44e7b9a2c?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1631901711578-8e0f3db2c72e?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1626621195811-c24d4f5cbea3?auto=format&fit=crop&w=1200&q=80"], altitude: "4,520m", distance: "60 km", stay: "Kaza Homestay", highlights: ["Chicham Bridge", "Key Monastery", "Hikkim Post Office", "Komic Village"] },
-      { day: 6, title: "Kaza to Manali via Kunzum", description: "Drive 200km (approx. 7-8 hours) from Kaza to Manali. Navigate over the majestic Kunzum Pass and Rohtang Pass to descend from the stark desert into the lush green Manali valley.", images: ["https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"], altitude: "2,050m", distance: "200 km", stay: "Manali Hotel", highlights: ["Kunzum Pass", "Rohtang Pass", "Manali Valley"] },
-      { day: 7, title: "Manali to Delhi", description: "After a relaxing morning exploring Manali, board the overnight bus for the 570km journey back to Delhi. End of your spectacular Spiti and Kinnaur expedition with lifelong memories.", images: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80"], altitude: "216m", distance: "570 km", stay: "Home", highlights: ["Trip Memories", "Manali Mall Road"] }
-    ],
-    inclusions: ["Volvo Delhi-Manali-Delhi", "All Transfers by 4x4", "Stay in Homestays/Hotels", "MAP Meal Plan (Breakfast & Dinner)", "Expert Guide & Driver"],
-    exclusions: ["Personal Expenses", "Lunch during travel", "Insurance", "Any cost arising due to natural calamities"]
-  },
-  {
-    id: "spiti-summer-4n5d",
-    slug: "spiti-summer-4n5d",
-    title: "The Great Spiti Summer Loop",
-    duration: "4 Nights / 5 Days",
-    location: "Kaza, Spiti",
-    startingPrice: "₹18,500",
-    price: 18500,
+    id: "spiti-summer-loop",
+    slug: "spiti-summer-loop",
+    title: "Spiti Summer Expedition",
+    subtitle: "The Great Himalayan Loop",
+    duration: "8 Nights / 9 Days",
+    location: "Kinnaur & Spiti Valley",
+    startingPrice: "₹28,500",
+    price: 28500,
     image: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80",
     difficulty: "Moderate",
     groupSize: "10-12 Persons",
     weatherCoord: { lat: 32.2461, lon: 78.0153, label: "Kaza, Spiti" },
-    description: "A fast-paced summer escape to the middle land. Perfect for those who want to experience the essence of Spiti in a shorter duration following the correct geographic sequence.",
-    highlights: ["Nako Lake Views", "Ancient Monasteries", "Turquoise Spiti River", "Clear Starry Nights"],
+    description: "Our flagship summer journey through the most dramatic landscapes of the trans-Himalayas. From the lush Baspa valley to the high-altitude desert of Spiti, experience a world where time stands still.",
+    highlights: ["India's Last Village Chitkul", "Ancient Tabo Monastery", "World's Highest Post Office", "Chandratal Lake Camping"],
     itinerary: [
-      { day: 1, title: "Shimla to Nako", description: "Start the 310km journey (10-11 hours) traversing through the Kinnaur Valley, skipping the initial stops to head straight to the mystical Nako Lake (3,625m), reflecting the high-altitude skies.", images: ["https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"], altitude: "3,625m", distance: "310 km", stay: "Nako Homestay", highlights: ["Kinnaur Valley", "Nako Lake"] },
-      { day: 2, title: "Nako to Tabo & Dhankar", description: "Drive 80km (approx. 4 hours) to visit the 1,000-year-old Tabo Monastery, known as the 'Ajanta of the Himalayas'. Drive to Dhankar (3,894m), the ancient capital of Spiti, where a crumbling fort-monastery clings to a cliff.", images: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1605000797499-3a8f1d84000e?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1617211997091-6d9d45c72a17?auto=format&fit=crop&w=1200&q=80"], altitude: "3,894m", distance: "80 km", stay: "Dhankar Homestay", highlights: ["Tabo Mud Monastery", "Dhankar Cliff Fort"] },
-      { day: 3, title: "Kaza, Key & Hikkim", description: "Head into Kaza (3,800m), then explore the world's highest villages connected by motorable road. Start at Key Monastery (4,166m), then visit Hikkim (4,400m) to post a letter from the World's Highest Post Office.", images: ["https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1571425046095-96a44e7b9a2c?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1631901711578-8e0f3db2c72e?auto=format&fit=crop&w=1200&q=80"], altitude: "4,400m", distance: "60 km", stay: "Kaza Hotel", highlights: ["Key Monastery", "World's Highest Post Office"] },
-      { day: 4, title: "Komic to Pin Valley", description: "Drive 70km to Komic (4,520m) — World's Highest Motorable Village. Then descend into the majestic Pin Valley National Park, famous for its rare wildlife and pristine landscapes.", images: ["https://images.unsplash.com/photo-1626621195811-c24d4f5cbea3?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1626621390638-a6f4b28e1c4a?auto=format&fit=crop&w=1200&q=80"], altitude: "4,520m", distance: "70 km", stay: "Pin Valley Homestay", highlights: ["Komic - World's Highest Motorable Village", "Pin Valley National Park"] },
-      { day: 5, title: "Pin Valley to Manali", description: "Wake to a golden sunrise over the Pin River. After breakfast, navigate through Kunzum Pass and Atal Tunnel on a 180km drive, descending into Manali for a spectacular finish.", images: ["https://images.unsplash.com/photo-1626621390638-a6f4b28e1c4a?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"], altitude: "2,050m", distance: "180 km", stay: "Home", highlights: ["Sunrise at Pin Valley", "Kunzum Pass", "Atal Tunnel", "Manali"] }
+      { 
+        day: 1, 
+        title: "Delhi to Shimla", 
+        description: "The transition from the sweltering plains to the cool Shivalik foothills. As the sun sets, watch the city lights of Shimla appear like stars on the mountain slope.", 
+        images: [
+          "https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80"
+        ], 
+        altitude: "2,276m", 
+        distance: "340 km", 
+        stay: "Shimla Hotel", 
+        highlights: ["Shivalik Foothills", "Pine Forests", "Shimla Night View"] 
+      },
+      { 
+        day: 2, 
+        title: "Shimla to Chitkul", 
+        description: "Traverse the legendary Indo-Tibet road. Enter the Baspa Valley and reach Chitkul, the last inhabited village on the old trade route. The Baspa river flows clear and cold beside the village.", 
+        images: [
+          "https://images.unsplash.com/photo-1626621195611-8b87c19ac7a8?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1626622173428-8b87c19b2092?auto=format&fit=crop&w=1200&q=80"
+        ], 
+        altitude: "3,450m", 
+        distance: "240 km", 
+        stay: "Chitkul Homestay", 
+        highlights: ["Kinnaur Gate", "Baspa River", "Mathi Temple", "Last Village of India"] 
+      },
+      { 
+        day: 3, 
+        title: "Chitkul to Kalpa", 
+        description: "Wake up to the sound of the Baspa river. After a morning walk, drive to Kalpa. Behold the majestic Kinnaur Kailash range, its peaks changing colors with the moving sun.", 
+        images: [
+          "https://images.unsplash.com/photo-1626622173428-8b87c19b2092?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+        ], 
+        altitude: "2,960m", 
+        distance: "60 km", 
+        stay: "Kalpa Hotel", 
+        highlights: ["Kinnaur Kailash View", "Suicide Point", "Roghi Village", "Apple Orchards"] 
+      },
+      { 
+        day: 4, 
+        title: "Kalpa to Nako & Tabo", 
+        description: "Witness the Khab Sangam (Spiti-Sutlej confluence). Navigate the thrilling Ka Loops to reach Nako Lake. Continue to Tabo, the 'Ajanta of the Himalayas', housing a 1000-year-old monastery.", 
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1605000797499-3a8f1d84000e?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1617211997091-6d9d45c72a17?auto=format&fit=crop&w=1200&q=80"
+        ], 
+        altitude: "3,625m", 
+        distance: "160 km", 
+        stay: "Tabo Homestay", 
+        highlights: ["Khab Sangam", "Ka Loops", "Nako Lake", "Tabo Monastery"] 
+      },
+      { 
+        day: 5, 
+        title: "Tabo to Dhankar & Pin Valley", 
+        description: "Explore the cliffside Dhankar Monastery. Descend into the lush green Pin Valley National Park. Visit Mud Village, the last point of civilization in this wild territory.", 
+        images: [
+          "https://images.unsplash.com/photo-1617211997091-6d9d45c72a17?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1626621390638-a6f4b28e1c4a?auto=format&fit=crop&w=1200&q=80"
+        ], 
+        altitude: "3,894m", 
+        distance: "80 km", 
+        stay: "Mud Village Homestay", 
+        highlights: ["Dhankar Monastery", "Pin Valley", "Mud Village", "Wildlife Spotting"] 
+      },
+      { 
+        day: 6, 
+        title: "Pin Valley to Kaza & Key", 
+        description: "Head to Kaza, the heart of Spiti. Visit the iconic Key Monastery, perched on a hill like a fortress. Cross the Chicham Bridge, one of the highest in Asia.", 
+        images: [
+          "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1571425046095-96a44e7b9a2c?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1631901711578-8e0f3db2c72e?auto=format&fit=crop&w=1200&q=80"
+        ], 
+        altitude: "4,166m", 
+        distance: "60 km", 
+        stay: "Kaza Hotel", 
+        highlights: ["Key Monastery", "Chicham Bridge", "Kibber Village"] 
+      },
+      { 
+        day: 7, 
+        title: "Kaza to Highest Villages", 
+        description: "Visit Langza, known for its giant Buddha statue and fossils. Send a postcard from Hikkim, the world's highest post office. End at Komic, the world's highest motorable village.", 
+        images: [
+          "https://images.unsplash.com/photo-1631901711578-8e0f3db2c72e?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1626621195811-c24d4f5cbea3?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1605368661787-2df38fc2ab65?auto=format&fit=crop&w=1200&q=80"
+        ], 
+        altitude: "4,520m", 
+        distance: "50 km", 
+        stay: "Kaza Hotel", 
+        highlights: ["Langza Buddha", "Hikkim Post Office", "Komic Village"] 
+      },
+      { 
+        day: 8, 
+        title: "Kaza to Chandratal Lake", 
+        description: "Drive over the majestic Kunzum Pass to reach the mystical Moon Lake - Chandratal. Camp under the clearest stars you've ever seen, reflected in the turquoise waters.", 
+        images: [
+          "https://images.unsplash.com/photo-1544239649-43282a7f2f71?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"
+        ], 
+        altitude: "4,300m", 
+        distance: "100 km", 
+        stay: "Luxury Tents", 
+        highlights: ["Kunzum Pass", "Chandratal Lake", "Stargazing"] 
+      },
+      { 
+        day: 9, 
+        title: "Chandratal to Manali", 
+        description: "Cross the Rohtang Pass or the Atal Tunnel to descend into the lush green Manali valley. A final celebratory dinner before heading back to the plains.", 
+        images: [
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80"
+        ], 
+        altitude: "2,050m", 
+        distance: "140 km", 
+        stay: "Manali Hotel", 
+        highlights: ["Rohtang Pass", "Atal Tunnel", "Old Manali Cafes"] 
+      }
     ],
-    inclusions: ["Transport", "All Stays", "Breakfast & Dinner", "Oxygen Cylinders", "Permits"],
-    exclusions: ["Lunch", "Entry Fees", "Personal Expenses"]
+    inclusions: ["All 4x4 Transport", "Stay in Luxury Camps & Homestays", "All Meals", "Oxygen Support", "Inner Line Permits"],
+    exclusions: ["Airfare", "Personal Expenses", "Tips", "Insurance"]
   },
   {
-    id: "winter-spiti-9d",
-    slug: "winter-spiti-9d",
-    title: "Ultimate Winter Spiti (9D)",
-    duration: "8 Nights / 9 Days",
-    location: "Spiti & Kinnaur",
-    startingPrice: "₹32,000",
-    price: 32000,
-    image: "https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80",
-    difficulty: "Extreme",
+    id: "spiti-bike-expedition",
+    slug: "spiti-bike-expedition",
+    title: "Spiti Bike Expedition",
+    subtitle: "Ride the High Desert",
+    duration: "10 Nights / 11 Days",
+    location: "Manali to Spiti Circuit",
+    startingPrice: "₹42,000",
+    price: 42000,
+    image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80",
+    difficulty: "High",
+    groupSize: "8-10 Riders",
+    weatherCoord: { lat: 32.2461, lon: 78.0153, label: "Kaza, Spiti" },
+    description: "The ultimate test for any rider. Thousands of feet of elevation, river crossings, and some of the world's most dangerous roads. This is the ride of a lifetime.",
+    highlights: ["Royal Enfield Himalayan", "Kunzum Pass Ascent", "River Crossings", "Highest Roads in the World"],
+    itinerary: [
+      { 
+        day: 1, 
+        title: "Arrive in Manali", 
+        description: "Bike briefing and test rides around Old Manali. Familiarize yourself with your Royal Enfield and the mountain terrain.", 
+        images: ["https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,050m", 
+        distance: "Local", 
+        stay: "Manali Hotel", 
+        highlights: ["Bike Allotment", "Test Ride", "Old Manali Cafes"] 
+      },
+      { 
+        day: 2, 
+        title: "Manali to Jibhi", 
+        description: "Ride through the lush Tirthan Valley to Jibhi. A gentle start to build confidence on mountain curves.", 
+        images: ["https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "1,600m", 
+        distance: "100 km", 
+        stay: "Jibhi Homestay", 
+        highlights: ["Tirthan Valley", "Jibhi Waterfall"] 
+      },
+      { 
+        day: 3, 
+        title: "Jibhi to Sangla", 
+        description: "Cross the Jalori Pass and descend into the Satluj valley. Ride along the river towards the Baspa valley.", 
+        images: ["https://images.unsplash.com/photo-1626621195611-8b87c19ac7a8?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,680m", 
+        distance: "180 km", 
+        stay: "Sangla Camp", 
+        highlights: ["Jalori Pass", "Satluj River Ride"] 
+      },
+      { 
+        day: 4, 
+        title: "Sangla to Chitkul & Kalpa", 
+        description: "Ride to the last village Chitkul and then back to Kalpa for the best views of Kinnaur Kailash.", 
+        images: ["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "3,450m", 
+        distance: "120 km", 
+        stay: "Kalpa Hotel", 
+        highlights: ["Chitkul Ride", "Kinnaur Kailash View"] 
+      },
+      { 
+        day: 5, 
+        title: "Kalpa to Nako", 
+        description: "Enter the rain shadow region. The roads get rugged and the landscape turns brown and barren.", 
+        images: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "3,625m", 
+        distance: "100 km", 
+        stay: "Nako Homestay", 
+        highlights: ["Ka Loops", "Nako Lake"] 
+      },
+      { 
+        day: 6, 
+        title: "Nako to Kaza", 
+        description: "Visit Tabo and Dhankar monasteries before reaching the administrative capital of Spiti.", 
+        images: ["https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "3,800m", 
+        distance: "110 km", 
+        stay: "Kaza Hotel", 
+        highlights: ["Tabo Monastery", "Dhankar Monastery"] 
+      },
+      { 
+        day: 7, 
+        title: "Kaza: Local Exploration", 
+        description: "Ride to Key, Kibber, Chicham, Langza, and Komic. The highest motorable roads in the world.", 
+        images: ["https://images.unsplash.com/photo-1571425046095-96a44e7b9a2c?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "4,520m", 
+        distance: "80 km", 
+        stay: "Kaza Hotel", 
+        highlights: ["Key Monastery", "Chicham Bridge", "Komic Village"] 
+      },
+      { 
+        day: 8, 
+        title: "Kaza to Chandratal", 
+        description: "The most challenging day. Cross Kunzum Pass and ride through multiple river crossings to reach Moon Lake.", 
+        images: ["https://images.unsplash.com/photo-1544239649-43282a7f2f71?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "4,300m", 
+        distance: "100 km", 
+        stay: "Chandratal Camp", 
+        highlights: ["Kunzum Pass", "River Crossings", "Chandratal Lake"] 
+      },
+      { 
+        day: 9, 
+        title: "Chandratal to Manali", 
+        description: "Ride back to Manali via the Rohtang Pass or Atal Tunnel. A celebratory farewell dinner.", 
+        images: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,050m", 
+        distance: "140 km", 
+        stay: "Manali Hotel", 
+        highlights: ["Rohtang Pass Ride", "Manali Finish"] 
+      },
+      { 
+        day: 10, 
+        title: "Departure", 
+        description: "Check-out and head back home with memories of the most epic ride of your life.", 
+        images: ["https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "N/A", 
+        distance: "N/A", 
+        stay: "Home", 
+        highlights: ["Trip Memories"] 
+      }
+    ],
+    inclusions: ["Royal Enfield Himalayan", "Fuel & Maintenance", "Backup Vehicle", "Mechanic & Guide", "Stays & Meals"],
+    exclusions: ["Personal Gear", "Damage Costs", "Alcohol", "Tips"]
+  },
+  {
+    id: "kinnaur-tibet-border",
+    slug: "kinnaur-tibet-border",
+    title: "Kinnaur Tibet Border Expedition",
+    subtitle: "The Last Frontier",
+    duration: "6 Nights / 7 Days",
+    location: "Indo-Tibet Border Road",
+    startingPrice: "₹22,500",
+    price: 22500,
+    image: "https://images.unsplash.com/photo-1626621195611-8b87c19ac7a8?auto=format&fit=crop&w=1200&q=80",
+    difficulty: "Moderate",
     groupSize: "6-8 Persons",
     weatherCoord: { lat: 31.4194, lon: 78.2449, label: "Sangla, Kinnaur" },
-    description: "The complete winter experience covering both Kinnaur and Spiti. For those who want to see the transformation of the Himalayas from lush green to stark white.",
-    highlights: ["India's Last Village Chitkul", "Tabo Ancient Caves", "Kaza Snow", "Pin Valley"],
+    description: "Explore the ancient trade routes that connected India and Tibet. Visit forbidden valleys, last villages, and the deep gorges of the Satluj river.",
+    highlights: ["Chitkul - Last Village", "Sangla Valley", "Kalpa Apple Orchards", "Indo-Tibet Road"],
     itinerary: [
-      { day: 1, title: "Delhi to Shimla", description: "Board a premium Volvo from Delhi for an overnight journey to the Queen of Hills. Watch the plains give way to pine forests as the bus climbs through the Shivalik foothills on this 370km drive.", images: ["https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80"], altitude: "2,276m", distance: "370 km", stay: "Overnight Bus", highlights: ["Night Drive Through Shivaliks", "Pine Forest Entry"] },
-      { day: 2, title: "Shimla to Sangla", description: "Meet our 4x4 team at Shimla. Drive 220km (7-8 hours) along the mighty Satluj river through dramatic gorges and terraced hillsides. Arrive at the lush Sangla Valley, one of the most fertile valleys in Himachal.", images: ["https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1626621195611-8b87c19ac7a8?auto=format&fit=crop&w=1200&q=80"], altitude: "2,600m", distance: "220 km", stay: "Sangla Homestay", highlights: ["Satluj River Gorge", "Sangla Valley Views", "Traditional Kinnauri Houses"] },
-      { day: 3, title: "Sangla to Chitkul", description: "Drive 40km to Chitkul (3,450m) — the highest inhabited village near the old border. Walk by the crystal-clear Baspa river, visit the 500-year-old Mathi Temple, and explore unique wooden architecture.", images: ["https://images.unsplash.com/photo-1626621195611-8b87c19ac7a8?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80"], altitude: "3,450m", distance: "40 km", stay: "Chitkul Homestay", highlights: ["Baspa River Walk", "Mathi Temple", "Last Dhaba of India"] },
-      { day: 4, title: "Chitkul to Nako", description: "Enter the dramatic rain shadow region on a 140km (6 hours) drive. Navigate the thrilling Ka Loops — a series of hairpin bends carved into the cliff. Visit the serene Nako Lake (3,625m), a sacred high-altitude lake.", images: ["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"], altitude: "3,625m", distance: "140 km", stay: "Nako Homestay", highlights: ["Ka Loops", "Nako Lake", "Rain Shadow Desert"] },
-      { day: 5, title: "Nako to Tabo & Dhankar", description: "Drive 90km (4 hours) to arrive at Tabo Monastery (996 AD), the 'Ajanta of the Himalayas'. Then drive to the ancient Dhankar Monastery (3,894m), perched precariously on a 300m cliff.", images: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1605000797499-3a8f1d84000e?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1617211997091-6d9d45c72a17?auto=format&fit=crop&w=1200&q=80"], altitude: "3,894m", distance: "90 km", stay: "Dhankar Homestay", highlights: ["Tabo Monastery", "Ancient Buddhist Murals", "Dhankar Monastery"] },
-      { day: 6, title: "Dhankar to Kaza", description: "Trek to the stunning Dhankar Lake with turquoise waters reflecting the barren mountains, then head 40km to Kaza (3,800m), the bustling administrative heart of Spiti Valley.", images: ["https://images.unsplash.com/photo-1617211997091-6d9d45c72a17?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80"], altitude: "3,800m", distance: "40 km", stay: "Kaza Homestay", highlights: ["Dhankar Lake Trek", "Kaza Town"] },
-      { day: 7, title: "Key, Hikkim & Komic", description: "Cross the spectacular Chicham Bridge. Visit the iconic Key Monastery (4,166m). Post a letter from Hikkim (4,400m) — World's Highest Post Office. End at Komic (4,520m) — World's Highest Motorable Village.", images: ["https://images.unsplash.com/photo-1571425046095-96a44e7b9a2c?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1631901711578-8e0f3db2c72e?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1626621195811-c24d4f5cbea3?auto=format&fit=crop&w=1200&q=80"], altitude: "4,520m", distance: "80 km", stay: "Kaza Homestay", highlights: ["Chicham Bridge", "Key Monastery", "Hikkim Post Office", "Komic - World's Highest Motorable Village"] },
-      { day: 8, title: "Kaza to Kalpa/Shimla", description: "Rohtang Pass remains closed in winter months (Nov-Mar). The return route via Kinnaur and Shimla is the only motorable option during this season. Long scenic drive (250km, 8-10 hours) back through the Spiti and Kinnaur valleys.", images: ["https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80"], altitude: "2,050m", distance: "250 km", stay: "Hotel", highlights: ["Spiti Valley Farewell", "Kinnaur Green Belt", "Winter Route Only"] },
-      { day: 9, title: "Shimla to Delhi", description: "Reach Delhi by morning via Volvo. End of the ultimate 9-day expedition covering the complete Kinnaur-Spiti circuit — a journey that transforms you forever.", images: ["https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80"], altitude: "216m", distance: "370 km", stay: "Home", highlights: ["Trip Wrap-up", "Lifelong Memories"] }
+      { 
+        day: 1, 
+        title: "Delhi to Shimla", 
+        description: "Overnight journey to the Queen of Hills.", 
+        images: ["https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,276m", 
+        distance: "340 km", 
+        stay: "Shimla Hotel", 
+        highlights: ["Night Drive"] 
+      },
+      { 
+        day: 2, 
+        title: "Shimla to Sangla", 
+        description: "Drive along the Satluj river. Enter the fertile Sangla valley.", 
+        images: ["https://images.unsplash.com/photo-1626621195611-8b87c19ac7a8?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,680m", 
+        distance: "210 km", 
+        stay: "Sangla Homestay", 
+        highlights: ["Satluj Gorge", "Sangla Valley"] 
+      },
+      { 
+        day: 3, 
+        title: "Sangla & Chitkul", 
+        description: "Spend the day in Chitkul, the last village on the border. Walk to the ITBP checkpost.", 
+        images: ["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "3,450m", 
+        distance: "40 km", 
+        stay: "Chitkul Homestay", 
+        highlights: ["Baspa River", "Last Dhaba of India"] 
+      },
+      { 
+        day: 4, 
+        title: "Chitkul to Kalpa", 
+        description: "Drive to Kalpa for the legendary Kinnaur Kailash views.", 
+        images: ["https://images.unsplash.com/photo-1626622173428-8b87c19b2092?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,960m", 
+        distance: "60 km", 
+        stay: "Kalpa Hotel", 
+        highlights: ["Kinnaur Kailash", "Suicide Point"] 
+      },
+      { 
+        day: 5, 
+        title: "Kalpa Local Exploration", 
+        description: "Visit Roghi village and the ancient temples of Kalpa.", 
+        images: ["https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,960m", 
+        distance: "Local", 
+        stay: "Kalpa Hotel", 
+        highlights: ["Roghi Village", "Apple Orchards"] 
+      },
+      { 
+        day: 6, 
+        title: "Kalpa to Shimla", 
+        description: "Return drive through the Kinnaur valley.", 
+        images: ["https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,276m", 
+        distance: "220 km", 
+        stay: "Shimla Hotel", 
+        highlights: ["Kinnaur Valley Farewell"] 
+      },
+      { 
+        day: 7, 
+        title: "Shimla to Delhi", 
+        description: "End of the expedition. Return to the capital.", 
+        images: ["https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "216m", 
+        distance: "340 km", 
+        stay: "Home", 
+        highlights: ["Trip Memories"] 
+      }
     ],
-    inclusions: ["All 4x4 Transport", "Stay with Local Families", "All Meals (Himachali Cuisine)", "Professional Photography", "Inner Line Permits"],
-    exclusions: ["Airfare", "Alcohol", "Tips", "Insurance"]
+    inclusions: ["4x4 Transport", "Homestays & Hotels", "Breakfast & Dinner", "Guide", "Permits"],
+    exclusions: ["Lunch", "Personal Expenses", "Tips", "Insurance"]
+  },
+  {
+    id: "spiti-winter-expedition",
+    slug: "spiti-winter-expedition",
+    title: "Spiti Winter Expedition",
+    subtitle: "The White Desert",
+    duration: "7 Nights / 8 Days",
+    location: "Spiti in Snow",
+    startingPrice: "₹26,500",
+    price: 26500,
+    image: "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=1200&q=80",
+    difficulty: "Extreme",
+    groupSize: "6-8 Persons",
+    weatherCoord: { lat: 32.2461, lon: 78.0153, label: "Kaza, Spiti" },
+    description: "Experience the raw, sub-zero beauty of Spiti in winter. Frozen waterfalls, snow-covered monasteries, and the chance to spot the elusive snow leopard.",
+    highlights: ["Frozen Spiti River", "Snow-covered Key Monastery", "Snow Leopard Territory", "Sub-zero Camping"],
+    itinerary: [
+      { 
+        day: 1, 
+        title: "Delhi to Shimla", 
+        description: "Overnight Volvo to Shimla. Prepare for the cold.", 
+        images: ["https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,276m", 
+        distance: "340 km", 
+        stay: "Shimla Hotel", 
+        highlights: ["Volvo Journey"] 
+      },
+      { 
+        day: 2, 
+        title: "Shimla to Sangla", 
+        description: "Drive through the snow-dusted Kinnaur valley.", 
+        images: ["https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,680m", 
+        distance: "210 km", 
+        stay: "Sangla Homestay", 
+        highlights: ["Snowy Satluj"] 
+      },
+      { 
+        day: 3, 
+        title: "Sangla to Chitkul & Kalpa", 
+        description: "Chitkul in winter is a white paradise. Return to Kalpa for a cold night under the stars.", 
+        images: ["https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "3,450m", 
+        distance: "100 km", 
+        stay: "Kalpa Hotel", 
+        highlights: ["Frozen Baspa", "White Chitkul"] 
+      },
+      { 
+        day: 4, 
+        title: "Kalpa to Nako", 
+        description: "The road gets dangerous with black ice. Reach the frozen Nako Lake.", 
+        images: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "3,625m", 
+        distance: "100 km", 
+        stay: "Nako Homestay", 
+        highlights: ["Frozen Nako Lake"] 
+      },
+      { 
+        day: 5, 
+        title: "Nako to Kaza", 
+        description: "Enter the heart of the winter desert. Tabo and Dhankar in snow.", 
+        images: ["https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "3,800m", 
+        distance: "110 km", 
+        stay: "Kaza Homestay", 
+        highlights: ["Snowy Monasteries"] 
+      },
+      { 
+        day: 6, 
+        title: "Kaza: Key & Highest Villages", 
+        description: "Visit Key Monastery and the world's highest post office, all buried in snow.", 
+        images: ["https://images.unsplash.com/photo-1571425046095-96a44e7b9a2c?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "4,520m", 
+        distance: "60 km", 
+        stay: "Kaza Homestay", 
+        highlights: ["Key Monastery in Snow", "White Hikkim"] 
+      },
+      { 
+        day: 7, 
+        title: "Kaza to Kalpa", 
+        description: "Long return drive through the frozen landscape.", 
+        images: ["https://images.unsplash.com/photo-1626766790743-2f1baa5ac93f?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "2,960m", 
+        distance: "210 km", 
+        stay: "Kalpa Hotel", 
+        highlights: ["Winter Road"] 
+      },
+      { 
+        day: 8, 
+        title: "Kalpa to Shimla & Delhi", 
+        description: "Final descent to the plains. End of the winter odyssey.", 
+        images: ["https://images.unsplash.com/photo-1587474012512-a8e1cf1c31e2?auto=format&fit=crop&w=1200&q=80"], 
+        altitude: "216m", 
+        distance: "560 km", 
+        stay: "Home", 
+        highlights: ["Trip Memories"] 
+      }
+    ],
+    inclusions: ["4x4 Winter Spec Vehicle", "Heated Stays", "Warm Meals", "Expert Winter Guide", "Permits"],
+    exclusions: ["Winter Gear Rental", "Personal Expenses", "Tips", "Insurance"]
   }
 ];

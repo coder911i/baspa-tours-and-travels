@@ -20,10 +20,11 @@ export default function ToursPage() {
       <section className="relative h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2000&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1544860707-c352cc5a92e3?q=80&w=2000&auto=format&fit=crop"
             alt="All Expeditions"
             fill
             className="object-cover opacity-40"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
         </div>

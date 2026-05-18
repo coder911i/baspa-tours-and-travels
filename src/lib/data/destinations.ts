@@ -1,6 +1,6 @@
 import { Destination } from "@/types";
 
-const getImg = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&q=80`;
+const getImg = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&q=80`;
 
 export const destinations: Destination[] = [
   {
