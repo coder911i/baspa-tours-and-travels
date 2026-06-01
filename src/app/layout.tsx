@@ -38,35 +38,37 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://baspa-travels.com'),
+  metadataBase: new URL('https://www.baspatravels.com'),
   title: {
-    default: 'Baspa Travels | Premium Himalayan Expeditions',
-    template: '%s | Baspa Travels',
+    default: 'Baspa Tour Center Travels | Spiti Valley & Chitkul Tours',
+    template: '%s | Baspa Tour Center Travels'
   },
-  description: 'Handcrafted luxury journeys to the heart of the Himalayas. Experience Chitkul, Spiti, and Kinnaur with expert guidance and bespoke itineraries.',
-  keywords: ['Luxury Travel India', 'Himalayan Expeditions', 'Kinnaur Tourism', 'Spiti Valley Tours', 'Premium Travel Agency India'],
+  description: 'Best Spiti Valley tour packages from Delhi. Chitkul, Kinnaur, Tabo, Chandratal. Handcrafted Himalayan circuits starting ₹7,999. Expert local guides from Chitkul.',
+  keywords: [
+    'Spiti Valley tour package',
+    'Chitkul tour from Delhi',
+    'Spiti Valley trip 2025',
+    'Kinnaur tour package',
+    'Spiti winter tour',
+    'best Spiti Valley travel agency',
+    'Chitkul last village India tour',
+    'Chandratal lake trip',
+    'Himalayan tour operator',
+    'Tabo monastery tour',
+    'Hikkim post office tour',
+    'Chicham bridge Spiti',
+    'Spiti Valley bike trip',
+    'budget Spiti tour package',
+  ],
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://baspa-travels.com',
-    title: 'Baspa Travels | Premium Himalayan Expeditions',
-    description: 'Bespoke mountain adventures in Himachal Pradesh. Where Mountains Meet Luxury.',
-    images: [
-      {
-        url: '/images/og-main.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Baspa Travels Himalayan Scene',
-      },
-    ],
+    siteName: 'Baspa Tour Center Travels',
+    images: [{ url: 'https://www.baspatravels.com/og-image.jpg', width: 1200, height: 630 }]
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Baspa Travels | Premium Himalayan Expeditions',
-    description: 'Bespoke mountain adventures in Himachal Pradesh.',
-    images: ['/images/og-main.jpg'],
-  },
-  manifest: '/manifest.json',
+  twitter: { card: 'summary_large_image', site: '@baspatravels' },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  alternates: { canonical: 'https://www.baspatravels.com' }
 };
 
 export default function RootLayout({
@@ -76,39 +78,24 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "TravelAgency",
-    "name": "Baspa Travels",
-    "image": "https://baspa-travels.com/images/logo.jpg",
-    "@id": "https://baspa-travels.com",
-    "url": "https://baspa-travels.com",
-    "telephone": "+91-1234567890",
+    "@type": ["LocalBusiness", "TravelAgency"],
+    "name": "Baspa Tour Center Travels",
+    "image": "https://www.baspatravels.com/og-image.jpg",
+    "@id": "https://www.baspatravels.com",
+    "url": "https://www.baspatravels.com",
+    "telephone": "+91-XXXXXXXXXX",
+    "priceRange": "₹₹",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Main Market, Sangla",
-      "addressLocality": "Kinnaur",
-      "addressRegion": "HP",
-      "postalCode": "172106",
+      "streetAddress": "Chitkul Village",
+      "addressLocality": "Sangla",
+      "addressRegion": "Himachal Pradesh",
+      "postalCode": "172107",
       "addressCountry": "IN"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 31.4194,
-      "longitude": 78.2449
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
-      "opens": "09:00",
-      "closes": "18:00"
-    }
+    "geo": { "@type": "GeoCoordinates", "latitude": 31.3481, "longitude": 78.4395 },
+    "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "08:00", "closes": "20:00" },
+    "sameAs": ["https://www.instagram.com/baspatravels", "https://wa.me/91XXXXXXXXXX"]
   };
 
   return (

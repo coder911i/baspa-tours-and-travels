@@ -7,9 +7,10 @@ import { cn } from '@/lib/utils';
 
 // These IDs MUST match the IDs in src/lib/data/tours.ts
 const destinations = [
-  { id: "spiti-valley-7d", name: "Spiti Winter (7D)", days: 7, lat: 31.3497, lon: 78.4428, location: "Chitkul" },
-  { id: "spiti-summer-4n5d", name: "Spiti Summer (5D)", days: 5, lat: 32.2461, lon: 78.0153, location: "Kaza, Spiti" },
-  { id: "winter-spiti-9d", name: "Winter Spiti (9D)", days: 9, lat: 32.2461, lon: 78.0153, location: "Kaza, Spiti" },
+  { id: "spiti-summer-circuit", name: "Spiti Summer (7D)", days: 7, lat: 32.2461, lon: 78.0153, location: "Kaza, Spiti" },
+  { id: "spiti-bike-expedition", name: "Spiti Bike (9D)", days: 9, lat: 32.2461, lon: 78.0153, location: "Kaza, Spiti" },
+  { id: "spiti-winter-expedition", name: "Spiti Winter (8D)", days: 8, lat: 31.3497, lon: 78.4428, location: "Chitkul" },
+  { id: "kinnaur-tibet-border", name: "Kinnaur Border (6D)", days: 6, lat: 31.5354, lon: 78.2612, location: "Kalpa, Kinnaur" },
 ];
 
 function WeatherCard({ lat, lon, locationName }: { lat: number; lon: number; locationName: string }) {

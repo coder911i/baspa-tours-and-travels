@@ -1,12 +1,16 @@
 export const SITE_CONFIG = {
-  NAME: 'Baspa Travels',
+  NAME: 'Baspa Tour Center Travels',
   TAGLINE: 'Ascend to Pure Serenity',
-  WHATSAPP_NUMBER: '919876543210', 
-  WHATSAPP_MESSAGE: "Hi! I'm interested in booking a tour with Baspa Travels.",
+  // TODO: Replace with official WhatsApp business number before deployment
+  WHATSAPP_NUMBER: '91XXXXXXXXXX', 
+  WHATSAPP_MESSAGE: "Hi! I'm interested in booking a tour with Baspa Tour Center Travels.",
+  // TODO: Replace with official brand email
   EMAIL: 'hello@baspatravels.com',
+  // TODO: Replace with official direct phone line
   PHONE: '+91 98765 43210',
   ADDRESS: 'Main Bazaar, Sangla, Himachal Pradesh - 172106',
-  VIDEO_ID: 'dQw4w9WgXcQ', 
+  // TODO: Replace with official promo trailer YouTube video ID
+  VIDEO_ID: 'g8-fN6w4aC8', 
   SOCIAL_LINKS: {
     instagram: 'https://instagram.com/baspatravels',
     facebook: 'https://facebook.com/baspatravels',

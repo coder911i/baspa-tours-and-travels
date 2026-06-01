@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://baspa-travels.com/sitemap.xml',
+    sitemap: 'https://www.baspatravels.com/sitemap.xml',
   };
 }
