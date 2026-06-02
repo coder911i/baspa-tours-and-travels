@@ -5,6 +5,8 @@ import { Tour } from '@/types';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import BookingWidget from '@/components/ui/BookingWidget';
+import RouteMap from '@/components/RouteMap';
+import SightseeingSection from '@/components/sections/SightseeingSection';
 
 export default function TourDetailContent({ tour }: { tour: Tour }) {
   const handleScrollToBooking = () => {
@@ -199,6 +201,22 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
           </div>
         </div>
       </section>
+
+      {/* Route Map */}
+      {tour.routeStops && tour.routeStops.length > 0 && (
+        <section className="py-16 px-6 bg-[#0D0D0D]">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-display text-snow mb-2 text-center">Your Journey at a Glance</h2>
+            <p className="text-text-muted text-sm text-center mb-8">Day-by-day route across the Himalayas</p>
+            <RouteMap stops={tour.routeStops} tourName={tour.title} />
+          </div>
+        </section>
+      )}
+
+      {/* Sightseeing Section */}
+      {tour.sightseeing && tour.sightseeing.length > 0 && (
+        <SightseeingSection sightseeing={tour.sightseeing} />
+      )}
 
       {/* Mobile Sticky Booking Bar */}
       <div className="fixed bottom-0 left-0 w-full bg-charcoal border-t border-white/10 p-4 z-[40] lg:hidden flex items-center justify-between backdrop-blur-md">
