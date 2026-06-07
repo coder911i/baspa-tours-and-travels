@@ -98,7 +98,7 @@ export default function RootLayout({
     "image": "https://www.baspatravels.com/og-image.jpg",
     "@id": "https://www.baspatravels.com",
     "url": "https://www.baspatravels.com",
-    "telephone": "+91 98765 43210",
+    "telephone": "+91 94187 01460",
     "priceRange": "₹₹",
     "address": {
       "@type": "PostalAddress",
@@ -110,7 +110,7 @@ export default function RootLayout({
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 31.3481, "longitude": 78.4395 },
     "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "08:00", "closes": "20:00" },
-    "sameAs": ["https://www.instagram.com/baspatravels", "https://wa.me/919876543210"]
+    "sameAs": ["https://www.instagram.com/baspatravels", "https://wa.me/919418701460"]
   };
 
   return (

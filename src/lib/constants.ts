@@ -2,12 +2,12 @@ export const SITE_CONFIG = {
   NAME: 'Baspa Tour Center Travels',
   TAGLINE: 'Spiti. Kinnaur. Chitkul. Asal Himachal.',
   // TODO: Replace with official WhatsApp business number before deployment
-  WHATSAPP_NUMBER: '919876543210', 
+  WHATSAPP_NUMBER: '919418701460', 
   WHATSAPP_MESSAGE: "Namaste! Mujhe Spiti tour ke baare mein jaankari chahiye",
   // TODO: Replace with official brand email
   EMAIL: 'hello@baspatravels.com',
   // TODO: Replace with official direct phone line
-  PHONE: '+91 98765 43210',
+  PHONE: '+91 94187 01460',
   ADDRESS: 'Main Bazaar, Sangla, Himachal Pradesh - 172106',
   // TODO: Replace with official promo trailer YouTube video ID
   VIDEO_ID: 'g8-fN6w4aC8', 
