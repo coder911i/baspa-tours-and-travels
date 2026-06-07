@@ -1,31 +1,72 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
+const TAGLINES = [
+  "Best Budget Trips",
+  "Premium Accommodation",
+  "Best in Himachal",
+  "Local Chitkul Guides"
+];
+
 export default function HeroContent() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % TAGLINES.length);
+    }, 2800);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-4xl"
+        className="max-w-5xl"
       >
-        <span className="accent-text text-gold text-xl md:text-2xl block mb-6 tracking-[0.3em] uppercase">
-          Himachal Pradesh
+        {/* Top Accent Title */}
+        <span 
+          className="text-gold text-2xl md:text-4xl block mb-6 tracking-wide font-medium italic"
+          style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
+        >
+          Chale Himachal, Himachal Chale!
         </span>
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-display text-snow mb-8 leading-[0.9] tracking-tighter">
-          Spiti. Kinnaur. Chitkul. <br />
-          <span className="text-gold italic">Asal Himachal.</span>
+
+        {/* Main Brand Title */}
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-display text-snow mb-4 leading-[0.9] tracking-tighter uppercase font-extrabold">
+          Baspa Travels
         </h1>
-        <p className="text-text-muted text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+
+        {/* Animated Rotating Tagline */}
+        <div className="h-[60px] md:h-[90px] overflow-hidden flex items-center justify-center mb-8">
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={index}
+              initial={{ y: 25, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -25, opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="text-gold font-display text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight italic"
+              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+            >
+              {TAGLINES[index]}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+
+        {/* Subtext description */}
+        <p className="text-text-muted text-base md:text-lg max-w-xl mx-auto mb-12 font-light leading-relaxed">
           Delhi se niklo. Manali cross karo. Spiti ke upar pohoncho. Baspa Tours har mod pe saath hai.
         </p>
 
+        {/* Action Buttons */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-          <Link href="/tours" className="btn-gold-filled group overflow-hidden relative">
+          <Link href="/book" className="btn-gold-filled group overflow-hidden relative">
             <span className="relative z-10">Book Karo</span>
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </Link>
@@ -43,6 +84,7 @@ export default function HeroContent() {
         </div>
       </motion.div>
 
+      {/* Down arrow decorator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

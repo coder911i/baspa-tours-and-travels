@@ -600,7 +600,7 @@ export const tours: Tour[] = [
       },
       {
         destination: "Winter Special Activities",
-        spots: ["❄️ Snow trekking", "🐾 Snow leopard safari — Pin Valley", "📸 Astrophotography (zero light pollution)", "🧊 Frozen river walk", "⛺ Winter camping experience"]
+        spots: ["Snow trekking", "Snow leopard safari (Pin Valley)", "Astrophotography (zero light pollution)", "Frozen river walk", "Winter camping experience"]
       }
     ]
   }

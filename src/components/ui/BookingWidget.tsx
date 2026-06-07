@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { Tour } from '@/types';
-import { SITE_CONFIG, formatWhatsAppLink } from '@/lib/constants';
 import toast from 'react-hot-toast';
 
 export default function BookingWidget({ tour }: { tour: Tour }) {
@@ -20,11 +19,8 @@ export default function BookingWidget({ tour }: { tour: Tour }) {
       toast.error('Please select a travel date');
       return;
     }
-
-    const message = `Hi! I want to book the ${tour.title} for ${guests} travelers on ${date}. (Type: ${type})`;
-    const whatsappUrl = formatWhatsAppLink(SITE_CONFIG.WHATSAPP_NUMBER, message);
-    window.open(whatsappUrl, '_blank');
-    toast.success('Opening WhatsApp for your booking...');
+    // Redirect to the booking page with query parameters pre-filled
+    window.location.href = `/book?tour=${encodeURIComponent(tour.title)}&slug=${tour.slug}&date=${date}&guests=${guests}&type=${type}`;
   };
 
   return (

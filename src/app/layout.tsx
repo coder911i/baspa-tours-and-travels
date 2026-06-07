@@ -46,11 +46,13 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.baspatravels.com'),
   title: {
-    default: 'Baspa Tour Center Travels | Spiti Valley & Chitkul Tours',
-    template: '%s | Baspa Tour Center Travels'
+    default: 'Best Travel Agency in Himachal | Baspa Tour Center Travels',
+    template: '%s | Best Travel Agency in Himachal | Baspa Tour Center Travels'
   },
-  description: 'Best Spiti Valley tour packages from Delhi. Chitkul, Kinnaur, Tabo, Chandratal. Handcrafted Himalayan circuits starting ₹7,999. Expert local guides from Chitkul.',
+  description: 'Baspa Tour Center Travels is the best travel agency in Himachal. Explore premium Spiti Valley, Chitkul, Kinnaur, and Chandratal tour packages with expert local guides from Sangla Valley.',
   keywords: [
+    'best travel agency in Himachal',
+    'best travel agency in Himachal Pradesh',
     'Spiti Valley tour package',
     'Spiti Valley tour',
     'Kinnaur tour package',
@@ -60,7 +62,8 @@ export const metadata: Metadata = {
     'Delhi to Chitkul',
     'Baspa River tour',
     'Himalayan road trip',
-    'Spiti winter expedition'
+    'Spiti winter expedition',
+    'Himachal tourism booking'
   ],
   authors: [{ name: 'Baspa Tour Center Travels' }],
   creator: 'Waterting Solutions',
@@ -69,7 +72,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.baspatravels.com',
-    title: 'Baspa Tour Center Travels | Spiti Valley & Chitkul Tours',
+    title: 'Best Travel Agency in Himachal | Baspa Tour Center Travels',
     description: 'Delhi se niklo, Spiti cross karo. Premium Himalayan expeditions to Chitkul, Spiti, and Kinnaur. Book your next tour package with local guides from Chitkul.',
     siteName: 'Baspa Tour Center Travels',
     images: [

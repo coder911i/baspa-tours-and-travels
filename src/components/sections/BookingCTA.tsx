@@ -23,7 +23,7 @@ export default function BookingCTA() {
           Your next journey begins with one message. Let us handcrafted an expedition that will stay with you forever.
         </p>
         <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-          <a href="/tours" className="btn-gold-filled px-12 py-5 text-lg">
+          <a href="/book" className="btn-gold-filled px-12 py-5 text-lg">
             Book Karo
           </a>
           <a 

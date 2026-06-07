@@ -8,8 +8,8 @@ import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Spiti Valley & Kinnaur Tours | Baspa Tour Center Travels',
-  description: 'Delhi se niklo, Spiti cross karo. Premium Himalayan expeditions to Chitkul, Spiti, and Kinnaur. Book your next tour package with local guides from Chitkul.',
+  title: 'Best Travel Agency in Himachal | Spiti Valley & Chitkul Tours',
+  description: 'Baspa Tour Center Travels is the best travel agency in Himachal. Handcrafted, budget-friendly premium tour packages for Spiti Valley, Chitkul, Kinnaur, and Chandratal with experienced local guides.',
 };
 
 const HeroScene = dynamic(() => import('@/components/3d/HeroScene'), { 
