@@ -17,8 +17,11 @@ export interface ItineraryDay {
 }
 
 export interface RouteStop {
-  day: string;
-  label: string;
+  day?: string | number;
+  label?: string;
+  name?: string;
+  highlight?: boolean;
+  note?: string;
   isStart?: boolean;
   isEnd?: boolean;
 }
@@ -57,6 +60,7 @@ export interface Tour {
   location?: string;
   weatherCoord?: { lat: number; lon: number; label: string };
   routeStops: RouteStop[];
+  routeWaypoints?: RouteStop[];
   sightseeing: SightseeingDestination[];
 }
 

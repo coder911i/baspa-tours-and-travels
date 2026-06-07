@@ -14,11 +14,11 @@ export default function FeaturedTours() {
             <span className="accent-text text-gold text-xl block mb-4">Signature Expeditions</span>
             <h2 className="text-4xl md:text-6xl font-display text-snow mb-8">Choose Your Path to the Sky</h2>
             <p className="text-text-muted text-lg">
-              From the last villages of Kinnaur to the cold deserts of Spiti, we have curated the 10 most iconic journeys in the Himalayas.
+              Delhi se Chitkul tak, aur Kaza se Lahaul tak. Ye hain hamare sabse romanchak Himalayan circuits.
             </p>
           </div>
           <div className="flex gap-4">
-            <a href="/tours" className="btn-gold">View All Expeditions</a>
+            <a href="/tours" className="btn-gold">Routes Dekho</a>
           </div>
         </div>
 

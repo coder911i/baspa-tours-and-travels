@@ -3,36 +3,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const reasons = [
+const stats = [
   {
-    icon: '🏔',
-    title: 'Expert Mountain Guides',
-    desc: '12+ years navigating Himalayan terrain with safety as priority.'
+    number: '500+',
+    label: 'Happy Travelers',
+    desc: 'Hundreds of adventurers have traversed the high valleys of Spiti and Kinnaur with us.'
   },
   {
-    icon: '🏕',
-    title: 'Curated Campsites',
-    desc: 'Handpicked locations with premium equipment and stunning views.'
+    number: '8+',
+    label: 'Years Experience',
+    desc: 'Local expertise and deep geographical knowledge of the terrain since 2016.'
   },
   {
-    icon: '🍽',
-    title: 'Authentic Cuisine',
-    desc: 'Local recipes and fresh ingredients to fuel your journey.'
+    number: '15+',
+    label: 'Routes Explored',
+    desc: 'From flagship circuits to custom high-altitude trails off the beaten path.'
   },
   {
-    icon: '🚐',
-    title: 'Safe Transport',
-    desc: 'Modified 4x4 vehicles handled by experienced mountain drivers.'
-  },
-  {
-    icon: '📡',
-    title: '24/7 Support',
-    desc: 'Satellite communication and emergency protocols in remote areas.'
-  },
-  {
-    icon: '🌿',
-    title: 'Responsible Tourism',
-    desc: 'We leave no trace and actively support local mountain communities.'
+    number: 'Zero',
+    label: 'Hidden Costs',
+    desc: 'Transparent pricing with all permits, stays, and essential transport included.'
   }
 ];
 
@@ -46,24 +36,24 @@ export default function WhyChooseUs() {
           <div className="w-24 h-[1px] bg-gold mx-auto" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reasons.map((reason, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          {stats.map((stat, i) => (
             <motion.div
-              key={reason.title}
+              key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              className="glass-card p-10 group hover:border-gold/30 transition-all duration-500"
+              className="glass-card p-10 flex flex-col items-center text-center hover:border-gold/30 transition-all duration-500"
             >
-              <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
-                {reason.icon}
+              <div className="text-5xl md:text-7xl font-display text-gold font-bold mb-4">
+                {stat.number}
               </div>
-              <h3 className="text-2xl font-display text-snow mb-4 group-hover:text-gold transition-colors">
-                {reason.title}
+              <h3 className="text-xl font-bold text-snow mb-3 uppercase tracking-wider font-body">
+                {stat.label}
               </h3>
-              <p className="text-text-muted leading-relaxed">
-                {reason.desc}
+              <p className="text-text-muted leading-relaxed text-sm font-body">
+                {stat.desc}
               </p>
             </motion.div>
           ))}

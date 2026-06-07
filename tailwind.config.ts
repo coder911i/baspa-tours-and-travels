@@ -27,6 +27,7 @@ const config: Config = {
         display: ["var(--font-playfair)", "serif"],
         sans: ["var(--font-inter)", "sans-serif"],
         accent: ["var(--font-cormorant)", "serif"],
+        body: ["var(--font-dm-sans)", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

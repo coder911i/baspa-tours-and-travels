@@ -3,98 +3,70 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Tour } from '@/types';
 import { cn } from '@/lib/utils';
 
 export default function TourCard({ tour }: { tour: Tour }) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['8deg', '-8deg']);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-8deg', '8deg']);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
   // Safe data access
   const displayImage = tour.images?.[0] || tour.image;
   const displayName = tour.title || tour.name || 'Expedition';
   const displayPrice = typeof tour.price === 'number' ? tour.price : tour.price.perPerson;
 
   return (
-    <motion.div
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d',
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative w-[350px] md:w-[450px] h-[550px] shrink-0 group perspective-1000"
-    >
-      <Link href={`/tours/${tour.slug}`} className="block w-full h-full relative overflow-hidden bg-charcoal">
-        {/* Background Image */}
-        <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
+    <div className="relative w-full overflow-hidden bg-[#0A0A0A] border-2 border-white/5 hover:border-[#C9A84C] transition-all duration-300 rounded-xl flex flex-col h-[480px] group shadow-xl">
+      <Link href={`/tours/${tour.slug}`} className="block w-full h-full flex flex-col justify-between">
+        {/* Top Image Part */}
+        <div className="relative w-full h-[200px] overflow-hidden flex-shrink-0">
           <Image
             src={displayImage}
             alt={displayName}
             fill
-            className="object-cover opacity-60"
+            loading="lazy"
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90" />
-        </div>
-
-        {/* Content */}
-        <div className="absolute inset-0 p-8 flex flex-col justify-end translate-z-20">
-          <div className="flex gap-2 mb-4">
-            <span className="px-3 py-1 bg-gold text-background text-[10px] font-bold uppercase tracking-widest">
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-85" />
+          
+          {/* Overlay Badges */}
+          <div className="absolute top-4 left-4 flex gap-2 z-10">
+            <span className="px-3 py-1 bg-[#C9A84C] text-[#0A0A0A] text-[9px] font-bold uppercase tracking-widest rounded-sm">
               {tour.duration}
             </span>
             <span className={cn(
-              "px-3 py-1 text-white text-[10px] font-bold uppercase tracking-widest",
+              "px-3 py-1 text-white text-[9px] font-bold uppercase tracking-widest rounded-sm",
               tour.difficulty === 'Easy' ? 'bg-green-600' : tour.difficulty === 'Moderate' ? 'bg-blue-600' : 'bg-red-600'
             )}>
               {tour.difficulty}
             </span>
           </div>
+        </div>
 
-          <h3 className="text-3xl font-display text-snow mb-2 group-hover:text-gold transition-colors duration-300">
-            {displayName}
-          </h3>
-          
-          <p className="text-text-muted text-sm mb-6 line-clamp-2">
-            {tour.tagline || tour.description.substring(0, 80) + '...'}
-          </p>
+        {/* Bottom Body Part */}
+        <div className="p-6 flex flex-col justify-between flex-1">
+          <div>
+            <h3 className="text-xl md:text-2xl font-display text-snow mb-2 group-hover:text-[#C9A84C] transition-colors duration-300 line-clamp-1">
+              {displayName}
+            </h3>
+            
+            <p className="text-text-muted text-xs md:text-sm mb-4 line-clamp-2 leading-relaxed">
+              {tour.tagline || tour.description}
+            </p>
+          </div>
 
-          <div className="flex items-center justify-between border-t border-white/10 pt-6">
-            <div>
-              <span className="text-[10px] uppercase tracking-widest text-text-muted block mb-1">Starting from</span>
-              <span className="text-xl font-display text-snow">₹{displayPrice.toLocaleString()}</span>
+          <div className="flex flex-col gap-4 border-t border-white/10 pt-4 mt-auto">
+            <div className="flex justify-between items-end">
+              <div>
+                <span className="text-[9px] uppercase tracking-widest text-text-muted block mb-1">Starting from</span>
+                <span className="text-2xl font-display text-[#C9A84C] font-semibold">₹{displayPrice.toLocaleString()}</span>
+              </div>
             </div>
-            <span className="text-gold text-sm font-medium uppercase tracking-widest group-hover:translate-x-2 transition-transform duration-300">
-              View Expedition →
-            </span>
+            
+            {/* Book Karo CTA (Full-width) */}
+            <div className="w-full text-center py-3 bg-[#C9A84C] text-[#0A0A0A] font-bold uppercase tracking-widest text-[10px] hover:bg-white transition-colors duration-300 rounded-sm">
+              Book Karo
+            </div>
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }

@@ -1,0 +1,81 @@
+<USER_REQUEST>
+## SECTION 1 — CRITICAL BUG FIXES (Fix these first, nothing else)
+
+### 1.1 Route Map Scroll Bug — BROKEN
+CURRENT BUG: On mobile, scrolling the page inside a route map section only increases a counter/bar (Day 1, Day 2, Day 3) — the content does NOT change. The day panels are static and nothing auto-advances.
+
+FIX REQUIRED:
+- Remove ALL scroll-jacking, scroll-triggered counters, and progress bars tied to page scroll inside route map components
+- Each day panel must be clickable/tappable — clicking "Day 1", "Day 2", "Day 3" must instantly show that day's content
+- On mobile: render day tabs as a horizontally scrollable pill row at top of the route section
+- Active day tab: highlighted with brand gold (#C9A84C or your existing brand color)
+- Day content area: fixed height container, content swaps on tab click (no animation dependency on scroll)
+- NO IntersectionObserver controlling day switching — pure onClick tab logic only
+
+### 1.2 Broken/Mismatched Photos
+CURRENT BUG: Tour photos do not match the tour/destination they represent.
+
+FIX REQUIRED — Replace ALL Unsplash photo IDs in every data file with correct destination-matched IDs:
+
+Spiti Valley tours → use IDs: photo-1506905925346-21bda4d32df4, photo-1544233726-9f1d0a6e8fef, photo-1518623489648-a173ef7824f3
+Kinnaur / Chitkul tours → use IDs: photo-1571019613454-1cb2f99b2d8b, photo-1531366936337-7c912a4589a7
+Manali / Rohtang → use IDs: photo-1558618666-fcd25c85cd64, photo-1506905925346-21bda4d32df4
+Spiti Winter tours → use IDs: photo-1547036967-23d11aacaee0, photo-1516912481808-3406841bd33c
+Bike Expedition → use IDs: photo-1558618047-3c8c76ca7d13, photo-1519681393784-d120267933ba
+Hero/Banner → use ID: photo-1506905925346-21bda4d32df4 (wide Himalayan valley shot)
+
+In every data file (toursData.js, packagesData.js, or equivalent): audit EVERY imageUrl/photo field and replace with the correct ID from above list based on tour destination.
+
+### 1.3 Website Performance / Loading Issues
+- Add loading="lazy" to ALL img tags that are 
+<truncated 9891 bytes>
+ TESTING CHECKLIST (Antigravity must verify all before delivery)
+
+### Before marking complete, test each item:
+
+FUNCTIONALITY:
+[ ] Route map draws animation plays on page load (not scroll)
+[ ] Day 1 → Day 2 → Day 3 tabs click correctly and content changes
+[ ] Day content does NOT change on scroll
+[ ] WhatsApp float button opens correct WhatsApp link
+[ ] All "Book Karo" CTAs work (either open booking form or WhatsApp)
+[ ] Navigation hamburger menu opens and closes correctly on mobile
+[ ] All internal page links navigate correctly
+
+PHOTOS:
+[ ] Spiti tour pages show mountain/valley Himalayan photos (not beach/forest)
+[ ] Chitkul/Kinnaur pages show correct village/valley photos
+[ ] Hero shows wide dramatic Himalayan landscape
+[ ] No placeholder/broken image icons anywhere
+
+COPY:
+[ ] Zero instances of "Ascend to Reality" in entire codebase (grep check)
+[ ] Zero instances of "Embark on a journey" (grep check)  
+[ ] Zero Lorem Ipsum (grep check)
+[ ] All stats show real numbers (not "100+" placeholders)
+
+MOBILE (test at 375px width):
+[ ] Hero text readable, no overflow
+[ ] Tour cards stack to 1 column
+[ ] Day tabs scrollable horizontally
+[ ] WhatsApp button visible and tappable
+[ ] No horizontal scroll on any page
+
+PERFORMANCE:
+[ ] Zero console errors in browser dev tools
+[ ] All images have alt text
+[ ] No unused imports in any component file
+[ ] Build completes without warnings
+
+### DELIVERY:
+- Run: npm run build — must complete with 0 errors
+- Run: npm run preview — verify on Chrome mobile emulator (375px)
+- Screenshots required: Hero, Tour page with route map, Mobile view
+- Report: list every file modified
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-06-06T12:12:04+05:30.
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Claude Sonnet 4.6 (Thinking). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>

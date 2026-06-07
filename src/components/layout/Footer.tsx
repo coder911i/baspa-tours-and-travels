@@ -18,15 +18,20 @@ export default function Footer() {
               />
             </div>
             <p className="text-gold font-accent italic text-sm tracking-widest mb-10">
-              © 2025 Baspa Travels. All Rights Reserved.
+              © 2024 Baspa Tour Center Travels | Developed by Waterting Solutions
             </p>
             <div className="flex flex-wrap gap-6">
               <Link href="/tours" className="px-8 py-4 bg-gold text-charcoal font-bold uppercase tracking-widest text-xs hover:bg-gold-light transition-all">
-                Explore Expeditions
+                Routes Dekho
               </Link>
-              <Link href="/contact" className="px-8 py-4 border border-gold text-gold font-bold uppercase tracking-widest text-xs hover:bg-gold hover:text-charcoal transition-all">
-                Consult an Expert
-              </Link>
+              <a 
+                href={`https://wa.me/${SITE_CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(SITE_CONFIG.WHATSAPP_MESSAGE)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 border border-gold text-gold font-bold uppercase tracking-widest text-xs hover:bg-gold hover:text-charcoal transition-all"
+              >
+                WhatsApp pe baat karo
+              </a>
             </div>
           </div>
           

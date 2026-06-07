@@ -1,252 +1,301 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useId } from 'react';
 
 export interface RouteStop {
-  day: string;
-  label: string;
+  name?: string;
+  day?: number | string;
+  highlight?: boolean;
+  note?: string;
   isStart?: boolean;
   isEnd?: boolean;
+  // Legacy support for old data format
+  label?: string;
 }
 
 interface RouteMapProps {
   stops: RouteStop[];
   tourName?: string;
+  color?: string; // default: #C9A84C
 }
 
-export default function RouteMap({ stops, tourName = "Route Map" }: RouteMapProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+export default function RouteMap({ stops, tourName = "Route Map", color = "#C9A84C" }: RouteMapProps) {
+  const uid = useId().replace(/:/g, '');
+  const lineAnimId = `draw-route-${uid}`;
+  const markerAnimId = `fade-marker-${uid}`;
+  const pulseAnimId = `pulse-ring-${uid}`;
 
-  const dynamicHeight = stops.length * 90 + 120;
-  const width = 480;
+  if (!stops || stops.length === 0) return null;
 
-  // Generate coordinates for stops from bottom to top
-  const points = stops.map((stop, idx) => {
-    // S-curve wave centered at x=240
-    const x = 240 + 40 * Math.sin((idx / (stops.length - 1 || 1)) * Math.PI * 1.6);
-    // Spaced vertically from bottom (height - 60) to top (100)
-    const y = dynamicHeight - 60 - (idx / (stops.length - 1 || 1)) * (dynamicHeight - 160);
+  // Normalize stops — support both old format (label) and new format (name)
+  const normalizedStops = stops.map(s => ({
+    ...s,
+    name: s.name || s.label || '',
+  }));
+
+  const SVG_WIDTH = 480;
+  const STOP_HEIGHT = 80;
+  const TOP_PADDING = 60;
+  const BOTTOM_PADDING = 40;
+  const SVG_HEIGHT = Math.max(340, normalizedStops.length * STOP_HEIGHT + TOP_PADDING + BOTTOM_PADDING);
+
+  // Layout: points in a gentle S-curve from bottom to top
+  const points = normalizedStops.map((stop, idx) => {
+    const t = normalizedStops.length === 1 ? 0.5 : idx / (normalizedStops.length - 1);
+    // S-curve: center is 240, amplitude 60px
+    const x = 240 + 60 * Math.sin(t * Math.PI * 1.5);
+    // Distribute from top (TOP_PADDING) to bottom (SVG_HEIGHT - BOTTOM_PADDING)
+    const y = TOP_PADDING + t * (SVG_HEIGHT - TOP_PADDING - BOTTOM_PADDING);
     return { ...stop, x, y };
   });
 
-  // Build cubic Bezier curve path connecting all points
-  let pathD = "";
+  // Build smooth cubic bezier path through all points
+  let pathD = '';
   if (points.length > 0) {
     pathD = `M ${points[0].x} ${points[0].y}`;
     for (let i = 0; i < points.length - 1; i++) {
       const p0 = points[i];
       const p1 = points[i + 1];
-      const cpY1 = p0.y - (p0.y - p1.y) / 2;
-      const cpY2 = p0.y - (p0.y - p1.y) / 2;
-      pathD += ` C ${p0.x} ${cpY1}, ${p1.x} ${cpY2}, ${p1.x} ${p1.y}`;
+      const cpX1 = (p0.x + p1.x) / 2;
+      const cpX2 = (p0.x + p1.x) / 2;
+      pathD += ` C ${cpX1} ${p0.y}, ${cpX2} ${p1.y}, ${p1.x} ${p1.y}`;
     }
   }
 
+  // Approximate path length for stroke-dasharray
+  // Use rough estimate: sum of segment distances * 1.2 for curves
+  let approxLength = 0;
+  for (let i = 0; i < points.length - 1; i++) {
+    const dx = points[i + 1].x - points[i].x;
+    const dy = points[i + 1].y - points[i].y;
+    approxLength += Math.sqrt(dx * dx + dy * dy) * 1.3;
+  }
+  const pathLength = Math.ceil(approxLength) || 1000;
+
   return (
-    <div ref={containerRef} className="w-full flex justify-center py-10 px-4 print:hidden">
-      <div 
-        className="w-full max-w-[480px] rounded-2xl overflow-hidden shadow-2xl border border-[#d6cfbe] bg-[#F5F0E4]"
-        style={{ filter: "drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3))" }}
+    <div className="w-full print:hidden" style={{ background: 'transparent' }}>
+      <style>{`
+        @keyframes ${lineAnimId} {
+          from { stroke-dashoffset: ${pathLength}; }
+          to   { stroke-dashoffset: 0; }
+        }
+        @keyframes ${markerAnimId} {
+          from { opacity: 0; transform: scale(0.5); }
+          to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes ${pulseAnimId} {
+          0%   { r: 10px; opacity: 0.6; }
+          100% { r: 22px; opacity: 0; }
+        }
+        .route-line-${uid} {
+          stroke-dasharray: ${pathLength};
+          stroke-dashoffset: ${pathLength};
+          animation: ${lineAnimId} 2s ease-in-out forwards;
+        }
+        .route-marker-${uid} {
+          opacity: 0;
+          animation: ${markerAnimId} 0.4s ease-out forwards;
+          transform-box: fill-box;
+          transform-origin: center;
+        }
+        .route-pulse-${uid} {
+          animation: ${pulseAnimId} 1.6s ease-out infinite;
+        }
+      `}</style>
+
+      <svg
+        width="100%"
+        height={SVG_HEIGHT}
+        viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ display: 'block' }}
+        aria-label={tourName}
       >
-        <svg 
-          width="100%" 
-          height={dynamicHeight} 
-          viewBox={`0 0 ${width} ${dynamicHeight}`}
-          className="w-full h-auto"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>{tourName || "Route Map"}</title>
-          <defs>
-            <style>{`
-              @media (max-width: 400px) {
-                .route-map-title { font-size: 20px !important; }
-                .route-map-day { font-size: 9px !important; }
-                .route-map-label { font-size: 10px !important; }
-              }
-            `}</style>
-            {/* Subtle paper grain texture */}
-            <filter id="subtle-grain" x="0%" y="0%" width="100%" height="100%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0.96  0 0 0 0 0.94  0 0 0 0 0.89  0 0 0 0.05 0" />
-              <feBlend mode="multiply" in="SourceGraphic" in2="noise" />
-            </filter>
-          </defs>
+        <title>{tourName}</title>
 
-          {/* Background Parchment Rect */}
-          <rect 
-            width="100%" 
-            height="100%" 
-            fill="#F5F0E4" 
-            rx="16" 
-            filter="url(#subtle-grain)" 
+        {/* Dark background */}
+        <rect width="100%" height="100%" fill="#0D0D0D" rx="12" />
+
+        {/* Subtle grid lines */}
+        {[0.25, 0.5, 0.75].map((t) => (
+          <line
+            key={t}
+            x1="40" y1={SVG_HEIGHT * t}
+            x2={SVG_WIDTH - 40} y2={SVG_HEIGHT * t}
+            stroke="rgba(255,255,255,0.04)"
+            strokeWidth="1"
           />
+        ))}
 
-          {/* Title and Flanking Lines */}
-          <g>
-            {/* y = 50 is the title centerline */}
-            <line x1="40" y1="50" x2="160" y2="50" stroke="#D4A853" strokeWidth="1.5" />
-            <line x1="320" y1="50" x2="440" y2="50" stroke="#D4A853" strokeWidth="1.5" />
+        {/* Route title */}
+        <text
+          x={SVG_WIDTH / 2}
+          y={28}
+          textAnchor="middle"
+          fill={color}
+          style={{
+            fontFamily: "Georgia, serif",
+            fontSize: "13px",
+            fontStyle: "italic",
+            letterSpacing: "0.04em",
+            fontWeight: "600"
+          }}
+        >
+          {tourName}
+        </text>
+        <line x1="60" y1="28" x2={SVG_WIDTH / 2 - 80} y2="28" stroke={color} strokeWidth="0.5" opacity="0.4" />
+        <line x1={SVG_WIDTH / 2 + 80} y1="28" x2={SVG_WIDTH - 60} y2="28" stroke={color} strokeWidth="0.5" opacity="0.4" />
 
-            <text 
-              x={width / 2} 
-              y="56" 
-              className="route-map-title"
-              textAnchor="middle" 
-              fill="#1A1A1A" 
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "22px",
-                fontStyle: "italic",
-                fontWeight: "600",
-                letterSpacing: "0.02em"
-              }}
-            >
-              Route Map
-            </text>
-          </g>
+        {/* Glow trail under route */}
+        {pathD && (
+          <path
+            d={pathD}
+            fill="none"
+            stroke={color}
+            strokeWidth="6"
+            opacity="0.08"
+            strokeLinecap="round"
+          />
+        )}
 
-          {/* Dash S-Curve Pathway */}
-          {pathD && (
-            <>
-              {/* Soft glow trail underneath */}
-              <path 
-                d={pathD} 
-                fill="none" 
-                stroke="#1A1A1A" 
-                strokeWidth="4" 
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.05" 
-              />
-              {/* Main animated path */}
-              <motion.path 
-                d={pathD} 
-                fill="none" 
-                stroke="#1A1A1A" 
-                strokeWidth="1.5" 
-                strokeDasharray="6 4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
-                transition={{ duration: 1.8, ease: "easeOut" }}
-              />
-            </>
-          )}
+        {/* Main animated route line — plays on mount */}
+        {pathD && (
+          <path
+            d={pathD}
+            fill="none"
+            stroke={color}
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={`route-line-${uid}`}
+          />
+        )}
 
-          {/* Map Stops */}
-          {points.map((stop, idx) => {
-            const isLeft = idx % 2 !== 0; // Odd stops: LEFT. Even stops: RIGHT.
-            const badgeWidth = 170;
-            const badgeHeight = 44;
-            const rx = 8;
+        {/* Waypoint markers and labels */}
+        {points.map((stop, idx) => {
+          const r = stop.highlight ? 10 : 7;
+          const fillColor = stop.isStart ? '#22c55e' : stop.isEnd ? '#ef4444' : color;
+          const labelText = stop.name || '';
+          const labelLines = labelText.split('\n');
+          // Alternate label left/right
+          const isRight = idx % 2 === 0;
+          const labelX = isRight ? stop.x + 18 : stop.x - 18;
+          const labelAnchor = isRight ? 'start' : 'end';
+          const markerDelay = `${0.3 + idx * 0.18}s`;
 
-            const badgeX = isLeft ? 40 : 270;
-            const badgeY = stop.y - badgeHeight / 2;
-
-            return (
-              <g key={idx}>
-                {/* Leader Line */}
-                <motion.line 
-                  x1={isLeft ? 210 : stop.x} 
-                  y1={stop.y} 
-                  x2={isLeft ? stop.x : 270} 
-                  y2={stop.y} 
-                  stroke="#D4A853" 
-                  strokeWidth="1" 
-                  strokeDasharray="3 3"
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.4, delay: 1.8 + idx * 0.2 }}
+          return (
+            <g key={idx} className={`route-marker-${uid}`} style={{ animationDelay: markerDelay }}>
+              {/* Pulse ring for highlighted stops */}
+              {stop.highlight && (
+                <circle
+                  cx={stop.x}
+                  cy={stop.y}
+                  r={r}
+                  fill="none"
+                  stroke={color}
+                  strokeWidth="1.5"
+                  opacity="0"
+                  className={`route-pulse-${uid}`}
+                  style={{ animationDelay: markerDelay }}
                 />
+              )}
 
-                {/* Animated Badge Group */}
-                <motion.g 
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
-                  transition={{ duration: 0.5, delay: 1.8 + idx * 0.2, ease: "easeOut" }}
+              {/* Marker circle */}
+              <circle
+                cx={stop.x}
+                cy={stop.y}
+                r={r}
+                fill={fillColor}
+                stroke="#0D0D0D"
+                strokeWidth="2"
+              />
+
+              {/* Inner dot for highlight markers */}
+              {stop.highlight && (
+                <circle
+                  cx={stop.x}
+                  cy={stop.y}
+                  r={3}
+                  fill="#0D0D0D"
+                />
+              )}
+
+              {/* Start/End icon glyph */}
+              {(stop.isStart || stop.isEnd) && (
+                <text
+                  x={stop.x}
+                  y={stop.y + 1}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fill="#fff"
+                  style={{ fontSize: '8px', fontWeight: 'bold', fontFamily: 'sans-serif' }}
                 >
-                  {/* Badge Container */}
-                  <rect 
-                    x={badgeX} 
-                    y={badgeY} 
-                    width={badgeWidth} 
-                    height={badgeHeight} 
-                    rx={rx} 
-                    fill="#D4A853" 
-                  />
+                  {stop.isStart ? '▶' : '■'}
+                </text>
+              )}
 
-                  {/* Line 1: Day Number */}
-                  <text 
-                    x={badgeX + badgeWidth / 2} 
-                    y={badgeY + 18} 
-                    className="route-map-day"
-                    textAnchor="middle" 
-                    fill="#1A1A1A"
-                    style={{
-                      fontFamily: "var(--font-inter), 'DM Sans', sans-serif",
-                      fontSize: "11px",
-                      fontWeight: "700"
-                    }}
-                  >
-                    {stop.day} —
-                  </text>
+              {/* Leader line to label */}
+              <line
+                x1={stop.x + (isRight ? r : -r)}
+                y1={stop.y}
+                x2={labelX - (isRight ? 4 : -4)}
+                y2={stop.y}
+                stroke={color}
+                strokeWidth="0.8"
+                opacity="0.4"
+                strokeDasharray="2 2"
+              />
 
-                  {/* Line 2: Location Name */}
-                  <text 
-                    x={badgeX + badgeWidth / 2} 
-                    y={badgeY + 32} 
-                    className="route-map-label"
-                    textAnchor="middle" 
-                    fill="#1A1A1A"
-                    style={{
-                      fontFamily: "var(--font-inter), 'DM Sans', sans-serif",
-                      fontSize: "12px",
-                      fontWeight: "500"
-                    }}
-                  >
-                    {stop.label}
-                  </text>
-                </motion.g>
+              {/* Label background */}
+              <rect
+                x={isRight ? labelX - 2 : labelX - 90}
+                y={stop.y - 14}
+                width={92}
+                height={labelLines.length > 1 ? 30 : 18}
+                rx="3"
+                fill="rgba(10,10,10,0.8)"
+              />
 
-                {/* Stop Marker Node */}
-                {stop.isStart || stop.isEnd ? (
-                  // Teardrop Pin for Start & End
-                  <motion.g 
-                    transform={`translate(${stop.x - 14}, ${stop.y - 36})`}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.4, delay: 1.8 + idx * 0.2 }}
-                  >
-                    <path 
-                      d="M14 2C8.48 2 4 6.48 4 12c0 7.5 10 18 10 18s10-10.5 10-18c0-5.52-4.48-10-10-10zm0 13.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" 
-                      fill="#1A1A1A" 
-                      stroke="#D4A853"
-                      strokeWidth="1"
-                    />
-                    <circle cx="14" cy="12" r="3.5" fill="#D4A853" />
-                  </motion.g>
-                ) : (
-                  // Gold Circle Dot for Intermediate Stops
-                  <motion.circle 
-                    cx={stop.x} 
-                    cy={stop.y} 
-                    r="8" 
-                    fill="#D4A853" 
-                    stroke="#1A1A1A" 
-                    strokeWidth="1.5"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-                    transition={{ duration: 0.4, delay: 1.8 + idx * 0.2 }}
-                  />
-                )}
-              </g>
-            );
-          })}
-        </svg>
-      </div>
+              {/* Label text lines */}
+              {labelLines.map((line, li) => (
+                <text
+                  key={li}
+                  x={labelX}
+                  y={stop.y - 5 + li * 13}
+                  textAnchor={labelAnchor}
+                  fill={stop.highlight ? color : '#E8E0D0'}
+                  style={{
+                    fontSize: stop.highlight ? '11px' : '10px',
+                    fontFamily: 'system-ui, sans-serif',
+                    fontWeight: stop.highlight ? '700' : '400',
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  {line}
+                </text>
+              ))}
+
+              {/* Note badge for highlighted stops */}
+              {stop.note && (
+                <text
+                  x={labelX}
+                  y={stop.y + (labelLines.length > 1 ? 26 : 14)}
+                  textAnchor={labelAnchor}
+                  fill={color}
+                  style={{
+                    fontSize: '8px',
+                    fontFamily: 'system-ui, sans-serif',
+                    fontStyle: 'italic',
+                    opacity: 0.7,
+                  }}
+                >
+                  {stop.note.length > 28 ? stop.note.slice(0, 28) + '…' : stop.note}
+                </text>
+              )}
+            </g>
+          );
+        })}
+      </svg>
     </div>
   );
 }

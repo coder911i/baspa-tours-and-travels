@@ -1,9 +1,9 @@
 export const SITE_CONFIG = {
   NAME: 'Baspa Tour Center Travels',
-  TAGLINE: 'Ascend to Pure Serenity',
+  TAGLINE: 'Spiti. Kinnaur. Chitkul. Asal Himachal.',
   // TODO: Replace with official WhatsApp business number before deployment
-  WHATSAPP_NUMBER: '91XXXXXXXXXX', 
-  WHATSAPP_MESSAGE: "Hi! I'm interested in booking a tour with Baspa Tour Center Travels.",
+  WHATSAPP_NUMBER: '919876543210', 
+  WHATSAPP_MESSAGE: "Namaste! Mujhe Spiti tour ke baare mein jaankari chahiye",
   // TODO: Replace with official brand email
   EMAIL: 'hello@baspatravels.com',
   // TODO: Replace with official direct phone line
@@ -18,10 +18,10 @@ export const SITE_CONFIG = {
     youtube: 'https://youtube.com/@baspatravels',
   },
   STATS: [
-    { label: 'Years', value: 12, suffix: '+' },
-    { label: 'Travelers', value: 3000, suffix: '+' },
-    { label: 'Expeditions', value: 50, suffix: '+' },
-    { label: 'Rating', value: 4.9, suffix: '★' },
+    { label: 'Years Experience', value: 8, suffix: '+' },
+    { label: 'Happy Travelers', value: 500, suffix: '+' },
+    { label: 'High Circuits', value: 15, suffix: '+' },
+    { label: 'Google Rating', value: 4.9, suffix: '★' },
   ],
   SEO: {
     title: 'Baspa Travels | Premium Himalayan Expeditions',

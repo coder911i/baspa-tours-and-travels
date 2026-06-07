@@ -15,7 +15,7 @@ export default function WhatsAppButton() {
       aria-label="Contact us on WhatsApp"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      className="fixed bottom-8 right-8 z-[100] group"
+      className="fixed bottom-6 right-6 z-[999] group"
     >
       <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-20 group-hover:opacity-40" />
       <div className="relative w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">

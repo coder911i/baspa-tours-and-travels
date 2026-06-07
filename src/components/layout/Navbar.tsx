@@ -32,13 +32,15 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6 px-6 md:px-12',
-        isScrolled ? 'bg-background/90 backdrop-blur-md py-4 border-b border-white/5' : 'bg-transparent'
+        'fixed top-0 left-0 w-full z-50 transition-all duration-500 h-[56px] md:h-auto flex items-center px-6 md:px-12 bg-transparent',
+        isScrolled 
+          ? 'bg-background/90 backdrop-blur-md border-b border-white/5 h-[56px] md:py-4 md:h-auto' 
+          : 'md:py-6'
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 md:w-12 md:h-12">
+      <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2 group max-w-[120px] md:max-w-none">
+          <div className="relative w-6 h-6 md:w-12 md:h-12 flex-shrink-0">
             <Image
               src="/images/logo.jpg"
               alt="Baspa Travels Logo"
@@ -46,7 +48,7 @@ export default function Navbar() {
               className="object-contain"
             />
           </div>
-          <span className="font-display text-2xl md:text-3xl text-snow tracking-tighter group-hover:text-gold transition-colors duration-300">
+          <span className="font-display text-[10px] md:text-3xl text-snow tracking-tighter group-hover:text-gold transition-colors duration-300 truncate uppercase">
             BASPA <span className="text-gold">TRAVELS</span>
           </span>
         </Link>
@@ -78,9 +80,10 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-snow p-3 -mr-3" 
+          className="md:hidden text-snow p-3 -mr-3 flex items-center justify-center"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
+          style={{ minHeight: '44px' }}
         >
           <div className="w-6 h-5 relative flex flex-col justify-between">
             <span className={cn("w-full h-[0.5px] bg-current transition-all duration-300", isMobileMenuOpen && "rotate-45 translate-y-[9px]")} />

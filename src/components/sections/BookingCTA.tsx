@@ -1,12 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
+import { SITE_CONFIG } from '@/lib/constants';
 
 export default function BookingCTA() {
   return (
     <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1920&q=90"
           alt="Mountain background"
           fill
           className="object-cover"
@@ -22,11 +23,16 @@ export default function BookingCTA() {
           Your next journey begins with one message. Let us handcrafted an expedition that will stay with you forever.
         </p>
         <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-          <a href="/contact" className="btn-gold-filled px-12 py-5 text-lg">
-            Book Your Expedition →
+          <a href="/tours" className="btn-gold-filled px-12 py-5 text-lg">
+            Book Karo
           </a>
-          <a href="https://wa.me/919876543210" className="btn-gold px-12 py-5 text-lg">
-            Chat on WhatsApp
+          <a 
+            href={`https://wa.me/${SITE_CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(SITE_CONFIG.WHATSAPP_MESSAGE)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold px-12 py-5 text-lg"
+          >
+            WhatsApp pe baat karo
           </a>
         </div>
       </div>

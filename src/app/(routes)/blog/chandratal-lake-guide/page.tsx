@@ -46,7 +46,7 @@ export default function ChandratalGuidePage() {
         A designated camping site operates in a meadow basin 3 kilometers before the lake. Here, multiple operators set up luxury Swiss tents equipped with warm beds, attached washrooms, and dining tents.
       </p>
       <p>
-        Spending a night under the zero-pollution Spiti sky is unforgettable. The Milky Way galaxy is clearly visible to the naked eye. However, because temperatures drop below 0°C even in summer, thermal innerwear, fleece layers, and heavy down jackets are absolute necessities.
+        Spending a night under the zero-pollution Spiti sky is extraordinary. The Milky Way galaxy is clearly visible to the naked eye. However, because temperatures drop below 0°C even in summer, thermal innerwear, fleece layers, and heavy down jackets are absolute necessities.
       </p>
 
       <h2>The Sacred Walk: Trekking to the Shore</h2>

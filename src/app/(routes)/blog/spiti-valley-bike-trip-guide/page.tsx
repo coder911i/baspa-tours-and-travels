@@ -32,7 +32,7 @@ export default function BikeTripGuidePage() {
       </p>
       <ol>
         <li><strong>Entry via Shimla (Recommended):</strong> This route starts in Shimla, passes through Kinnaur, and enters Spiti via Sumdo. It offers a gradual altitude ascent, helping to prevent AMS. It is also open year-round. This is the same scenic ascent used in our standard <Link href="/tours/spiti-summer-circuit" className="text-gold underline hover:text-gold-light">Spiti Valley Summer Circuit</Link>.</li>
-        <li><strong>Entry via Manali:</strong> This route goes from Manali to Kaza via the Atal Tunnel, Sissu, and the steep Kunzum Pass. While shorter, ascending from Manali (2,050m) to Kunzum Pass (4,590m) within a few hours carries a high risk of AMS. It is best used as an exit route.</li>
+        <li><strong>Entry via Manali:</strong> This route goes from Manali to Kaza via the Atal Tunnel, Sissu, and the steep Kunzum Pass. While shorter, climbing from Manali (2,050m) to Kunzum Pass (4,590m) within a few hours carries a high risk of AMS. It is best used as an exit route.</li>
       </ol>
       <p>
         This is why our guided <Link href="/tours/spiti-bike-expedition" className="text-gold underline hover:text-gold-light">Spiti Valley Bike Expedition</Link> utilizes the full clockwise loop—starting in Shimla, climbing Kinnaur, exploring Kaza, and exiting via Kunzum Pass to Manali.

@@ -40,20 +40,6 @@ export default function StatsBar() {
   return (
     <div ref={barRef} className="w-full bg-charcoal border-y border-white/5 py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Decorative orbs - CSS only */}
-        <div className="h-40 w-full mb-8 flex items-center justify-center gap-16 relative">
-          {['#D4AF37', '#D4AF37', '#D4AF37', '#D4AF37'].map((color, i) => (
-            <div 
-              key={i}
-              className="w-12 h-12 rounded-full opacity-60 animate-pulse"
-              style={{ 
-                background: `radial-gradient(circle, ${color}, transparent)`,
-                animationDelay: `${i * 0.3}s`,
-                boxShadow: `0 0 30px ${color}40`
-              }}
-            />
-          ))}
-        </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 relative z-10">
           {SITE_CONFIG.STATS.map((stat) => (
             <div key={stat.label} className="text-center md:border-r last:border-r-0 border-white/10 px-4">

@@ -103,7 +103,7 @@ export default function BlogLayout({
                   Ready to Experience the High Altitudes?
                 </h3>
                 <p className="text-text-muted max-w-xl mx-auto text-sm leading-relaxed">
-                  Join Baspa Tour Center Travels on an unforgettable journey. Experience local Chitkul guidance, premium 4x4 transport, and luxury homestays.
+                  Join Baspa Tour Center Travels on an exceptional journey. Experience local Chitkul guidance, premium 4x4 transport, and luxury homestays.
                 </p>
                 <div className="pt-4">
                   <Link href="/tours" className="btn-gold-filled py-4 px-12 text-xs rounded-full">
@@ -124,7 +124,7 @@ export default function BlogLayout({
                   Himalayan Tour Circuits 2025
                 </h4>
                 <p className="text-xs text-text-muted leading-relaxed">
-                  Bespoke, all-inclusive tour packages starting at just **₹7,999** per person. Specialized in:
+                  Premium, all-inclusive tour packages starting at just **₹7,999** per person. Specialized in:
                 </p>
                 <ul className="space-y-3 text-xs text-snow/90">
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" /> Spiti Summer Loop (8 Days)</li>

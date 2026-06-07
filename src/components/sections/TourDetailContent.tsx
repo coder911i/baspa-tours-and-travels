@@ -1,14 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Tour } from '@/types';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import BookingWidget from '@/components/ui/BookingWidget';
 import RouteMap from '@/components/RouteMap';
 import SightseeingSection from '@/components/sections/SightseeingSection';
+import { cn } from '@/lib/utils';
 
 export default function TourDetailContent({ tour }: { tour: Tour }) {
+  const [activeDay, setActiveDay] = useState(0);
   const handleScrollToBooking = () => {
     document.getElementById('booking-widget')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -116,82 +118,93 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
               </div>
             </div>
 
-            <div>
-              <h2 className="text-3xl font-display text-snow mb-12 border-b border-gold/20 pb-4 inline-block">The Master Itinerary</h2>
-              <div className="space-y-8 relative before:absolute before:left-[31px] before:top-8 before:bottom-8 before:w-[1px] before:bg-white/5">
-                {tour.itinerary.map((day) => (
-                  <div key={`${tour.slug}-day-${day.day}`} className="relative pl-20 group">
-                    <div className="absolute left-0 top-0 w-16 h-16 bg-background border border-white/10 flex items-center justify-center text-gold font-display text-2xl z-10 group-hover:border-gold transition-colors">
-                      {day.day}
-                    </div>
-                    <div className="glass-card group-hover:border-gold/30 transition-all bg-surface/30 overflow-hidden">
-                      {day.images && day.images.length > 0 ? (
-                        <div className="grid grid-cols-2 gap-1 h-64 md:h-80 relative">
-                          <div className="col-span-1 h-full relative">
-                            <Image 
-                              src={day.images[0]} 
-                              alt={day.title}
-                              fill
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <div className="col-span-1 grid grid-rows-2 gap-1 h-full relative">
-                            {day.images[1] && (
-                              <div className="relative h-full w-full">
-                                <Image 
-                                  src={day.images[1]} 
-                                  alt={day.title}
-                                  fill
-                                  className="w-full h-full object-cover"
-                                />
-                              </div>
-                            )}
-                            {day.images[2] && (
-                              <div className="relative h-full w-full">
-                                <Image 
-                                  src={day.images[2]} 
-                                  alt={day.title}
-                                  fill
-                                  className="w-full h-full object-cover"
-                                />
-                              </div>
-                            )}
-                          </div>
+            <div className="space-y-12">
+              <h2 className="text-3xl font-display text-snow mb-6 border-b border-gold/20 pb-4 inline-block">The Master Itinerary</h2>
+
+              {/* Route Map inside itinerary */}
+              <div className="rounded-2xl overflow-hidden border border-white/5 bg-[#0D0D0D] p-4">
+                <RouteMap stops={tour.routeWaypoints ?? tour.routeStops} tourName={tour.title} />
+              </div>
+
+              {/* Day Tabs */}
+              <div className="space-y-6">
+                {/* Horizontal Scrollable Tabs */}
+                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide border-b border-white/5">
+                  {tour.itinerary.map((day, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveDay(idx)}
+                      style={{ minHeight: '44px' }}
+                      className={cn(
+                        "whitespace-nowrap px-6 py-3 border text-xs font-bold uppercase tracking-widest transition-all duration-300",
+                        activeDay === idx
+                          ? "bg-gold text-charcoal border-gold shadow-[0_0_15px_rgba(201,168,76,0.3)]"
+                          : "border-white/5 text-text-muted hover:border-gold/30 hover:text-snow"
+                      )}
+                    >
+                      Day {day.day}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Day Content Panel */}
+                {tour.itinerary.map((day, idx) => 
+                  activeDay === idx && (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="glass-card p-8 space-y-8"
+                    >
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5 pb-6">
+                        <div>
+                          <span className="text-[10px] text-gold font-bold uppercase tracking-[0.2em] block mb-1">Day {day.day}</span>
+                          <h3 className="text-2xl md:text-3xl font-display text-snow">{day.title}</h3>
                         </div>
-                      ) : (day.image) && (
-                        <div className="relative w-full h-48 md:h-64 overflow-hidden">
-                          <Image 
-                            src={day.image} 
-                            alt={day.title}
-                            fill
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-transparent to-transparent" />
+                        <div className="flex flex-wrap gap-3 text-[10px] uppercase tracking-widest font-bold">
+                          {day.altitude && <span className="px-3 py-1.5 bg-white/5 text-text-muted border border-white/5">Alt: {day.altitude}</span>}
+                          {day.distance && <span className="px-3 py-1.5 bg-white/5 text-text-muted border border-white/5">Dist: {day.distance}</span>}
+                          {day.stay && <span className="px-3 py-1.5 bg-gold/10 text-gold border border-gold/20">Stay: {day.stay}</span>}
+                        </div>
+                      </div>
+
+                      <p className="text-text-muted leading-relaxed">
+                        {day.description}
+                      </p>
+
+                      {day.images && day.images.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-48 md:h-64 relative rounded-xl overflow-hidden border border-white/5">
+                          {day.images.map((img, imgIdx) => (
+                            <div key={imgIdx} className="relative h-full w-full">
+                              <Image 
+                                src={img} 
+                                alt={`${day.title} view ${imgIdx + 1}`}
+                                fill
+                                loading="lazy"
+                                className="object-cover"
+                              />
+                            </div>
+                          ))}
                         </div>
                       )}
-                      <div className="p-8">
-                        <h3 className="text-xl font-display text-snow mb-4 group-hover:text-gold transition-colors">{day.title}</h3>
-                        <p className="text-text-muted text-sm leading-relaxed mb-6">
-                          {day.description}
-                        </p>
-                        <div className="flex flex-wrap gap-4 text-[9px] uppercase tracking-widest font-bold">
-                          {day.altitude && <span className="px-3 py-1 bg-white/5 text-text-muted border border-white/5">Alt: {day.altitude}</span>}
-                          {day.distance && <span className="px-3 py-1 bg-white/5 text-text-muted border border-white/5">Dist: {day.distance}</span>}
-                          {day.stay && <span className="px-3 py-1 bg-white/5 text-gold border border-gold/10">Stay: {day.stay}</span>}
-                        </div>
-                        {day.highlights && day.highlights.length > 0 && (
-                          <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-2">
+
+                      {day.highlights && day.highlights.length > 0 && (
+                        <div className="pt-6 border-t border-white/5">
+                          <h4 className="text-gold uppercase tracking-widest text-[10px] font-bold mb-4">Day Highlights</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {day.highlights.map((h, i) => (
-                              <span key={i} className="px-3 py-1.5 bg-gold/5 border border-gold/10 text-gold text-[10px] font-medium rounded-full">
-                                {h}
-                              </span>
+                              <div key={i} className="flex items-center gap-3 text-snow text-sm">
+                                <span className="text-gold text-lg">•</span>
+                                <span>{h}</span>
+                              </div>
                             ))}
                           </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                        </div>
+                      )}
+                    </motion.div>
+                  )
+                )}
               </div>
             </div>
           </div>
@@ -201,17 +214,6 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
           </div>
         </div>
       </section>
-
-      {/* Route Map */}
-      {tour.routeStops && tour.routeStops.length > 0 && (
-        <section className="py-16 px-6 bg-[#0D0D0D]">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-display text-snow mb-2 text-center">Your Journey at a Glance</h2>
-            <p className="text-text-muted text-sm text-center mb-8">Day-by-day route across the Himalayas</p>
-            <RouteMap stops={tour.routeStops} tourName={tour.title} />
-          </div>
-        </section>
-      )}
 
       {/* Sightseeing Section */}
       {tour.sightseeing && tour.sightseeing.length > 0 && (

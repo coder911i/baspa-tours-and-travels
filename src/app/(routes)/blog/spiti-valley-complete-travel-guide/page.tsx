@@ -64,13 +64,13 @@ export default function SpitiValleyGuidePage() {
 
       <h2>Altitude Sickness (AMS) & Safety Protocols</h2>
       <p>
-        Traveling above 3,000 meters exposes your body to lower atmospheric pressure and thinner air. Acute Mountain Sickness (AMS) is a real concern if you ascend too quickly. Symptoms include headaches, dizziness, nausea, insomnia, and shortness of breath.
+        Traveling above 3,000 meters exposes your body to lower atmospheric pressure and thinner air. Acute Mountain Sickness (AMS) is a real concern if you climb too quickly. Symptoms include headaches, dizziness, nausea, insomnia, and shortness of breath.
       </p>
       <p>
         <strong>Our Golden Rules for Altitude Acclimatization:</strong>
       </p>
       <ul>
-        <li><strong>Ascend Gradually:</strong> Entering via the Shimla-Kinnaur route allows your body to acclimate slowly day by day. Never fly or drive directly to Kaza without spending at least 2 nights at intermediate altitudes like Sangla or Kalpa.</li>
+        <li><strong>Climb Gradually:</strong> Entering via the Shimla-Kinnaur route allows your body to acclimate slowly day by day. Never fly or drive directly to Kaza without spending at least 2 nights at intermediate altitudes like Sangla or Kalpa.</li>
         <li><strong>Stay Hydrated:</strong> Drink 4–5 liters of water daily. Dehydration accelerates the onset of AMS. Avoid alcohol and heavy, oily meals.</li>
         <li><strong>Rest on Day One:</strong> When you arrive in Kaza (3,800m), limit physical exertion. Let your lungs adapt to the thin air.</li>
         <li><strong>Carry Medical Oxygen:</strong> All our Baspa Tour Center Travels backup vehicles are fully equipped with medical-grade oxygen cylinders and first-aid kits for immediate safety.</li>

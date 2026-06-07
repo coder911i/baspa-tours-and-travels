@@ -5,11 +5,11 @@ import Footer from '@/components/layout/Footer';
 import HeroContent from '@/components/sections/HeroContent';
 import StatsBar from '@/components/sections/StatsBar';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
-import ScrollProgress from '@/components/ui/ScrollProgress';
+import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Baspa Travels | Where Mountains Meet Luxury',
-  description: 'Experience the Himalayas like never before with Baspa Travels. Bespoke luxury expeditions to Kinnaur, Spiti, and beyond.',
+  title: 'Spiti Valley & Kinnaur Tours | Baspa Tour Center Travels',
+  description: 'Delhi se niklo, Spiti cross karo. Premium Himalayan expeditions to Chitkul, Spiti, and Kinnaur. Book your next tour package with local guides from Chitkul.',
 };
 
 const HeroScene = dynamic(() => import('@/components/3d/HeroScene'), { 
@@ -28,7 +28,6 @@ const BookingCTA = dynamic(() => import('@/components/sections/BookingCTA'), { s
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden">
-      <ScrollProgress />
       <Navbar />
       <WhatsAppButton />
       
