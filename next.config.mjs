@@ -58,6 +58,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compress: true,
+  // Security optimizations: strip client-side console logs and disable source maps in production
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  productionBrowserSourceMaps: false,
 };
 
 export default nextConfig;
