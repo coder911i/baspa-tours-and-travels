@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer';
 import HeroContent from '@/components/sections/HeroContent';
 import StatsBar from '@/components/sections/StatsBar';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
+import Image from 'next/image';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -46,6 +47,29 @@ export default function Home() {
         <ItineraryPreview />
         <GalleryPreview />
         <Testimonials />
+        
+        {/* Our Sightseeings Section */}
+        <section className="py-24 px-6 md:px-12 bg-background border-t border-white/5 text-center">
+          <div className="max-w-5xl mx-auto">
+            <span className="text-[#C9A84C] text-sm font-semibold tracking-widest uppercase mb-3 block">
+              Highlights
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl text-[#F5F0E8] mb-12">
+              Our Sightseeings
+            </h2>
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-surface">
+              <Image 
+                src="/images/sightseeing_highlights.jpg"
+                alt="Our Sightseeings"
+                width={1200}
+                height={1600}
+                className="w-full h-auto object-contain mx-auto"
+                priority
+              />
+            </div>
+          </div>
+        </section>
+
         <BookingCTA />
       </div>
 
