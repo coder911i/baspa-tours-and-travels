@@ -198,6 +198,9 @@ export default function HeroScene() {
   const [isMobile, setIsMobile] = useState(false);
   const [webglSupported, setWebglSupported] = useState(true);
 
+  const videoUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
+  const posterUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_POSTER;
+
   useEffect(() => {
     const checkSupport = () => {
       setIsMobile(window.innerWidth < 768);
@@ -217,12 +220,33 @@ export default function HeroScene() {
   if (isMobile || !webglSupported) {
     return (
       <div className="fixed inset-0 -z-10 bg-[#050508] overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40 scale-110"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1920&q=90")' }}
-          role="img"
-          aria-label="Himalayan mountain peak background"
-        />
+        {videoUrl ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={posterUrl || 'https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1920&q=90'}
+            className="absolute inset-0 w-full h-full object-cover opacity-45 hero-video"
+            style={{ zIndex: 0 }}
+          >
+            <source src={videoUrl} type="video/mp4" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src={posterUrl || 'https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1920&q=90'}
+              alt="Spiti Valley Himachal Pradesh"
+              className="absolute inset-0 w-full h-full object-cover opacity-45"
+            />
+          </video>
+        ) : (
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-40 scale-110 hero-mobile-fallback"
+            style={{ backgroundImage: `url("${posterUrl || 'https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1920&q=90'}")` }}
+            role="img"
+            aria-label="Himalayan mountain peak background"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-dark/30 via-dark/10 to-dark" />
       </div>
     );

@@ -55,10 +55,10 @@ export default function WinterGuidePage() {
         While winter requires stepping out of your comfort zone, the rewards are absolutely spellbinding:
       </p>
       <ul>
-        <li>❄️ <strong>Snow Leopard Safari:</strong> Pin Valley and Kibber are world-famous habitats for the endangered ghost of the mountains. Spotting a Snow Leopard tracking through the deep winter snow is a lifetime memory.</li>
-        <li>🐾 <strong>Frozen Waterfall Climbs:</strong> Witness majestic frozen water cascades in the Langza and Spiti gorges, forming towering ice screens.</li>
-        <li>📸 <strong>Zero-Pollution Astrophotography:</strong> The crisp, cold winter air combined with zero ambient light pollution creates incredibly sharp conditions for night sky photography.</li>
-        <li>🏔️ <strong>Frozen Lake Walk:</strong> Walk on the solid blue ice sheet of Nako Lake, high in the Hangrang valley.</li>
+        <li><strong>Snow Leopard Safari:</strong> Pin Valley and Kibber are world-famous habitats for the endangered ghost of the mountains. Spotting a Snow Leopard tracking through the deep winter snow is a lifetime memory.</li>
+        <li><strong>Frozen Waterfall Climbs:</strong> Witness majestic frozen water cascades in the Langza and Spiti gorges, forming towering ice screens.</li>
+        <li><strong>Zero-Pollution Astrophotography:</strong> The crisp, cold winter air combined with zero ambient light pollution creates incredibly sharp conditions for night sky photography.</li>
+        <li><strong>Frozen Lake Walk:</strong> Walk on the solid blue ice sheet of Nako Lake, high in the Hangrang valley.</li>
       </ul>
 
       <h2>Gear Up for Sub-Zero Temperatures</h2>

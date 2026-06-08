@@ -29,8 +29,12 @@ function WeatherCard({ lat, lon, locationName }: { lat: number; lon: number; loc
       <div className="flex justify-between items-start mb-4">
         <div>
           <span className="text-gold text-[10px] uppercase tracking-[0.2em] font-bold block mb-1">Live Conditions</span>
-          <h4 className="text-snow text-sm font-medium flex items-center gap-2">
-            📍 {locationName}
+          <h4 className="text-snow text-sm font-medium flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5 text-gold flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span>{locationName}</span>
           </h4>
         </div>
         <div className="flex items-center gap-1.5">

@@ -22,7 +22,7 @@ const GlobeSection = dynamic(() => import('@/components/sections/GlobeSection'),
 const WhyChooseUs = dynamic(() => import('@/components/sections/WhyChooseUs'), { ssr: false });
 const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), { ssr: false });
 const ItineraryPreview = dynamic(() => import('@/components/sections/ItineraryPreview'), { ssr: false });
-const GalleryStrip = dynamic(() => import('@/components/sections/GalleryStrip'), { ssr: false });
+const GalleryPreview = dynamic(() => import('@/components/sections/GalleryPreview'), { ssr: false });
 const BookingCTA = dynamic(() => import('@/components/sections/BookingCTA'), { ssr: false });
 
 export default function Home() {
@@ -44,7 +44,7 @@ export default function Home() {
         <GlobeSection />
         <WhyChooseUs />
         <ItineraryPreview />
-        <GalleryStrip />
+        <GalleryPreview />
         <Testimonials />
         <BookingCTA />
       </div>

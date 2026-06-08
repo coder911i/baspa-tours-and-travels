@@ -113,7 +113,7 @@ export default function SightseeingSection({ sightseeing }: SightseeingSectionPr
                   {/* Spots List */}
                   <ul className="space-y-2 mt-[16px]">
                     {item.spots.map((spot, spotIdx) => {
-                      const isWinter = spot.includes('❄️') || spot.includes('Winter');
+                      const isWinter = spot.toLowerCase().includes('winter');
                       return (
                         <li 
                           key={spotIdx} 
