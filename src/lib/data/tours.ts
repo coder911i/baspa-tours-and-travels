@@ -35,7 +35,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,960m", distance: "80 km", stay: "Kalpa Hotel",
         highlights: ["Chitkul", "Kinnaur Kailash", "Suicide Point"]
@@ -44,7 +44,7 @@ export const tours: Tour[] = [
         day: 3, title: "Kalpa to Nako & Tabo",
         description: "Enter the rain shadow region. Visit Nako Lake, then drive to Tabo Monastery — the Ajanta of the Himalayas.",
         images: [
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
         ],
@@ -79,7 +79,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "4,250m", distance: "110 km", stay: "Chandratal Camps",
         highlights: ["Kunzum Pass", "Chandratal"]
@@ -88,9 +88,9 @@ export const tours: Tour[] = [
         day: 7, title: "Chandratal to Manali",
         description: "Descend to lush Manali via the engineering marvel of the Atal Tunnel. A celebratory dinner marks the end of the expedition.",
         images: [
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1544860707-c352cc5a92e3?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,050m", distance: "130 km", stay: "Manali",
         highlights: ["Atal Tunnel", "Manali"]
@@ -180,7 +180,7 @@ export const tours: Tour[] = [
     startingPrice: "₹35,000",
     altitude: "4,590m",
     price: 35000,
-    image: "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?auto=format&fit=crop&w=1200&q=85",
     difficulty: "Extreme",
     groupSize: "10-15 Riders",
     weatherCoord: { lat: 32.2461, lon: 78.0153, label: "Kaza, Spiti" },
@@ -193,7 +193,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,600m", distance: "220 km", stay: "Sangla Camps",
         highlights: ["Bike Allocation", "Satluj River Gorge"]
@@ -203,7 +203,7 @@ export const tours: Tour[] = [
         description: "Ride to the last Indian village before the Tibet border, then to Kalpa for stunning Kinnaur Kailash views.",
         images: [
           "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,960m", distance: "80 km", stay: "Kalpa",
@@ -213,7 +213,7 @@ export const tours: Tour[] = [
         day: 3, title: "Kalpa to Nako",
         description: "Experience the thrilling Ka Loops on your bike. Reach the serene Nako Lake high in the Hangrang valley.",
         images: [
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
         ],
@@ -247,7 +247,7 @@ export const tours: Tour[] = [
         description: "Off-roading to the magnificent Chandratal Lake across the high Kunzum Pass.",
         images: [
           "https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "4,250m", distance: "110 km", stay: "Chandratal Camps",
@@ -257,9 +257,9 @@ export const tours: Tour[] = [
         day: 7, title: "Chandratal to Manali",
         description: "Water crossings and treacherous terrain before reaching the green valley of Manali.",
         images: [
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1544860707-c352cc5a92e3?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,050m", distance: "130 km", stay: "Manali",
         highlights: ["Water Crossings", "Atal Tunnel"]
@@ -268,9 +268,9 @@ export const tours: Tour[] = [
         day: 8, title: "Manali to Delhi",
         description: "Return journey back home. Rest and relive the memories.",
         images: [
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "216m", distance: "570 km", stay: "Home",
         highlights: ["Trip Wrap-up"]
@@ -362,7 +362,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,600m", distance: "90 km", stay: "Sangla",
         highlights: ["Baspa River", "Kamru Fort"]
@@ -373,7 +373,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,450m", distance: "40 km", stay: "Chitkul",
         highlights: ["Indo-Tibet Border", "Mathi Temple"]
@@ -382,7 +382,7 @@ export const tours: Tour[] = [
         day: 4, title: "Chitkul to Kalpa",
         description: "Drive to Kalpa to witness the magnificent Kinnaur Kailash ranges glowing at sunrise.",
         images: [
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85"
         ],
@@ -393,7 +393,7 @@ export const tours: Tour[] = [
         day: 5, title: "Kalpa Local",
         description: "Visit Suicide point, Roghi village, and immerse in the local Kinnauri culture and handicrafts.",
         images: [
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85"
         ],
@@ -404,9 +404,9 @@ export const tours: Tour[] = [
         day: 6, title: "Kalpa to Shimla",
         description: "Return back with lasting memories of the Kinnaur valley.",
         images: [
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,276m", distance: "220 km", stay: "Home",
         highlights: ["Return Journey"]
@@ -531,9 +531,9 @@ export const tours: Tour[] = [
         day: 6, title: "Kaza to Kalpa",
         description: "Return journey begins through the same route as mountain passes are closed in winter.",
         images: [
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,960m", distance: "210 km", stay: "Kalpa",
         highlights: ["Winter Drive", "Kinnaur Kailash"]
@@ -542,9 +542,9 @@ export const tours: Tour[] = [
         day: 7, title: "Kalpa to Shimla",
         description: "Final drive back to civilization with memories of frozen mountains.",
         images: [
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,276m", distance: "220 km", stay: "Home",
         highlights: ["Trip Wrap-up"]

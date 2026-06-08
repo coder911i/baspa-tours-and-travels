@@ -76,7 +76,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     id: 'kalpa-1',
-    src: 'https://images.unsplash.com/photo-PnuT63PYfZk?auto=format&fit=crop&w=1200&q=85',
+    src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85',
     alt: 'Rainbow over Kalpa village with Kinnaur Kailash backdrop',
     location: 'Kalpa Village',
     category: 'village',
@@ -87,7 +87,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   // ═══════════════════════════════════
   {
     id: 'rohtang-1',
-    src: 'https://images.unsplash.com/photo-slcdg2PVlNg?auto=format&fit=crop&w=1200&q=85',
+    src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85',
     alt: 'Rohtang Pass snow-covered mountain range — gateway to Spiti',
     location: 'Rohtang Pass, 3978m',
     category: 'adventure',
