@@ -52,7 +52,7 @@ export const destinations: Destination[] = [
       { name: "Suicide Point", description: "A thrilling viewpoint with vertical drops." },
       { name: "Roghi Village", description: "A traditional village with ancient charm." }
     ],
-    image: getImg('1626622173428-8b87c19b2092'),
+    image: getImg('1640035209336-df638dd26c4d'),
     gallery: []
   },
   {
@@ -69,7 +69,7 @@ export const destinations: Destination[] = [
       { name: "Kamru Fort", description: "An ancient wooden fortress." },
       { name: "Bering Nag Temple", description: "A sacred temple in the heart of Sangla." }
     ],
-    image: getImg('1626621195611-8b87c19ac7a8'),
+    image: getImg('1612638039814-1a67ea727114'),
     gallery: []
   },
   {
@@ -86,7 +86,7 @@ export const destinations: Destination[] = [
       { name: "Nako Lake", description: "A high altitude lake reflecting the sky." },
       { name: "Nako Monastery", description: "Ancient Buddhist monastery with beautiful murals." }
     ],
-    image: getImg('1506905925346-21bda4d32df7'),
+    image: getImg('1589308078059-be1415eab4c3'),
     gallery: []
   },
   {
@@ -103,7 +103,7 @@ export const destinations: Destination[] = [
       { name: "Tabo Monastery", description: "Famous for its ancient wall paintings." },
       { name: "Meditation Caves", description: "Caves used by monks for centuries." }
     ],
-    image: getImg('1605000797499-3a8f1d84000e'),
+    image: getImg('1698753935263-0eca2103d2db'),
     gallery: []
   },
   {
@@ -120,7 +120,7 @@ export const destinations: Destination[] = [
       { name: "Kibber Wildlife Sanctuary", description: "Home to the elusive snow leopard." },
       { name: "Chicham Bridge", description: "Highest bridge in Asia." }
     ],
-    image: getImg('1617211844038-eb9ac2efbbf1'),
+    image: getImg('1681798805445-2b24c2cb8f64'),
     gallery: []
   },
   {
@@ -137,7 +137,7 @@ export const destinations: Destination[] = [
       { name: "Buddha Statue", description: "A golden statue overlooking the valley." },
       { name: "Fossil Hunting", description: "Search for ancient marine fossils in the mountains." }
     ],
-    image: getImg('1605368661787-2df38fc2ab65'),
+    image: getImg('1698753935121-153a106616d5'),
     gallery: []
   }
 ];

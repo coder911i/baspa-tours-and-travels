@@ -100,7 +100,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-background flex flex-col items-center justify-center gap-8 z-40 md:hidden"
+            className="fixed inset-0 w-full h-screen bg-[#0a0a0a] flex flex-col items-center justify-start pt-32 pb-12 gap-8 z-[100] md:hidden overflow-y-auto"
           >
             {navLinks.map((link) => (
               <Link

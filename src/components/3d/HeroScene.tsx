@@ -1,279 +1,42 @@
 'use client';
 
-import React, { useRef, useMemo, useEffect, useState, Suspense } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { PerspectiveCamera, useProgress, Html } from '@react-three/drei';
-
-// Tree-shaken Three.js imports
-import { 
-  Mesh, 
-  MeshStandardMaterial, 
-  PlaneGeometry, 
-  Color, 
-  Points, 
-  PointsMaterial
-} from 'three';
-
-import { createNoise2D } from 'simplex-noise';
-
-// GSAP Tree Shaking
-import gsap from 'gsap/dist/gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-
-const noise2D = createNoise2D();
-
-function Terrain({ isLowEnd = false }) {
-  const meshRef = useRef<Mesh>(null);
-  const materialRef = useRef<MeshStandardMaterial>(null);
-  
-  const { geometryData, colors } = useMemo(() => {
-    const size = 200;
-    const segments = isLowEnd ? 32 : 64; 
-    const geo = new PlaneGeometry(size, size, segments, segments);
-    
-    const pos = geo.attributes.position;
-    const colorArr = new Float32Array(pos.count * 3);
-    
-    for (let i = 0; i < pos.count; i++) {
-      const x = pos.getX(i);
-      const y = pos.getY(i);
-      
-      const z = (noise2D(x * 0.008, y * 0.008) * 25) +
-                (noise2D(x * 0.02, y * 0.02) * 12) +
-                (noise2D(x * 0.05, y * 0.05) * 6);
-      
-      pos.setZ(i, z);
-
-      let color = new Color('#0A0A1A');
-      if (z > 5) color = new Color('#1B2E1D');
-      if (z > 15) color = new Color('#4A4A4A');
-      if (z > 22) color = new Color('#FFFFFF');
-
-      colorArr[i * 3] = color.r;
-      colorArr[i * 3 + 1] = color.g;
-      colorArr[i * 3 + 2] = color.b;
-    }
-    
-    geo.computeVertexNormals();
-    return { 
-      geometryData: {
-        position: pos.array,
-        normal: geo.attributes.normal.array,
-        count: pos.count
-      }, 
-      colors: colorArr 
-    };
-  }, [isLowEnd]);
-
-  return (
-    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -10, 0]}>
-      <bufferGeometry attach="geometry">
-        <bufferAttribute
-          attach="attributes-position"
-          count={geometryData.count}
-          array={geometryData.position}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-normal"
-          count={geometryData.count}
-          array={geometryData.normal}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          count={colors.length / 3}
-          array={colors}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <meshStandardMaterial 
-        ref={materialRef}
-        vertexColors 
-        roughness={0.8} 
-        metalness={0.2} 
-        flatShading={!isLowEnd}
-      />
-    </mesh>
-  );
-}
-
-function SnowParticles({ count = 500 }) {
-  const pointsRef = useRef<Points>(null);
-  const materialRef = useRef<PointsMaterial>(null);
-  
-  const positions = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 300;
-      pos[i * 3 + 1] = Math.random() * 200;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 300;
-    }
-    return pos;
-  }, [count]);
-
-  useFrame((state, delta) => {
-    if (!pointsRef.current || !pointsRef.current.geometry) return;
-    
-    const attr = pointsRef.current.geometry.attributes.position;
-    const pos = attr.array as Float32Array;
-    
-    for (let i = 0; i < count; i++) {
-      pos[i * 3 + 1] -= delta * 5;
-      if (pos[i * 3 + 1] < -50) pos[i * 3 + 1] = 150;
-    }
-    attr.needsUpdate = true;
-  });
-
-  return (
-    <points ref={pointsRef}>
-      <bufferGeometry attach="geometry">
-        <bufferAttribute
-          attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        ref={materialRef}
-        size={0.4}
-        color="#ffffff"
-        transparent
-        opacity={0.4}
-        sizeAttenuation
-      />
-    </points>
-  );
-}
-
-function SceneContent({ scrollRef, isLowEnd }: { scrollRef: React.RefObject<HTMLDivElement>; isLowEnd: boolean }) {
-  const { camera, gl } = useThree();
-  
-  useEffect(() => {
-    // Task 1: GSAP Context for memory safety
-    const ctx = gsap.context(() => {
-      gsap.registerPlugin(ScrollTrigger);
-      
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: scrollRef.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 2.5,
-          invalidateOnRefresh: true,
-        }
-      });
-
-      tl.to(camera.position, { x: 0, y: 20, z: 60, ease: "power2.inOut" }, 0);
-      tl.to(camera.position, { x: -30, y: 12, z: 40, ease: "power2.inOut" }, 1);
-      tl.to(camera.position, { x: 0, y: 60, z: 180, ease: "power2.inOut" }, 2);
-    }, scrollRef);
-
-    return () => {
-      ctx.revert();
-      gl.dispose();
-    };
-  }, [camera, gl, scrollRef]);
-
-  useFrame((state) => {
-    camera.position.y += Math.sin(state.clock.elapsedTime) * 0.01;
-  });
-
-  return (
-    <>
-      <Terrain isLowEnd={isLowEnd} />
-      <SnowParticles count={isLowEnd ? 300 : 800} />
-    </>
-  );
-}
-
-function Loader() {
-  const { progress } = useProgress();
-  return <Html center><span className="text-gold text-xs uppercase tracking-widest">{progress.toFixed(0)}%</span></Html>;
-}
+import React from 'react';
 
 export default function HeroScene() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [webglSupported, setWebglSupported] = useState(true);
-
-  const videoUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
-  const posterUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_POSTER;
-
-  useEffect(() => {
-    const checkSupport = () => {
-      setIsMobile(window.innerWidth < 768);
-      try {
-        const canvas = document.createElement('canvas');
-        setWebglSupported(!!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))));
-      } catch {
-        setWebglSupported(false);
-      }
-    };
-    
-    checkSupport();
-    window.addEventListener('resize', checkSupport);
-    return () => window.removeEventListener('resize', checkSupport);
-  }, []);
-
-  if (isMobile || !webglSupported) {
-    return (
-      <div className="fixed inset-0 -z-10 bg-[#050508] overflow-hidden">
-        {videoUrl ? (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={posterUrl || 'https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1920&q=90'}
-            className="absolute inset-0 w-full h-full object-cover opacity-45 hero-video"
-            style={{ zIndex: 0 }}
-          >
-            <source src={videoUrl} type="video/mp4" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src={posterUrl || 'https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1920&q=90'}
-              alt="Spiti Valley Himachal Pradesh"
-              className="absolute inset-0 w-full h-full object-cover opacity-45"
-            />
-          </video>
-        ) : (
-          <div 
-            className="absolute inset-0 bg-cover bg-center opacity-40 scale-110 hero-mobile-fallback"
-            style={{ backgroundImage: `url("${posterUrl || 'https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1920&q=90'}")` }}
-            role="img"
-            aria-label="Himalayan mountain peak background"
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/30 via-dark/10 to-dark" />
-      </div>
-    );
-  }
+  const videoUrl = 'https://res.cloudinary.com/dj2awcwfo/video/upload/q_auto,f_auto/Cinematic_travel_montage_K_u_1_e7z0os.mp4';
+  const fallbackPoster = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=90'; // Chitkul (Priority 1)
 
   return (
-    <div ref={containerRef} className="fixed inset-0 -z-10 bg-[#050508] will-change-transform">
-      <Canvas 
-        dpr={[1, 1.5]}
-        frameloop="demand"
-        performance={{ min: 0.5 }}
-        gl={{ 
-          antialias: false,
-          powerPreference: "high-performance" 
-        }}
+    <div className="fixed inset-0 -z-10 bg-[#050508] overflow-hidden w-full h-full">
+      {/* Cinematic Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster={fallbackPoster}
+        className="absolute inset-0 w-full h-full object-cover opacity-60"
+        style={{ zIndex: 0 }}
       >
-        <Suspense fallback={<Loader />}>
-          <PerspectiveCamera makeDefault position={[0, 45, 120]} fov={60} />
-          <fog attach="fog" args={['#0A0A1A', 80, 300]} />
-          <ambientLight intensity={0.5} color="#334466" />
-          <directionalLight position={[50, 50, 50]} intensity={1.5} color="#ffd4a0" />
-          <SceneContent scrollRef={containerRef} isLowEnd={false} />
-        </Suspense>
-      </Canvas>
-      <div className="absolute inset-0 bg-gradient-to-b from-dark/30 via-dark/10 to-dark pointer-events-none" />
+        <source src={videoUrl} type="video/mp4" />
+        {/* Fallback Image */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={fallbackPoster}
+          alt="Baspa Valley Chitkul Himachal Pradesh"
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
+        />
+      </video>
+
+      {/* Subtle Dark Gradient Overlay for Readability */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 100%)',
+          zIndex: 1
+        }}
+      />
     </div>
   );
 }
-
-

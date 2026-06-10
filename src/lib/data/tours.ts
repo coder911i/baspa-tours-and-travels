@@ -476,9 +476,9 @@ export const tours: Tour[] = [
         day: 1, title: "Shimla to Sangla",
         description: "Drive 240km to reach the winter wonderland of Sangla. The Satluj valley is dusted with fresh snow.",
         images: [
-          "https://images.unsplash.com/photo-1716128033373-60b172383931?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1716128033373-60b172383931?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1716128033373-60b172383931?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,600m", distance: "240 km", stay: "Sangla Homestay",
         highlights: ["Winter Landscapes", "Satluj Gorge"]
@@ -488,8 +488,8 @@ export const tours: Tour[] = [
         description: "Witness Chitkul completely covered in snow. A magical sight that very few travelers ever see.",
         images: [
           "https://images.unsplash.com/photo-1716128033373-60b172383931?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1716128033373-60b172383931?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1716128033373-60b172383931?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,450m", distance: "40 km", stay: "Chitkul Homestay",
         highlights: ["Snowy Chitkul", "Baspa River Frozen"]
@@ -499,8 +499,8 @@ export const tours: Tour[] = [
         description: "Drive through frozen landscapes to Tabo. The roads are icy and dramatic in the winter light.",
         images: [
           "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,280m", distance: "150 km", stay: "Tabo Homestay",
         highlights: ["Frozen Nako Lake", "Tabo Winter"]
@@ -510,8 +510,8 @@ export const tours: Tour[] = [
         description: "Explore the ancient Dhankar fort with snow all around, then reach Kaza.",
         images: [
           "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,800m", distance: "90 km", stay: "Kaza Homestay",
         highlights: ["Dhankar in Snow", "Kaza Town"]
@@ -521,8 +521,8 @@ export const tours: Tour[] = [
         description: "Visit the iconic Key Monastery surrounded by white snow. The most photogenic sight in the Himalayas.",
         images: [
           "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "4,166m", distance: "40 km", stay: "Kaza Homestay",
         highlights: ["Key Monastery Snow", "Chicham Bridge"]
