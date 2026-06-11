@@ -1,4 +1,4 @@
-const SHEET_ID = 'YOUR_SPREADSHEET_ID_HERE'; // ← Paste your Spreadsheet ID here
+const SHEET_ID = '1mem5wHaUBBtyJuS_fmevhPkZVxqRiWImH3mzenG8JZk'; // Prefilled with your Google Sheet ID
 const SHEET_NAME = 'Sheet1'; // Name of the sheet tab
 
 function doPost(e) {
