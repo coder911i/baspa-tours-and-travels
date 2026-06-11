@@ -64,7 +64,7 @@ function doPost(e) {
 
 function sendConfirmationEmail(data) {
   try {
-    const adminEmail = 'rajbir.baspatravels@gmail.com'; // ← Mapped to client's preferred email or update as needed
+    const adminEmail = 'waterting.app@gmail.com'; // Admin notification email
     
     const subject = `🏔️ New Booking: ${data.tourName} — ${data.fullName}`;
     
