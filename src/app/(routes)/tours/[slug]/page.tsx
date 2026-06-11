@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
 
   if (slug === 'spiti-summer-circuit') {
     return {
-      title: "Spiti Valley Summer Tour 8 Days | Delhi to Manali Circuit ₹18,999",
-      description: "Complete Spiti Valley summer circuit — Delhi → Chitkul → Tabo → Kaza → Chandratal → Manali. 8 days, expert local guide, all meals included. Book at ₹18,999/person.",
+      title: "Spiti Valley Summer Tour 8 Days | Delhi to Manali Circuit ₹16,999",
+      description: "Complete Spiti Valley summer circuit — Delhi → Chitkul → Tabo → Kaza → Chandratal → Manali. 8 days, expert local guide, all meals included. Book at ₹16,999/person.",
       alternates: { canonical: "https://www.baspatravels.com/tours/spiti-summer-circuit" }
     };
   }

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Tour } from '@/types';
 import toast from 'react-hot-toast';
+import { SITE_CONFIG } from '@/lib/constants';
 
 export default function BookingWidget({ tour }: { tour: Tour }) {
   const [date, setDate] = useState('');
@@ -87,7 +88,7 @@ export default function BookingWidget({ tour }: { tour: Tour }) {
         
         <p className="text-[9px] text-text-muted text-center uppercase tracking-widest leading-relaxed">
           * Final price may vary based on customization.<br />
-          Free consultation with local experts.
+          For more details, contact us at {SITE_CONFIG.PHONE}
         </p>
       </form>
     </div>

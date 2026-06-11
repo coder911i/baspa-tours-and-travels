@@ -65,7 +65,7 @@ const ARTICLES: ArticleCard[] = [
     date: 'May 12, 2026',
     readTime: '5 min',
     category: 'Camp Guide',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80'
   },
   {
     slug: 'spiti-valley-winter-guide',

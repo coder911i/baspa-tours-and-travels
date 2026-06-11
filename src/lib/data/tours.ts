@@ -8,8 +8,8 @@ export const tours: Tour[] = [
     subtitle: "The Great Himalayan Loop",
     duration: "6 Nights / 7 Days",
     location: "Spiti & Kinnaur",
-    startingPrice: "₹21,500",
-    price: 21500,
+    startingPrice: "₹16,999",
+    price: 16999,
     altitude: "4,520m",
     image: "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85",
     difficulty: "Moderate",
@@ -44,7 +44,7 @@ export const tours: Tour[] = [
         day: 3, title: "Kalpa to Nako & Tabo",
         description: "Enter the rain shadow region. Visit Nako Lake, then drive to Tabo Monastery — the Ajanta of the Himalayas.",
         images: [
-          "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
         ],
@@ -213,7 +213,7 @@ export const tours: Tour[] = [
         day: 3, title: "Kalpa to Nako",
         description: "Experience the thrilling Ka Loops on your bike. Reach the serene Nako Lake high in the Hangrang valley.",
         images: [
-          "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
         ],
@@ -373,7 +373,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,450m", distance: "40 km", stay: "Chitkul",
         highlights: ["Indo-Tibet Border", "Mathi Temple"]

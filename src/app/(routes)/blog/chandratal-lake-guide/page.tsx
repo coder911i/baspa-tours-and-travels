@@ -16,7 +16,7 @@ export default function ChandratalGuidePage() {
       readTime="5 min"
       publishDate="May 12, 2026"
       category="Camp Guide"
-      coverImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df7?auto=format&fit=crop&w=1200&q=80"
+      coverImage="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80"
     >
       <h2>The Jewel of Lahaul & Spiti</h2>
       <p>
