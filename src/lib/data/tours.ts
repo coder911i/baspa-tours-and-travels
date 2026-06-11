@@ -22,9 +22,9 @@ export const tours: Tour[] = [
         day: 1, title: "Shimla to Sangla",
         description: "Drive 220km along the Satluj river. Arrive at the lush Sangla Valley. The journey follows the ancient Indo-Tibet highway through dramatic gorges.",
         images: [
-          "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1626621342517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1544860707-c352cc5a92e3?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,600m", distance: "220 km", stay: "Sangla Homestay",
         highlights: ["Satluj River Gorge", "Sangla Valley Views"]
@@ -33,9 +33,9 @@ export const tours: Tour[] = [
         day: 2, title: "Sangla to Chitkul to Kalpa",
         description: "Visit Chitkul, the last village before Tibet, then drive to Kalpa to witness the mighty Kinnaur Kailash peaks glowing at sunset.",
         images: [
-          "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,960m", distance: "80 km", stay: "Kalpa Hotel",
         highlights: ["Chitkul", "Kinnaur Kailash", "Suicide Point"]
@@ -55,9 +55,9 @@ export const tours: Tour[] = [
         day: 4, title: "Tabo to Dhankar & Pin Valley",
         description: "Explore the ancient Dhankar fort perched on a cliff. Enter the pristine Pin Valley National Park.",
         images: [
-          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,800m", distance: "90 km", stay: "Mud Village",
         highlights: ["Dhankar Monastery", "Mud Village"]
@@ -68,7 +68,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "4,400m", distance: "80 km", stay: "Kaza Homestay",
         highlights: ["Key Monastery", "Chicham Bridge", "Hikkim"]
@@ -77,8 +77,8 @@ export const tours: Tour[] = [
         day: 6, title: "Kaza to Chandratal Lake",
         description: "Drive over the majestic Kunzum Pass to reach the mystical crescent-shaped Chandratal Lake. Camp under the clearest stars you have ever seen.",
         images: [
-          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "4,250m", distance: "110 km", stay: "Chandratal Camps",
@@ -226,7 +226,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,800m", distance: "110 km", stay: "Kaza",
         highlights: ["Spiti Desert", "Tabo"]
@@ -237,7 +237,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1617159156637-dfb8655c9f95?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "4,520m", distance: "60 km", stay: "Kaza",
         highlights: ["World's Highest Post Office"]
@@ -269,8 +269,8 @@ export const tours: Tour[] = [
         description: "Return journey back home. Rest and relive the memories.",
         images: [
           "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1486915309851-b0cc1f8a0084?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "216m", distance: "570 km", stay: "Home",
         highlights: ["Trip Wrap-up"]
@@ -349,9 +349,9 @@ export const tours: Tour[] = [
         day: 1, title: "Shimla to Narkanda/Sarahan",
         description: "Start towards Kinnaur on the old Hindustan-Tibet road. Visit the ancient Bhimakali Temple at Sarahan.",
         images: [
-          "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1626621342517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,708m", distance: "160 km", stay: "Sarahan",
         highlights: ["Bhimakali Temple", "Pine Forests"]
@@ -361,7 +361,7 @@ export const tours: Tour[] = [
         description: "Drive into the breathtaking Baspa Valley, one of the most romantic valleys in the Himalayas.",
         images: [
           "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,600m", distance: "90 km", stay: "Sangla",
@@ -382,9 +382,9 @@ export const tours: Tour[] = [
         day: 4, title: "Chitkul to Kalpa",
         description: "Drive to Kalpa to witness the magnificent Kinnaur Kailash ranges glowing at sunrise.",
         images: [
-          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,960m", distance: "60 km", stay: "Kalpa",
         highlights: ["Apple Orchards", "Kinnaur Kailash"]
@@ -393,9 +393,9 @@ export const tours: Tour[] = [
         day: 5, title: "Kalpa Local",
         description: "Visit Suicide point, Roghi village, and immerse in the local Kinnauri culture and handicrafts.",
         images: [
-          "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,960m", distance: "30 km", stay: "Kalpa",
         highlights: ["Suicide Point", "Roghi Village"]
@@ -406,7 +406,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1626621342517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,276m", distance: "220 km", stay: "Home",
         highlights: ["Return Journey"]
@@ -476,9 +476,9 @@ export const tours: Tour[] = [
         day: 1, title: "Shimla to Sangla",
         description: "Drive 240km to reach the winter wonderland of Sangla. The Satluj valley is dusted with fresh snow.",
         images: [
-          "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1547989453-11e67ffb3885?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "2,600m", distance: "240 km", stay: "Sangla Homestay",
         highlights: ["Winter Landscapes", "Satluj Gorge"]
@@ -488,8 +488,8 @@ export const tours: Tour[] = [
         description: "Witness Chitkul completely covered in snow. A magical sight that very few travelers ever see.",
         images: [
           "https://images.unsplash.com/photo-1716128033373-60b172383931?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,450m", distance: "40 km", stay: "Chitkul Homestay",
         highlights: ["Snowy Chitkul", "Baspa River Frozen"]
@@ -499,8 +499,8 @@ export const tours: Tour[] = [
         description: "Drive through frozen landscapes to Tabo. The roads are icy and dramatic in the winter light.",
         images: [
           "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,280m", distance: "150 km", stay: "Tabo Homestay",
         highlights: ["Frozen Nako Lake", "Tabo Winter"]
@@ -510,8 +510,8 @@ export const tours: Tour[] = [
         description: "Explore the ancient Dhankar fort with snow all around, then reach Kaza.",
         images: [
           "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "3,800m", distance: "90 km", stay: "Kaza Homestay",
         highlights: ["Dhankar in Snow", "Kaza Town"]
@@ -522,7 +522,7 @@ export const tours: Tour[] = [
         images: [
           "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=1200&q=85",
           "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=85"
+          "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=1200&q=85"
         ],
         altitude: "4,166m", distance: "40 km", stay: "Kaza Homestay",
         highlights: ["Key Monastery Snow", "Chicham Bridge"]

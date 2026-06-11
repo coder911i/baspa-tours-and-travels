@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // Validate required fields
-    const required = ['fullName', 'email', 'phone', 'tourName', 'departureDate', 'adults'];
+    const required = ['fullName', 'phone', 'tourName', 'departureDate', 'adults'];
     const missing = required.filter(field => !body[field]);
     
     if (missing.length > 0) {
@@ -15,13 +15,15 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(body.email)) {
-      return NextResponse.json(
-        { success: false, error: 'Invalid email format' },
-        { status: 400 }
-      );
+    // Email format validation (only if provided)
+    if (body.email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(body.email)) {
+        return NextResponse.json(
+          { success: false, error: 'Invalid email format' },
+          { status: 400 }
+        );
+      }
     }
     
     // Phone validation (Indian numbers)

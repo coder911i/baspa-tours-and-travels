@@ -99,10 +99,6 @@ function BookingFormInner() {
       setErrorMsg('Please enter your full name.');
       return;
     }
-    if (!formData.email.trim()) {
-      setErrorMsg('Please enter your email address.');
-      return;
-    }
     if (!formData.phone.trim()) {
       setErrorMsg('Please enter your phone number.');
       return;
@@ -166,7 +162,6 @@ function BookingFormInner() {
             <div><span className="text-text-muted">Tour:</span> {formData.tourName}</div>
             <div><span className="text-text-muted">Departure:</span> {formData.departureDate}</div>
             <div><span className="text-text-muted">Travelers:</span> {formData.adults} Adults {formData.children > 0 ? `, ${formData.children} Children` : ''}</div>
-            {formData.budget && <div><span className="text-text-muted">Budget Range:</span> {formData.budget}</div>}
           </div>
         </div>
 
@@ -229,32 +224,6 @@ function BookingFormInner() {
             />
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-gold font-bold">WhatsApp Number</label>
-            <input 
-              type="tel" 
-              name="whatsapp"
-              value={formData.whatsapp}
-              onChange={handleChange}
-              placeholder="Same as phone? Leave blank"
-              className="w-full bg-background border border-white/10 rounded-none px-4 py-3 text-snow text-sm focus:border-gold outline-none transition-colors"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Email Address *</label>
-            <input 
-              type="email" 
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="email@example.com"
-              className="w-full bg-background border border-white/10 rounded-none px-4 py-3 text-snow text-sm focus:border-gold outline-none transition-colors"
-            />
-          </div>
-        </div>
       </div>
 
       {/* Tour details */}
@@ -272,7 +241,6 @@ function BookingFormInner() {
               {tours.map(t => (
                 <option key={t.id} value={t.title}>{t.title} ({t.duration})</option>
               ))}
-              <option value="Custom Tour">Custom Tour / Personal Itinerary</option>
             </select>
           </div>
           <div className="space-y-2">
@@ -290,17 +258,6 @@ function BookingFormInner() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Return Date (Approx)</label>
-            <input 
-              type="date" 
-              name="returnDate"
-              min={formData.departureDate || new Date().toISOString().split('T')[0]}
-              value={formData.returnDate}
-              onChange={handleChange}
-              className="w-full bg-background border border-white/10 rounded-none px-4 py-3 text-snow text-sm focus:border-gold outline-none transition-colors"
-            />
-          </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Adults *</label>
@@ -334,56 +291,6 @@ function BookingFormInner() {
 
       {/* Preferences & Special Requests */}
       <div className="space-y-6 pt-6 border-t border-white/5">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Accommodation</label>
-            <select 
-              name="accommodation"
-              value={formData.accommodation}
-              onChange={handleChange}
-              className="w-full bg-background border border-white/10 rounded-none px-4 py-3 text-snow text-sm focus:border-gold outline-none transition-colors"
-            >
-              <option value="Standard">Standard (Local Homestays)</option>
-              <option value="Deluxe">Deluxe (Premium Hotels)</option>
-              <option value="Camping">Camping (Luxury Tents)</option>
-              <option value="Mix">Mix / Best Available</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Budget (₹ Per Person)</label>
-            <select 
-              name="budget"
-              value={formData.budget}
-              onChange={handleChange}
-              className="w-full bg-background border border-white/10 rounded-none px-4 py-3 text-snow text-sm focus:border-gold outline-none transition-colors"
-            >
-              <option value="">Select budget range</option>
-              <option value="Under 15,000">Under ₹15,000</option>
-              <option value="15,000–25,000">₹15,000 – ₹25,000</option>
-              <option value="25,000–40,000">₹25,000 – ₹40,000</option>
-              <option value="40,000–60,000">₹40,000 – ₹60,000</option>
-              <option value="60,000+">₹60,000+</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-gold font-bold">How did you hear about us?</label>
-            <select 
-              name="hearAboutUs"
-              value={formData.hearAboutUs}
-              onChange={handleChange}
-              className="w-full bg-background border border-white/10 rounded-none px-4 py-3 text-snow text-sm focus:border-gold outline-none transition-colors"
-            >
-              <option value="">Select source</option>
-              <option value="Google Search">Google Search</option>
-              <option value="Instagram">Instagram</option>
-              <option value="Facebook">Facebook</option>
-              <option value="YouTube">YouTube</option>
-              <option value="Word of Mouth">Friend or Family</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-        </div>
-
         <div className="space-y-2">
           <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Special Requests or Requirements</label>
           <textarea 
