@@ -19,6 +19,7 @@ export default function HeroScene() {
         className="absolute inset-0 w-full h-full object-cover opacity-60"
         style={{ zIndex: 0 }}
       >
+        <source src="/WhatsApp%20Video%202026-06-13%20at%2012.43.48%20PM.mp4" type="video/mp4" />
         <source src="/hero.mp4" type="video/mp4" />
         <source src="/videos/hero.mp4" type="video/mp4" />
         <source src={videoUrl} type="video/mp4" />
