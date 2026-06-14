@@ -12,6 +12,7 @@ export default function HeroScene() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = true;
+      videoRef.current.load(); // Explicitly force the browser to reload the media resource
       videoRef.current.play().catch((err) => {
         console.log("Video autoplay failed or was prevented:", err);
       });
