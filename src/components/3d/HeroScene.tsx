@@ -1,15 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 export default function HeroScene() {
   const videoUrl = 'https://res.cloudinary.com/dj2awcwfo/video/upload/q_auto,f_auto/Cinematic_travel_montage_K_u_1_e7z0os.mp4';
   const fallbackPoster = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=90'; // Chitkul (Priority 1)
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((err) => {
+        console.log("Video autoplay failed or was prevented:", err);
+      });
+    }
+  }, []);
 
   return (
     <div className="fixed inset-0 -z-10 bg-[#050508] overflow-hidden w-full h-full">
       {/* Cinematic Background Video */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
@@ -19,9 +30,7 @@ export default function HeroScene() {
         className="absolute inset-0 w-full h-full object-cover opacity-60"
         style={{ zIndex: 0 }}
       >
-        <source src="/WhatsApp%20Video%202026-06-13%20at%2012.43.48%20PM.mp4" type="video/mp4" />
         <source src="/hero.mp4" type="video/mp4" />
-        <source src="/videos/hero.mp4" type="video/mp4" />
         <source src={videoUrl} type="video/mp4" />
         {/* Fallback Image */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
