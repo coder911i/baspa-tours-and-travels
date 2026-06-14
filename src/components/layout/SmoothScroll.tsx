@@ -1,9 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -12,6 +16,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       gestureOrientation: 'vertical',
       smoothWheel: true,
     });
+
+    lenisRef.current = lenis;
 
     let rafId: number;
     function raf(time: number) {
@@ -23,9 +29,25 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       lenis.destroy();
+      lenisRef.current = null;
       cancelAnimationFrame(rafId);
     };
   }, []);
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      // Instantly scroll to top and reset Lenis scroll calculations
+      window.scrollTo(0, 0);
+      lenisRef.current.scrollTo(0, { immediate: true });
+      
+      // Allow a brief delay for Next.js to complete page rendering, then force recalculate heights
+      const timer = setTimeout(() => {
+        lenisRef.current?.resize();
+      }, 80);
+
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
 
   return <>{children}</>;
 }
