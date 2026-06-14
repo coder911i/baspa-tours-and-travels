@@ -19,6 +19,8 @@ export default function HeroScene() {
         className="absolute inset-0 w-full h-full object-cover opacity-60"
         style={{ zIndex: 0 }}
       >
+        <source src="/hero.mp4" type="video/mp4" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
         <source src={videoUrl} type="video/mp4" />
         {/* Fallback Image */}
         {/* eslint-disable-next-line @next/next/no-img-element */}

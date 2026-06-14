@@ -115,7 +115,7 @@ export default function ItineraryPreview() {
   };
 
   const handlePrint = () => {
-    window.print();
+    window.open('https://drive.google.com/file/d/1bEIICymClBwMtm9fe6iQavzB4OIglRb5/view?usp=sharing', '_blank');
   };
 
   return (
@@ -131,24 +131,25 @@ export default function ItineraryPreview() {
           {tour ? (
             <>
               {/* Header */}
-              <div className="relative z-50 flex items-center justify-between p-6 md:px-12 border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-md shrink-0 print:border-black print:bg-white print:px-0">
-                <div className="flex flex-col">
-                  <span className="text-[10px] text-gold font-bold uppercase tracking-[0.4em] mb-1 print:text-black">Itinerary Blueprint</span>
-                  <h2 className="text-xl md:text-2xl font-display text-snow print:text-black">{tour.title}</h2>
+              <div className="relative z-50 flex items-center justify-between p-4 md:p-6 md:px-12 border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-md shrink-0 print:border-black print:bg-white print:px-0">
+                <div className="flex flex-col min-w-0 pr-2">
+                  <span className="text-[8px] md:text-[10px] text-gold font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] mb-0.5 md:mb-1 print:text-black">Itinerary Blueprint</span>
+                  <h2 className="text-base md:text-2xl font-display text-snow truncate md:overflow-visible print:text-black">{tour.title}</h2>
                 </div>
-                <div className="flex items-center gap-4 print:hidden">
+                <div className="flex items-center gap-2 md:gap-4 shrink-0 print:hidden">
                   <button
                     onClick={handlePrint}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-gold/20 text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-charcoal transition-all"
+                    className="flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-gold/20 text-[9px] md:text-[10px] font-bold uppercase tracking-wider md:tracking-widest hover:bg-gold hover:text-charcoal transition-all"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-                    Export PDF
+                    <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                    <span className="hidden sm:inline">Export PDF</span>
+                    <span className="sm:hidden">PDF</span>
                   </button>
                   <button
                     onClick={closeOverlay}
-                    className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center hover:bg-gold hover:text-charcoal transition-all duration-300 group"
+                    className="w-9 h-9 md:w-12 md:h-12 rounded-full border border-gold/20 flex items-center justify-center hover:bg-gold hover:text-charcoal transition-all duration-300 group"
                   >
-                    <Icons.X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
+                    <Icons.X className="w-4 h-4 md:w-6 md:h-6 group-hover:rotate-90 transition-transform duration-300" />
                   </button>
                 </div>
               </div>

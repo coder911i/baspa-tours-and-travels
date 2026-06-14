@@ -11,15 +11,15 @@ interface SightseeingSectionProps {
 
 // Verified high-resolution destination images matching the Himalayan route stops
 const DESTINATION_IMAGES: Record<string, string> = {
-  "Shimla": "https://images.unsplash.com/photo-1626621342517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80",
+  "Shimla": "https://images.unsplash.com/photo-1597075687490-8f673c6c17f6?auto=format&fit=crop&w=600&q=80",
   "Sangla Valley": "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=600&q=80",
   "Chitkul": "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?auto=format&fit=crop&w=600&q=80",
   "Chitkul in Winter": "https://images.unsplash.com/photo-1716128033373-60b172383931?auto=format&fit=crop&w=600&q=80",
   "Kalpa": "https://images.unsplash.com/photo-1640035209336-df638dd26c4d?auto=format&fit=crop&w=600&q=80",
   "Nako": "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=600&q=80",
-  "Nako in Winter": "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=600&q=80",
+  "Nako in Winter": "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=600&q=80",
   "Tabo": "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=600&q=80",
-  "Tabo in Winter": "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=600&q=80",
+  "Tabo in Winter": "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=600&q=80",
   "Kaza": "https://images.unsplash.com/photo-1681798805445-2b24c2cb8f64?auto=format&fit=crop&w=600&q=80",
   "Kaza in Winter": "https://images.unsplash.com/photo-1698753935121-153a106616d5?auto=format&fit=crop&w=600&q=80",
   "Langza": "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?auto=format&fit=crop&w=600&q=80",
@@ -28,12 +28,12 @@ const DESTINATION_IMAGES: Record<string, string> = {
   "Manali": "https://images.unsplash.com/photo-1544860707-c352cc5a92e3?auto=format&fit=crop&w=600&q=80",
   "Atal Tunnel": "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&w=600&q=80",
   "Jispa": "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=600&q=80",
-  "Kunzum Pass": "https://images.unsplash.com/photo-1544084944-15269ec7b5a0?auto=format&fit=crop&w=600&q=80",
+  "Kunzum Pass": "https://images.unsplash.com/photo-1531266752426-aad472b7bbf4?auto=format&fit=crop&w=600&q=80",
   "Baspa Valley": "https://images.unsplash.com/photo-1612638039814-1a67ea727114?auto=format&fit=crop&w=600&q=80",
   "Langza & Hikkim": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80",
-  "Langza & Hikkim in Winter": "https://images.unsplash.com/photo-1698753935263-0eca2103d2db?auto=format&fit=crop&w=600&q=80",
-  "Winter Special Activities": "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=600&q=80",
-  "Special Winter Activities": "https://images.unsplash.com/photo-1559827291-72ebf59d5f8b?auto=format&fit=crop&w=600&q=80"
+  "Langza & Hikkim in Winter": "https://images.unsplash.com/photo-1547989453-11e67ffb3885?auto=format&fit=crop&w=600&q=80",
+  "Winter Special Activities": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80",
+  "Special Winter Activities": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80"
 };
 
 export default function SightseeingSection({ sightseeing }: SightseeingSectionProps) {
