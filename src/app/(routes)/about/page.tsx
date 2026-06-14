@@ -65,23 +65,16 @@ export default function AboutPage() {
 
         {/* Team */}
         <div className="mb-32">
-          <h2 className="text-center text-4xl font-display text-snow mb-20">Meet the Guardians</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { name: 'Rigzin Negi', role: 'Founder & Lead Explorer', desc: '15 years in Himalayan expeditions.' },
-              { name: 'Sonam Tsering', role: 'Operations Head', desc: 'Expert in remote logistics.' },
-              { name: 'Tenzin Dorje', role: 'Lead Guide', desc: 'Certified Mountain Guide.' },
-              { name: 'Maya Sharma', role: 'Photography Lead', desc: 'Capturing the soul of Spiti.' },
-            ].map((member, i) => (
-              <div key={i} className="text-center group">
-                <div className="relative aspect-[3/4] mb-6 overflow-hidden bg-charcoal">
-                   <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <h4 className="text-xl font-display text-snow mb-1 group-hover:text-gold transition-colors">{member.name}</h4>
-                <p className="text-gold text-[10px] uppercase tracking-widest font-bold mb-3">{member.role}</p>
-                <p className="text-text-muted text-xs px-4">{member.desc}</p>
+          <h2 className="text-center text-4xl font-display text-snow mb-20">Meet the Founder</h2>
+          <div className="flex justify-center">
+            <div className="text-center group max-w-sm">
+              <div className="relative aspect-[3/4] w-72 mb-6 overflow-hidden bg-charcoal mx-auto">
+                 <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-            ))}
+              <h4 className="text-2xl font-display text-snow mb-1 group-hover:text-gold transition-colors">Rajbir Negi</h4>
+              <p className="text-gold text-xs uppercase tracking-widest font-bold mb-3">Founder</p>
+              <p className="text-text-muted text-sm px-4">Local mountain expert with 15+ years of leading premium expeditions in Kinnaur and Spiti Valley.</p>
+            </div>
           </div>
         </div>
       </section>
