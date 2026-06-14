@@ -224,7 +224,12 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
       <div className="fixed bottom-0 left-0 w-full bg-charcoal border-t border-white/10 p-4 z-[40] lg:hidden flex items-center justify-between backdrop-blur-md">
         <div>
           <span className="text-text-muted text-[10px] uppercase tracking-widest block">Expedition starting</span>
-          <span className="text-xl font-display text-snow">₹{typeof tour.price === 'number' ? tour.price.toLocaleString() : tour.price.perPerson.toLocaleString()}</span>
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-display text-snow">₹{typeof tour.price === 'number' ? tour.price.toLocaleString() : tour.price.perPerson.toLocaleString()}</span>
+            {tour.originalPrice && (
+              <span className="text-xs line-through text-text-muted font-display">₹{tour.originalPrice.toLocaleString()}</span>
+            )}
+          </div>
         </div>
         <button 
           onClick={handleScrollToBooking}

@@ -94,11 +94,23 @@ export default function TourCard3D({ tour }: TourCard3DProps) {
           
           <div 
             style={{ transform: "translateZ(40px)" }}
-            className="flex items-center justify-between pt-6 border-t border-white/10"
+            className="flex items-center justify-between pt-6 border-t border-white/10 w-full"
           >
             <div>
               <p className="text-text-muted text-[10px] uppercase tracking-widest mb-1">Starts From</p>
-              <p className="text-gold font-bold text-xl">₹{displayPrice.toLocaleString()}</p>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2">
+                  <p className="text-gold font-bold text-xl">₹{displayPrice.toLocaleString()}</p>
+                  {tour.originalPrice && (
+                    <span className="text-xs line-through text-text-muted font-display">₹{tour.originalPrice.toLocaleString()}</span>
+                  )}
+                </div>
+                {tour.originalPrice && (
+                  <span className="text-[9px] font-bold text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded-sm border border-green-500/20 w-fit mt-1">
+                    {Math.round(((tour.originalPrice - displayPrice) / tour.originalPrice) * 100)}% OFF
+                  </span>
+                )}
+              </div>
             </div>
             <div className="text-right">
               <p className="text-text-muted text-[10px] uppercase tracking-widest mb-1">Duration</p>

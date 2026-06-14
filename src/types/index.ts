@@ -46,6 +46,7 @@ export interface Tour {
   altitude?: string;
   groupSize: string | { min: number; max: number };
   price: number | { perPerson: number; private?: number };
+  originalPrice?: number;
   startingPrice?: string;
   season?: string[];
   highlights: string[];

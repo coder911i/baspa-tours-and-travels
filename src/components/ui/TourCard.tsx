@@ -56,8 +56,18 @@ export default function TourCard({ tour }: { tour: Tour }) {
             <div className="flex justify-between items-end">
               <div>
                 <span className="text-[9px] uppercase tracking-widest text-text-muted block mb-1">Starting from</span>
-                <span className="text-2xl font-display text-[#C9A84C] font-semibold">₹{displayPrice.toLocaleString()}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-display text-[#C9A84C] font-semibold">₹{displayPrice.toLocaleString()}</span>
+                  {tour.originalPrice && (
+                    <span className="text-sm line-through text-text-muted font-display">₹{tour.originalPrice.toLocaleString()}</span>
+                  )}
+                </div>
               </div>
+              {tour.originalPrice && (
+                <span className="text-[10px] font-bold text-green-500 bg-green-500/10 px-2 py-0.5 rounded-sm border border-green-500/20">
+                  {Math.round(((tour.originalPrice - displayPrice) / tour.originalPrice) * 100)}% OFF
+                </span>
+              )}
             </div>
             
             {/* Book Karo CTA (Full-width) */}

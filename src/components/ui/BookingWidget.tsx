@@ -27,9 +27,19 @@ export default function BookingWidget({ tour }: { tour: Tour }) {
   return (
     <div className="glass-card p-8 sticky top-32 border-gold/10" id="booking-widget">
       <div className="mb-8 pb-8 border-b border-white/10">
-        <span className="text-gold text-[10px] uppercase tracking-widest font-bold block mb-2">Expedition Price</span>
-        <div className="flex items-baseline gap-2">
+        <div className="flex justify-between items-start mb-2">
+          <span className="text-gold text-[10px] uppercase tracking-widest font-bold block">Expedition Price</span>
+          {tour.originalPrice && (
+            <span className="text-[10px] font-bold text-green-500 bg-green-500/10 px-2 py-0.5 rounded-sm border border-green-500/20">
+              {Math.round(((tour.originalPrice - basePrice) / tour.originalPrice) * 100)}% OFF
+            </span>
+          )}
+        </div>
+        <div className="flex items-baseline gap-2 flex-wrap">
           <span className="text-4xl font-display text-snow">₹{basePrice.toLocaleString()}</span>
+          {tour.originalPrice && (
+            <span className="text-lg line-through text-text-muted font-display">₹{tour.originalPrice.toLocaleString()}</span>
+          )}
           <span className="text-text-muted text-sm">/ person</span>
         </div>
       </div>

@@ -12,7 +12,7 @@ export const SITE_CONFIG = {
   // TODO: Replace with official promo trailer YouTube video ID
   VIDEO_ID: 'g8-fN6w4aC8', 
   SOCIAL_LINKS: {
-    instagram: 'https://instagram.com/baspatravels',
+    instagram: 'https://www.instagram.com/baspatravels.in/',
     facebook: 'https://facebook.com/baspatravels',
     twitter: 'https://twitter.com/baspatravels',
     youtube: 'https://youtube.com/@baspatravels',

@@ -113,7 +113,7 @@ export default function RootLayout({
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 31.3481, "longitude": 78.4395 },
     "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "08:00", "closes": "20:00" },
-    "sameAs": ["https://www.instagram.com/baspatravels", "https://wa.me/919418701460"]
+    "sameAs": ["https://www.instagram.com/baspatravels.in/", "https://wa.me/919418701460"]
   };
 
   return (
