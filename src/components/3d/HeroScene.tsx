@@ -27,7 +27,7 @@ export default function HeroScene() {
   };
 
   return (
-    <div className="fixed inset-0 -z-10 bg-[#050508] overflow-hidden w-full h-full">
+    <div className="absolute inset-0 z-0 bg-[#050508] overflow-hidden w-full h-full pointer-events-none">
       {/* Cinematic Background Video */}
       <video
         ref={videoRef}
