@@ -39,7 +39,7 @@ export default function HeroScene() {
         playsInline
         preload="auto"
         poster={fallbackPoster}
-        className="absolute inset-0 w-full h-full object-cover opacity-60"
+        className="absolute inset-0 w-full h-full object-contain opacity-60"
         style={{ zIndex: 0 }}
       />
 
