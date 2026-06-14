@@ -119,7 +119,18 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
             </div>
 
             <div className="space-y-12">
-              <h2 className="text-3xl font-display text-snow mb-6 border-b border-gold/20 pb-4 inline-block">The Master Itinerary</h2>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gold/20 pb-4 mb-6">
+                <h2 className="text-3xl font-display text-snow">The Master Itinerary</h2>
+                <a
+                  href="https://drive.google.com/file/d/1bEIICymClBwMtm9fe6iQavzB4OIglRb5/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2 border border-gold/30 text-gold hover:bg-gold hover:text-charcoal transition-all text-xs uppercase tracking-widest font-bold w-fit"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                  Get PDF Itinerary
+                </a>
+              </div>
 
               {/* Route Map inside itinerary */}
               <div className="rounded-2xl overflow-hidden border border-white/5 bg-[#0D0D0D] p-4">
