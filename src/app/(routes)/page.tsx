@@ -21,7 +21,7 @@ const HeroScene = dynamic(() => import('@/components/3d/HeroScene'), {
 const FeaturedTours = dynamic(() => import('@/components/sections/FeaturedTours'), { ssr: false });
 const GlobeSection = dynamic(() => import('@/components/sections/GlobeSection'), { ssr: false });
 const WhyChooseUs = dynamic(() => import('@/components/sections/WhyChooseUs'), { ssr: false });
-const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), { ssr: false });
+const ReviewsSection = dynamic(() => import('@/components/sections/ReviewsSection'), { ssr: false });
 const ItineraryPreview = dynamic(() => import('@/components/sections/ItineraryPreview'), { ssr: false });
 const GalleryPreview = dynamic(() => import('@/components/sections/GalleryPreview'), { ssr: false });
 const BookingCTA = dynamic(() => import('@/components/sections/BookingCTA'), { ssr: false });
@@ -46,7 +46,7 @@ export default function Home() {
         <WhyChooseUs />
         <ItineraryPreview />
         <GalleryPreview />
-        <Testimonials />
+        <ReviewsSection />
         
         {/* Our Sightseeings Section */}
         <section className="py-24 px-6 md:px-12 bg-background border-t border-white/5 text-center">

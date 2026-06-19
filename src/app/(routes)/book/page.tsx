@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import { tours } from '@/lib/data/tours';
 import { SITE_CONFIG } from '@/lib/constants';
 import { useSearchParams } from 'next/navigation';
+import { useReviews } from '@/hooks/useReviews';
 
 interface BookingFormData {
   fullName: string;
@@ -322,6 +323,7 @@ function BookingFormInner() {
 }
 
 export default function BookingPage() {
+  const { reviewUrl, trackReviewClick } = useReviews();
   return (
     <main className="bg-background min-h-screen">
       <Navbar />
@@ -346,6 +348,22 @@ export default function BookingPage() {
                     <li className="flex items-center gap-3"><span className="w-1 h-1 bg-gold rounded-full" /> All Inner-line Permits & Clearances</li>
                     <li className="flex items-center gap-3"><span className="w-1 h-1 bg-gold rounded-full" /> Premium Logistics (4x4 Expedition Vehicles)</li>
                   </ul>
+                </div>
+
+                <div className="p-8 border border-white/5 bg-surface/50 rounded-2xl">
+                  <h4 className="text-gold uppercase tracking-widest text-xs font-bold mb-4">⭐ Reviews & Ratings</h4>
+                  <p className="text-text-muted text-sm mb-6">
+                    Loved your last expedition with Baspa Travels? Share your story with other travelers by leaving a review on our Google page!
+                  </p>
+                  <a 
+                    href={reviewUrl || '#'} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={trackReviewClick}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 border border-gold text-gold hover:bg-gold hover:text-charcoal font-bold uppercase tracking-widest text-[10px] transition-all duration-300"
+                  >
+                    ⭐ Write a Review
+                  </a>
                 </div>
               </div>
             </div>

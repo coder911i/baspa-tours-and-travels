@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useReviews } from '@/hooks/useReviews';
 
 const TAGLINES = [
   "Best Budget Trips",
@@ -13,6 +14,7 @@ const TAGLINES = [
 
 export default function HeroContent() {
   const [index, setIndex] = useState(0);
+  const { reviewUrl, trackReviewClick } = useReviews();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -81,6 +83,15 @@ export default function HeroContent() {
             </div>
             Routes Dekho
           </Link>
+          <a 
+            href={reviewUrl || '#'} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            onClick={trackReviewClick}
+            className="px-8 py-4 border border-white/10 hover:border-gold hover:text-gold text-snow font-bold uppercase tracking-widest text-xs transition-all"
+          >
+            ⭐ Write a Review
+          </a>
         </div>
       </motion.div>
 

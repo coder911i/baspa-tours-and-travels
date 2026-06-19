@@ -9,6 +9,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { SITE_CONFIG, formatWhatsAppLink } from '@/lib/constants';
 import { toast } from 'react-hot-toast';
+import { useReviews } from '@/hooks/useReviews';
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -20,6 +21,7 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactPage() {
+  const { reviewUrl, trackReviewClick } = useReviews();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submissionCount, setSubmissionCount] = useState(0);
@@ -113,6 +115,25 @@ Message: ${data.message}`;
                     <h4 className="text-snow font-bold uppercase tracking-widest text-xs mb-2">Direct Line</h4>
                     <p className="text-text-muted leading-relaxed">{SITE_CONFIG.PHONE}</p>
                     <p className="text-text-muted leading-relaxed">{SITE_CONFIG.EMAIL}</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-6">
+                  <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold shrink-0">
+                    <span className="text-xl">⭐</span>
+                  </div>
+                  <div>
+                    <h4 className="text-snow font-bold uppercase tracking-widest text-xs mb-2">Feedback & Reviews</h4>
+                    <p className="text-text-muted leading-relaxed mb-4">Did you travel with us? We would love to hear your feedback on Google Reviews!</p>
+                    <a 
+                      href={reviewUrl || '#'} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      onClick={trackReviewClick}
+                      className="inline-flex items-center gap-2 px-6 py-3 border border-gold text-gold hover:bg-gold hover:text-charcoal font-bold uppercase tracking-widest text-xs transition-all duration-300"
+                    >
+                      ⭐ Write a Review
+                    </a>
                   </div>
                 </div>
 

@@ -1,9 +1,13 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SITE_CONFIG } from '@/lib/constants';
+import { useReviews } from '@/hooks/useReviews';
 
 export default function Footer() {
+  const { reviewUrl, trackReviewClick } = useReviews();
   return (
     <footer className="bg-background border-t border-white/5 pt-32 pb-12 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
@@ -31,6 +35,15 @@ export default function Footer() {
                 className="px-8 py-4 border border-gold text-gold font-bold uppercase tracking-widest text-xs hover:bg-gold hover:text-charcoal transition-all"
               >
                 WhatsApp pe baat karo
+              </a>
+              <a 
+                href={reviewUrl || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={trackReviewClick}
+                className="px-8 py-4 border border-white/20 text-snow hover:border-gold hover:text-gold font-bold uppercase tracking-widest text-xs transition-all"
+              >
+                ⭐ Write a Review
               </a>
             </div>
           </div>

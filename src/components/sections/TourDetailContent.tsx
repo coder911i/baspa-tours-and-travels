@@ -8,9 +8,11 @@ import BookingWidget from '@/components/ui/BookingWidget';
 import RouteMap from '@/components/RouteMap';
 import SightseeingSection from '@/components/sections/SightseeingSection';
 import { cn } from '@/lib/utils';
+import { useReviews } from '@/hooks/useReviews';
 
 export default function TourDetailContent({ tour }: { tour: Tour }) {
   const [activeDay, setActiveDay] = useState(0);
+  const { reviewUrl, trackReviewClick } = useReviews();
   const handleScrollToBooking = () => {
     document.getElementById('booking-widget')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -217,6 +219,25 @@ export default function TourDetailContent({ tour }: { tour: Tour }) {
                   )
                 )}
               </div>
+            </div>
+
+            {/* Review CTA Card */}
+            <div className="glass-card p-8 border border-white/5 bg-[#0D0D0D] flex flex-col md:flex-row md:items-center justify-between gap-6 mt-16">
+              <div>
+                <h4 className="text-gold uppercase tracking-widest text-xs font-bold mb-2">⭐ Share Your Experience</h4>
+                <p className="text-text-muted text-sm max-w-xl">
+                  Have you traveled on one of our Himalayan loop circuits before? Support our local Chitkul team by writing a quick Google review!
+                </p>
+              </div>
+              <a 
+                href={reviewUrl || '#'} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={trackReviewClick}
+                className="px-6 py-3 bg-gold text-charcoal font-bold uppercase tracking-widest text-xs hover:bg-gold-light transition-all whitespace-nowrap"
+              >
+                ⭐ Write a Review
+              </a>
             </div>
           </div>
 
